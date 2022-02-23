@@ -1,0 +1,167 @@
+﻿Surat Jalan Header
+1. Form Load
+2. OrderMuatanButton
+   - Tambah baris dalam grid
+   - Jika baris dalam grid > 0
+      -- Jika LocationID = L40001 atau L30001
+         --- Variable vOM = " " (kosong)
+         --- Pengulangan sampai (Baris grid - 1)
+            ---- vOM = "v0M (Data grid baris 0) ,"
+         --- SuratJalanID = vOM
+         --- Jika Tabel dtsetBundle > 0
+            ---- Clear semua baris di dtsetBundle
+         --- Get dtsetBundle dari database service Sls_SuratJalan_HitungBendel
+         --- Variable BundleCetak = " " (kosong)
+         --- Jika baris di dtsetBundle > 0
+            ---- Melakukan pengulangan table dtsetBundle sampai Baris-1
+               ----- Jika baris ke-i kolom Markt dalam table dtsetBundle = ,
+                  ------ Penulisan BundleCetak = "BundleCetak (Table dtsetBundle baris ke-i kolom Markt) (Table dtsetBundle baris ke-i kolom Bdlt) Btg"
+               ----- Jika baris ke-i kolom Markt dalam table dtsetBundle  != ,
+                  ------ Penulisan BundleCetak = "BundleCetak ), (Table dtsetBundle baris ke-i kolom Markt) (Table dtsetBundle baris ke-i kolom Bdlt) Btg"
+               ----- Lakukan Pengulangan sampai Baris-1
+            ---- Penulisan BundleCetak = "Bundle Cetak ),"
+            ---- BundleCetak = Mengecek BundleCetak 4 digit dari tengah
+         --- Jika panjang BundleCetak <= 62
+            ---- TextBox Keterangan1 = BundleCetak
+            ---- textBox Keterangan2 = " " (kosong)
+         --- Jika panjang BundleCetak > 62
+            ---- PosisiKoma = InStr(baris 57, BundleCetak, ",")
+            ---- TextBox Keterangan1 = BundleCetak.SubString(baris 0, PosisiKoma)
+            ---- TextBox Keterangan2 = BundleCetak.Substring(PosisiKoma, BundleCetak.Length - PosisiKoma)
+         --- Jika Markt dan Bdlt dicek sebanyak 4 digit dari kiri = 51
+            ---- TextBox Keterangan1 = ReadOnly
+            ---- TextBox Keterangan2 = ReadOnly
+            ---- Jika TextBox Keterangan1 = " " (kosong)
+               ----- TextBox Keterangan1 = -
+         --- Jika Markt dan Bdlt dicek sebanyak 4 digit dari kiri != 51
+            ---- TextBox Keterangan1 = Bisa Diedit dan Diisi
+            ---- TextBox Keterangan2 = Bisa Diedit dan Diisi
+
+3. PrintSuratJalanButton
+   - PrintSuratJalanButton tidak bisa digunakan (Enabled = False)
+   - Memanggil Function Save
+   - Jika Function GantiProfil = True
+      -- GantiProfil = False
+      -- LocationIDLog = LocationIDLog_Before (LocationID sebelumnya)
+      -- LocationNameLog = LocationNameLog_before (LocationName sebelumnya)
+      -- MainForm = "IT Support (Software Version)   (UserNameLog) - (LocationNameLog)"
+4. ExitButton
+   - Keluar Form SuratJalanForm
+5. ClearButton
+   - Clear semua data
+6. ListButton
+   - Membuka Form SuratJalanPrintListForm
+7. ReportButton
+   - Tidak melakukan perintah apapun
+8. CheckBox PrintCopSurat
+   - Jika CheckBox PrintCopSurat dicentang
+      -- CopNamaLokasiLabel ditunjukkan
+      -- CopAlamat1Label ditunjukkan
+      -- CopAlamat2Label ditunjukkan
+      -- Cop4TelpLabel ditunjukkan
+   - Jika CheckBox PrintCopSurat tidak dicentang
+      -- CopNamaLokasiLabel tidak ditunjukkan
+      -- CopAlamat1Label tidak ditunjukkan
+      -- CopAlamat2Label tidak ditunjukkan
+      -- Cop4TelpLabel tidak ditunjukkan
+9. DateTimePicker1, Menampilkan tanggal
+10. TextBox PIC, Nama PIC
+11. TextBox Customer, Nama Customer
+12. TextBox Project, Nama Project
+13. TextBox Alamat1, Alamat baris 1
+14. TextBox Alamat2, Alamat baris 2
+15. TextBox Alamat3, Alamat baris 3
+16. TextBox Keterangan1, Keterangan baris 1
+17. TextBox Keterangan2, Keterangan baris 2
+18. Grid
+   - ID OM, ID Order Muat
+   - ProductID, ID Produk
+   - ProductName, Nama Produk
+   - Quantity1, Satuan Kuantitas 1
+   - Satuan, Jenis Satuan 1
+   - Quantity2, Satuan Kuantitas 2
+   - Satuan, Jenis Satuan 2
+   - Keterangan, Keterangan
+   - PickSlipID, ID Pick Slip
+   - PO ID, ID PO
+   - SupplierID, ID Supplier
+   - QtyScanLabel, Label Scan Kuantitas
+   - WPS, Total WPS
+   - BeratStd, Total Berat Standard
+   - Porsi, Total Porsi
+   - BeratPorsi, Total Berat Porsi
+19. TextBox TandaTerima, Tanda Terima
+20. TextBox Supir, Nama Supir
+21. TextBox AdminMuatan, Nama Admin
+22. TextBox Final Inspection, Final Inspection
+
+
+Surat Jalan Detail
+1. Form Load
+   - Memanggil AllDataOrderMuat
+      -- Jika Loca
+2. Button Refresh
+   - Memanggil AllDataOrderMuat
+3. Button Reprint
+   - Jika data dalam grid > 0
+      -- NoPOCustomer = "/ (Data grid kolom 5)"
+      -- Ekspedisi = "/ (Data grid kolom 7)"
+   - Jika data dalam grid = 0
+      -- NoPOCustomer = " " (kosong)
+      -- Ekspedisi = " " (kosong)
+   - Memanggil Function PrintSatuan1
+4. Button Exit
+   - Keluar Form SuratJalanPrintListForm
+5. Button ReprintSatuan2
+   - Jika data dalam grid > 0
+      -- NoPOCustomer = "/ (Data grid kolom 5)"
+      -- Ekspedisi = "/ (Data grid kolom 7)"
+   - Jika data dalam grid = 0
+      -- NoPOCustomer = " " (kosong)
+      -- Ekspedisi = " " (kosong)
+   - Memanggil Function PrintSatuan2
+6. Button PrintBarcode
+   - Mengecek Printer
+   - Print data
+7. Button GantiOM
+   - Jika baris dalam grid > 0
+      -- Generate OTP
+         --- isi OTP : UserID, Form = SJ (Surat Jalan), DataGrid NoSJ (kolom 0)
+      -- Jika Variable otp_tampil untuk Void = True
+         --- Keluar Message Box : Void Yes or No ???
+         --- Keluar Message Box Button Yes dan No
+            ---- Jika Pilih No
+               ----- Keluar dari SuratJalanPrintListForm
+         --- Jika tidak ada jaringan internet
+            ---- Keluar Message Box : "Jaringan putus !!!"
+         --- LocationID = Data grid LocationID (kolom 6)
+         --- SuratJalanID = Data grid SuratJalanID (kolom 0)
+         --- Memanggil AllDataOrderMuat
+8. Button Void
+9. TextBox NoSJFilter
+   - Jika input > 2 karakter
+      -- Memanggil AllDataOrderMuat
+   - Jika input = 0 karakter
+      -- Memanggil AllDataOrderMuat
+10. TextBox DoCari
+   - Jika input > 2 karakter
+      -- Memanggil AllDataOrderMuat
+   - Jika input = 0 karakter
+      -- Memanggil AllDataOrderMuat
+11. TextBox MemoCari
+   - Jika input > 2 karakter
+      -- Memanggil AllDataOrderMuat
+   - Jika input = 0 karakter
+      -- Memanggil AllDataOrderMuat
+12. Grid
+   - NoSJ, Nomor Surat Jalan
+   - NoPO, Nomor PO
+   - NoMemo, Nomor Memo
+   - NamaBarang, Nama Barang
+   - Tanggal, Tanggal Surat Jalan
+   - NomorPOCust, Nomor PO Customer
+   - LocationID, ID Lokasi
+   - Ekspedisi, Jenis Ekspedisi
+   - NomorPO, Nomor PO
+   - ProductID, ID Produk
+   - NomorKontrak, Nomor Kontrak
