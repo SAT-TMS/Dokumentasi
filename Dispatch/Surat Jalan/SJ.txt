@@ -27,7 +27,7 @@
          --- Jika panjang BundleCetak > 62
             ---- PosisiKoma = InStr(baris 57, BundleCetak, ",")
             ---- TextBox Keterangan1 = BundleCetak.SubString(baris 0, PosisiKoma)
-            ---- TextBox Keterangan2 = BundleCetak.Substring(PosisiKoma, BundleCetak.Length - PosisiKoma)
+            ---- TextBox Keterangan2 = BundleCetak.Substring(PosisiKoma, panjang BundleCetak - PosisiKoma)
          --- Jika Markt dan Bdlt dicek sebanyak 4 digit dari kiri = 51
             ---- TextBox Keterangan1 = ReadOnly
             ---- TextBox Keterangan2 = ReadOnly
@@ -100,7 +100,9 @@ Surat Jalan Detail
 1. Form Load
    - Memanggil AllDataOrderMuat
       -- Jika LocationID = L10001
-         --- Memanggil dataset
+         --- Memanggil dataset dari database service Sls_SuratJalanPrintlistFormAll
+      -- Jika LocationID != L10001
+         --- Memanggil dataset dari database service Sls_SuratJalanPrintlistFormAll
 2. Button Refresh
    - Memanggil AllDataOrderMuat
 3. Button Reprint
