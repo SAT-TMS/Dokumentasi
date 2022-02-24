@@ -153,18 +153,41 @@ Surat Jalan Detail
          --- Memanggil AllDataOrderMuat
 8. Button Void
    - Jika baris dalam grid > 0
-   - Jika UserID = wen OR rizkia OR husain
-      -- Generate OTP
-         --- isi OTP : UserID, Form = SJ (Surat Jalan), DataGrid NoSJ (kolom 0)
-      -- Jika Variable otp_tampil untuk Void = True
-         --- Keluar Message Box : Void Yes or No ???
+      -- WaktuSJ = Tanggal dari grid TanggalSJ (kolom 4) dengan format
+         --- d : Tanggal
+         --- M : Bulan
+         --- y : Tahun
+         --- H : Jam
+         --- m : Menit
+      -- waktuserver = TglCloud dengan format "dd MMM yyyy HH:mm"
+         --- d : Tanggal
+         --- M : Bulan
+         --- y : Tahun
+         --- H : Jam
+         --- m : Menit
+      -- Jika UserID = wendy OR rizkia OR husain OR yan
+      -- Jika Perbedaan Tanggal antara WaktuSJ dan waktuserver > 15 menit
+         --- Keluar Message Box : "Batas Waktu Void telah habis (15 menit) !!!"
+         --- Keluar dari SuratJalanPrintListForm
+      -- NoTransaksi = Data grid NoSJ (kolom 0)
+      -- aaa = OTP_Wa(LocationIDLog, "Void SJ", NoTransaksi)
+      -- Menyimpan LogActivity
+         --- Form = SuratJalanPrintListForm
+         --- NoTransaksi
+         --- Req Void
+         --- Mengubah Database Trx_SuratJalan
+         --- Status = Void
+      -- otp_tampil = Memanggil Form OTPWAForm
+      -- Function NOTRANSAKSI = NoTransaksi
+      -- Jika otp_tampil = True
+         --- Keluar Message Box : "Void Yes or No ???"
          --- Keluar Message Box Button Yes dan No
-            ---- Jika Pilih No
-               ----- Keluar dari SuratJalanPrintListForm
+         --- Jika memilih No
+            ---- Keluar dari SuratJalanPrintListForm
          --- Jika tidak ada jaringan internet
             ---- Keluar Message Box : "Jaringan putus !!!"
          --- LocationID = Data grid LocationID (kolom 6)
-         --- SuratJalanID = Data grid SuratJalanID (kolom 0)
+         --- SuratJalanID = Data grid NoSJ (kolom 0)
          --- Memanggil AllDataOrderMuat
 9. TextBox NoSJFilter
    - Jika input > 2 karakter
@@ -181,7 +204,7 @@ Surat Jalan Detail
       -- Memanggil AllDataOrderMuat
    - Jika input = 0 karakter
       -- Memanggil AllDataOrderMuat
-12. Grid
+12. Grid, menampilkan 30 data paling atas (SELECT TOP 30)
    - NoSJ, Nomor Surat Jalan
    - NoPO, Nomor PO
    - NoMemo, Nomor Memo
