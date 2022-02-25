@@ -40,6 +40,20 @@
 3. PrintSuratJalanButton
    - PrintSuratJalanButton tidak bisa digunakan (Enabled = False)
    - Memanggil Function Save
+      -- Jika data dalam grid <= 0
+         --- Keluar dari SuratJalanPrintListForm
+      -- Jika tidak ada koneksi internet
+         --- Keluar Message Box : "Jaringan putus !!!"
+         --- Keluar dari SuratJalanPrintListForm
+      -- Variable response = False
+      -- mou = Data grid Nomor Kontrak (kolom 10)
+      -- Header(0) = Data grid NoSJ (kolom 0)
+      -- TanyaPrintCopSurat = Memanggil Form SuratJalanPrintTanyaCopSuratForm
+      -- Jika NomorPO (grid kolom 8) mengandung kata "/AW-" > 0
+         --- Get HeaderSJTable dari Trx_SuratJalanTbl
+         --- Get DetailSJTable dari Sls_Trx_Sj_AW_Print
+         --- Get NonCopSJTable dari SuratJalanNonCopPrint
+         --- Get CopSJTable dari SuratJalanCopPrint
    - Jika Function GantiProfil = True
       -- GantiProfil = False
       -- LocationIDLog = LocationIDLog_Before (LocationID sebelumnya)
@@ -107,12 +121,26 @@ Surat Jalan Detail
    - Memanggil AllDataOrderMuat
 3. Button Reprint
    - Jika data dalam grid > 0
-      -- NoPOCustomer = "/ (Data grid kolom 5)"
-      -- Ekspedisi = "/ (Data grid kolom 7)"
+      -- NoPOCustomer = "/ NoPOCustomer (grid kolom 5)"
+      -- Ekspedisi = "/ Ekspedisi (grid kolom 7)"
    - Jika data dalam grid = 0
       -- NoPOCustomer = " " (kosong)
       -- Ekspedisi = " " (kosong)
    - Memanggil Function PrintSatuan1
+      -- Jika data dalam grid <= 0
+         --- Keluar dari SuratJalanPrintListForm
+      -- Jika tidak ada koneksi internet
+         --- Keluar Message Box : "Jaringan putus !!!"
+         --- Keluar dari SuratJalanPrintListForm
+      -- Variable response = False
+      -- mou = Data grid Nomor Kontrak (kolom 10)
+      -- Header(0) = Data grid NoSJ (kolom 0)
+      -- TanyaPrintCopSurat = Memanggil Form SuratJalanPrintTanyaCopSuratForm
+      -- Jika NomorPO (grid kolom 8) mengandung kata "/AW-" > 0
+         --- Get HeaderSJTable dari Trx_SuratJalanTbl
+         --- Get DetailSJTable dari Sls_Trx_Sj_AW_Print
+         --- Get NonCopSJTable dari SuratJalanNonCopPrint
+         --- Get CopSJTable dari SuratJalanCopPrint
 4. Button Exit
    - Keluar Form SuratJalanPrintListForm
 5. Button ReprintSatuan2
@@ -123,19 +151,20 @@ Surat Jalan Detail
       -- NoPOCustomer = " " (kosong)
       -- Ekspedisi = " " (kosong)
    - Memanggil Function PrintSatuan2
-      -- Jika baris dalam grid > 0
-         --- Generate OTP
-            --- isi OTP : UserID, Form = SJ (Surat Jalan), DataGrid NoSJ (kolom 0)
-         -- Jika Variable otp_tampil untuk Void = True
-            --- Keluar Message Box : Void Yes or No ???
-            --- Keluar Message Box Button Yes dan No
-               ---- Jika Pilih No
-                  ----- Keluar dari SuratJalanPrintListForm
-            --- Jika tidak ada jaringan internet
-               ---- Keluar Message Box : "Jaringan putus !!!"
-            --- LocationID = Data grid LocationID (kolom 6)
-            --- SuratJalanID = Data grid SuratJalanID (kolom 0)
-            --- Memanggil AllDataOrderMuat
+      -- Jika data dalam grid <= 0
+         --- Keluar dari SuratJalanPrintListForm
+      -- Jika tidak ada koneksi internet
+         --- Keluar Message Box : "Jaringan putus !!!"
+         --- Keluar dari SuratJalanPrintListForm
+      -- Variable response = False
+      -- mou = Data grid Nomor Kontrak (kolom 10)
+      -- Header(0) = Data grid NoSJ (kolom 0)
+      -- TanyaPrintCopSurat = Memanggil Form SuratJalanPrintTanyaCopSuratForm
+      -- Jika NomorPO (grid kolom 8) mengandung kata "/AW-" > 0
+         --- Get HeaderSJTable dari Trx_SuratJalanTbl
+         --- Get DetailSJTable dari Sls_Trx_Sj_AW_Print
+         --- Get NonCopSJTable dari SuratJalanNonCopPrint
+         --- Get CopSJTable dari SuratJalanCopPrint
 6. Button PrintBarcode
    - Mengecek Printer
    - Print data
