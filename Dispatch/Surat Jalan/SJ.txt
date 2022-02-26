@@ -141,6 +141,112 @@ Surat Jalan Detail
          --- Get DetailSJTable dari Sls_Trx_Sj_AW_Print
          --- Get NonCopSJTable dari SuratJalanNonCopPrint
          --- Get CopSJTable dari SuratJalanCopPrint
+         --- Get SJDS = DataSet SJDataSet dan Clear semua baris
+         --- Table 0 = Merge SJDS dan HeaderSJTable
+         --- Table 1 = Merge SJDS dan DetailSJTable
+         --- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+            ---- Table 2 = Merge SJDS dan CopSJTable
+         --- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+            ---- Table 2 = Merge SJDS dan NonCopSJTable
+      -- Jika selain kondisi NomorPO (kolom 8) diatas
+         --- Jika LocationID = L99001
+            ---- Get HeaderSJTable dari Trx_SuratJalanTbl
+            ---- Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
+            ---- Get NonCopSJTable dari SuratJalanNonCopPrint
+            ---- Get CopSJTable dari SuratJalanCopPrint
+            ---- Get SJDS = DataSet SJDataSet dan Clear semua baris
+            ---- Table 0 = Merge SJDS dan HeaderSJTable
+            ---- Table 1 = Merge SJDS dan DetailSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+               ----- Table 2 = Merge SJDS dan CopSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+               ----- Table 2 = Merge SJDS dan NonCopSJTable
+         --- Jika LocationID = L40001
+            ---- Get HeaderSJTable dari Trx_SuratJalanTbl
+            ---- Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
+            ---- Get NonCopSJTable dari SuratJalanNonCopPrint
+            ---- Get CopSJTable dari SuratJalanCopPrint
+            ---- Get SJDS = DataSet SJDataSet dan Clear semua baris
+            ---- Table 0 = Merge SJDS dan HeaderSJTable
+            ---- Table 1 = Merge SJDS dan DetailSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+               ----- Table 2 = Merge SJDS dan CopSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+               ----- Table 2 = Merge SJDS dan NonCopSJTable
+         --- Jika LocationID = L40002
+            ---- Get HeaderSJTable dari Trx_SuratJalanTbl
+            ---- Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
+            ---- Get NonCopSJTable dari SuratJalanNonCopPrint
+            ---- Get CopSJTable dari SuratJalanCopPrint
+            ---- Get SJDS = DataSet SJDataSet dan Clear semua baris
+            ---- Table 0 = Merge SJDS dan HeaderSJTable
+            ---- Table 1 = Merge SJDS dan DetailSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+               ----- Table 2 = Merge SJDS dan CopSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+               ----- Table 2 = Merge SJDS dan NonCopSJTable
+         --- Jika LocationID = L30001
+            ---- Get HeaderSJTable dari Trx_SuratJalanTbl
+            ---- Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
+            ---- Get NonCopSJTable dari SuratJalanNonCopPrint
+            ---- Get CopSJTable dari SuratJalanCopPrint
+            ---- Get SJDS = DataSet SJDataSet dan Clear semua baris
+            ---- Table 0 = Merge SJDS dan HeaderSJTable
+            ---- Table 1 = Merge SJDS dan DetailSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+               ----- Table 2 = Merge SJDS dan CopSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+               ----- Table 2 = Merge SJDS dan NonCopSJTable
+         --- Jika LocationID = L30002
+            ---- Get HeaderSJTable dari Trx_SuratJalanTbl
+            ---- Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
+            ---- Get NonCopSJTable dari SuratJalanNonCopPrint
+            ---- Get CopSJTable dari SuratJalanCopPrint
+            ---- Get SJDS = DataSet SJDataSet dan Clear semua baris
+            ---- Table 0 = Merge SJDS dan HeaderSJTable
+            ---- Table 1 = Merge SJDS dan DetailSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+               ----- Table 2 = Merge SJDS dan CopSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+               ----- Table 2 = Merge SJDS dan NonCopSJTable
+         --- Jika LocationID = L30003
+            ---- Get HeaderSJTable dari Trx_SuratJalanTbl
+            ---- Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
+            ---- Get NonCopSJTable dari SuratJalanNonCopPrint
+            ---- Get CopSJTable dari SuratJalanCopPrint
+            ---- Get SJDS = DataSet SJDataSet dan Clear semua baris
+            ---- Table 0 = Merge SJDS dan HeaderSJTable
+            ---- Table 1 = Merge SJDS dan DetailSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+               ----- Table 2 = Merge SJDS dan CopSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+               ----- Table 2 = Merge SJDS dan NonCopSJTable
+         --- Jika LocationID = L20001
+            ---- Get HeaderSJTable dari Trx_SuratJalanTbl
+            ---- Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
+            ---- Get NonCopSJTable dari SuratJalanNonCopPrint
+            ---- Get CopSJTable dari SuratJalanCopPrint3
+            ---- Get SJDS = DataSet SJDataSet dan Clear semua baris
+            ---- Table 0 = Merge SJDS dan HeaderSJTable
+            ---- Table 1 = Merge SJDS dan DetailSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+               ----- Table 2 = Merge SJDS dan CopSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+               ----- Table 2 = Merge SJDS dan NonCopSJTable
+         --- Jika LocationID = L50001 OR L50002 OR L50003 OR L50004 OR L10001
+            ---- Get HeaderSJTable dari Trx_SuratJalanTbl
+            ---- Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
+            ---- Get NonCopSJTable dari SuratJalanNonCopPrint
+            ---- Get CopSJTable dari SuratJalanCopPrintPGS
+            ---- Get SJDS = DataSet SJDataSet dan Clear semua baris
+            ---- Table 0 = Merge SJDS dan HeaderSJTable
+            ---- Table 1 = Merge SJDS dan DetailSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+               ----- Table 2 = Merge SJDS dan CopSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+               ----- Table 2 = Merge SJDS dan NonCopSJTable
+      -- Jika ProductID (grid kolom 9) dilihat 2 digit dari kiri = 51
+      
 4. Button Exit
    - Keluar Form SuratJalanPrintListForm
 5. Button ReprintSatuan2
@@ -165,6 +271,110 @@ Surat Jalan Detail
          --- Get DetailSJTable dari Sls_Trx_Sj_AW_Print
          --- Get NonCopSJTable dari SuratJalanNonCopPrint
          --- Get CopSJTable dari SuratJalanCopPrint
+         --- Get SJDS = DataSet SJDataSet dan Clear semua baris
+         --- Table 0 = Merge SJDS dan HeaderSJTable
+         --- Table 1 = Merge SJDS dan DetailSJTable
+         --- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+            ---- Table 2 = Merge SJDS dan CopSJTable
+         --- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+            ---- Table 2 = Merge SJDS dan NonCopSJTable
+      -- Jika selain kondisi NomorPO (kolom 8) diatas
+         --- Jika LocationID = L99001
+            ---- Get HeaderSJTable dari Trx_SuratJalanTbl
+            ---- Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
+            ---- Get NonCopSJTable dari SuratJalanNonCopPrint
+            ---- Get CopSJTable dari SuratJalanCopPrint
+            ---- Get SJDS = DataSet SJDataSet dan Clear semua baris
+            ---- Table 0 = Merge SJDS dan HeaderSJTable
+            ---- Table 1 = Merge SJDS dan DetailSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+               ----- Table 2 = Merge SJDS dan CopSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+               ----- Table 2 = Merge SJDS dan NonCopSJTable
+         --- Jika LocationID = L40001
+            ---- Get HeaderSJTable dari Trx_SuratJalanTbl
+            ---- Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
+            ---- Get NonCopSJTable dari SuratJalanNonCopPrint
+            ---- Get CopSJTable dari SuratJalanCopPrint
+            ---- Get SJDS = DataSet SJDataSet dan Clear semua baris
+            ---- Table 0 = Merge SJDS dan HeaderSJTable
+            ---- Table 1 = Merge SJDS dan DetailSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+               ----- Table 2 = Merge SJDS dan CopSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+               ----- Table 2 = Merge SJDS dan NonCopSJTable
+         --- Jika LocationID = L40002
+            ---- Get HeaderSJTable dari Trx_SuratJalanTbl
+            ---- Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
+            ---- Get NonCopSJTable dari SuratJalanNonCopPrint
+            ---- Get CopSJTable dari SuratJalanCopPrint
+            ---- Get SJDS = DataSet SJDataSet dan Clear semua baris
+            ---- Table 0 = Merge SJDS dan HeaderSJTable
+            ---- Table 1 = Merge SJDS dan DetailSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+               ----- Table 2 = Merge SJDS dan CopSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+               ----- Table 2 = Merge SJDS dan NonCopSJTable
+         --- Jika LocationID = L30001
+            ---- Get HeaderSJTable dari Trx_SuratJalanTbl
+            ---- Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
+            ---- Get NonCopSJTable dari SuratJalanNonCopPrint
+            ---- Get CopSJTable dari SuratJalanCopPrint
+            ---- Get SJDS = DataSet SJDataSet dan Clear semua baris
+            ---- Table 0 = Merge SJDS dan HeaderSJTable
+            ---- Table 1 = Merge SJDS dan DetailSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+               ----- Table 2 = Merge SJDS dan CopSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+               ----- Table 2 = Merge SJDS dan NonCopSJTable
+         --- Jika LocationID = L30002
+            ---- Get HeaderSJTable dari Trx_SuratJalanTbl
+            ---- Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
+            ---- Get NonCopSJTable dari SuratJalanNonCopPrint
+            ---- Get CopSJTable dari SuratJalanCopPrint
+            ---- Get SJDS = DataSet SJDataSet dan Clear semua baris
+            ---- Table 0 = Merge SJDS dan HeaderSJTable
+            ---- Table 1 = Merge SJDS dan DetailSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+               ----- Table 2 = Merge SJDS dan CopSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+               ----- Table 2 = Merge SJDS dan NonCopSJTable
+         --- Jika LocationID = L30003
+            ---- Get HeaderSJTable dari Trx_SuratJalanTbl
+            ---- Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
+            ---- Get NonCopSJTable dari SuratJalanNonCopPrint
+            ---- Get CopSJTable dari SuratJalanCopPrint
+            ---- Get SJDS = DataSet SJDataSet dan Clear semua baris
+            ---- Table 0 = Merge SJDS dan HeaderSJTable
+            ---- Table 1 = Merge SJDS dan DetailSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+               ----- Table 2 = Merge SJDS dan CopSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+               ----- Table 2 = Merge SJDS dan NonCopSJTable
+         --- Jika LocationID = L20001
+            ---- Get HeaderSJTable dari Trx_SuratJalanTbl
+            ---- Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
+            ---- Get NonCopSJTable dari SuratJalanNonCopPrint
+            ---- Get CopSJTable dari SuratJalanCopPrint3
+            ---- Get SJDS = DataSet SJDataSet dan Clear semua baris
+            ---- Table 0 = Merge SJDS dan HeaderSJTable
+            ---- Table 1 = Merge SJDS dan DetailSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+               ----- Table 2 = Merge SJDS dan CopSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+               ----- Table 2 = Merge SJDS dan NonCopSJTable
+         --- Jika LocationID = L50001 OR L50002 OR L50003 OR L50004 OR L10001
+            ---- Get HeaderSJTable dari Trx_SuratJalanTbl
+            ---- Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
+            ---- Get NonCopSJTable dari SuratJalanNonCopPrint
+            ---- Get CopSJTable dari SuratJalanCopPrintPGS
+            ---- Get SJDS = DataSet SJDataSet dan Clear semua baris
+            ---- Table 0 = Merge SJDS dan HeaderSJTable
+            ---- Table 1 = Merge SJDS dan DetailSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+               ----- Table 2 = Merge SJDS dan CopSJTable
+            ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+               ----- Table 2 = Merge SJDS dan NonCopSJTable
 6. Button PrintBarcode
    - Mengecek Printer
    - Print data
