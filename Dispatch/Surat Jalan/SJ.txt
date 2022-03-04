@@ -245,8 +245,133 @@ Surat Jalan Detail
                ----- Table 2 = Merge SJDS dan CopSJTable
             ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
                ----- Table 2 = Merge SJDS dan NonCopSJTable
-      -- Jika ProductID (grid kolom 9) dilihat 2 digit dari kiri = 51
-      
+      -- Jika ProductID (grid kolom 9) dilihat 2 digit dari kiri = 61
+         --- r = Memanggil SuratJalanPrintCrystalReport_3_2Satuan_61
+         --- ReportWindow = Memanggil ReportViewerForm
+         --- Dari r
+            ---- Memanggil dataset SJDS
+            ---- Parameter_NOPOKus = False
+            ---- Parameter_Ekspedisi = False
+            ---- Parameter_MOU = False
+            ---- Jika NoPOCustomer = Nothing
+               ----- NoPOCustomer = "-"
+            ---- Jika Ekspedisi = Nothing
+               ----- Ekspedisi = "-"
+            ---- Set Parameter_NOPOKus = NoPOCustomer
+            ---- Set Parameter_Ekspedisi = Ekspedisi
+            ---- Set Parameter_MOU = mou
+         --- Dari ReportWindow
+            ---- CrystalReportViewer2 = Data dari r
+            ---- Refresh CrystalReportViewer2
+      -- Jika ProductID (grid kolom 9) dilihat 2 digit dari kiri = 59
+         --- r = Memanggil SuratJalanPrintCrystalReport_3_Kode_59
+         --- ReportWindow = Memanggil ReportViewerForm
+         --- Dari r
+            ---- Memanggil dataset SJDS
+            ---- Parameter_NOPOKus = False
+            ---- Parameter_Ekspedisi = False
+            ---- Parameter_MOU = False
+            ---- Jika NoPOCustomer = Nothing
+               ----- NoPOCustomer = "-"
+            ---- Jika Ekspedisi = Nothing
+               ----- Ekspedisi = "-"
+            ---- Set Parameter_NOPOKus = NoPOCustomer
+            ---- Set Parameter_Ekspedisi = Ekspedisi
+            ---- Set Parameter_MOU = mou
+         --- Dari ReportWindow
+            ---- CrystalReportViewer2 = Data dari r
+            ---- Refresh CrystalReportViewer2
+      -- Jika ProductID (grid kolom 9) dilihat 2 digit dari kiri = 60 OR 66 0R 67
+         --- r = Memanggil SuratJalanPrintCrystalReport_3
+         --- ReportWindow = Mrmanggil ReportViewerForm
+         --- Dari r
+            ---- Memanggil dataset SJDS
+            ---- Parameter_NOPOKus = False
+            ---- Parameter_Ekspedisi = False
+            ---- Parameter_MOU = False
+            ---- Jika NoPOCustomer = Nothing
+               ----- NoPOCustomer = "-"
+            ---- Jika Ekspedisi = Nothing
+               ----- Ekspedisi = "-"
+            ---- Set Parameter_NOPOKus = NoPOCustomer
+            ---- Set Parameter_Ekspedisi = Ekspedisi
+            ---- Set Parameter_MOU = mou
+         --- Dari ReportWindow
+            ---- CrystalReportViewer2 = Data dari r
+            ---- Refresh CrystalReportViewer2
+      -- Selain kondisi di atas
+         --- Jika LocationIDLog = L50001 OR L50002 OR L50003 OR L50004
+            ---- r = Memanggil SuratJalanPrintCrystalReport_3_2Satuan
+            ---- ReportWindow = Memanggil ReportViewerForm
+            ---- Dari r
+               ----- Memanggil dataset SJDS
+               ----- Parameter_NOPOKus = False
+               ----- Parameter_Ekspedisi = False
+               ----- Parameter_MOU = False
+               ----- Jika NoPOCustomer = Nothing
+                  ------ NoPOCustomer = "-"
+               ----- Jika Ekspedisi = Nothing
+                  ------ Ekspedisi = "-"
+               ----- Set Parameter_NOPOKus = NoPOCustomer
+               ----- Set Parameter_Ekspedisi = Ekspedisi
+               ----- Set Parameter_MOU = mou
+            ---- Dari ReportWindow
+               ----- CrystalReportViewer2 = Data dari r
+               ----- Refresh CrystalReportViewer2
+         --- Jika LocationIDLog = L30002
+            ---- r = Memanggil SuratJalanPrintCrystalReport_3_2Satuan
+            ---- ReportWindow = Memanggil ReportViewerForm
+            ---- Dari r
+               ----- Memanggil dataset SJDS
+               ----- Parameter_NOPOKus = False
+               ----- Parameter_Ekspedisi = False
+               ----- Parameter_MOU = False
+               ----- Jika NoPOCustomer = Nothing
+                  ------ NoPOCustomer = "-"
+               ----- Jika Ekspedisi = Nothing
+                  ------ Ekspedisi = "-"
+               ----- Set Parameter_NOPOKus = NoPOCustomer
+               ----- Set Parameter_Ekspedisi = Ekspedisi
+               ----- Set Parameter_MOU = mou
+            ---- Dari ReportWindow
+               ----- CrystalReportViewer2 = Data dari r
+               ----- Refresh CrystalReportViewer2
+         --- Jika LocationIDLog = L30003
+            ---- r = Memanggil SuratJalanPrintCrystalReport_3
+            ---- ReportWindow = Memanggil ReportViewerForm
+            ---- Dari r
+               ----- Memanggil dataset SJDS
+               ----- Parameter_NOPOKus = False
+               ----- Parameter_Ekspedisi = False
+               ----- Parameter_MOU = False
+               ----- Jika NoPOCustomer = Nothing
+                  ------ NoPOCustomer = "-"
+               ----- Jika Ekspedisi = Nothing
+                  ------ Ekspedisi = "-"
+               ----- Set Parameter_NOPOKus = NoPOCustomer
+               ----- Set Parameter_Ekspedisi = Ekspedisi
+               ----- Set Parameter_MOU = mou
+            ---- Dari ReportWindow
+               ----- CrystalReportViewer2 = Data dari r
+               ----- Refresh CrystalReportViewer2
+         --- Selain kondisi di atas
+            ---- r = Memanggil SuratJalanPrintCrystalReport_3
+            ---- ReportWindow = Memanggil ReportViewerForm
+            ---- Dari r
+               ----- Memanggil dataset SJDS
+               ----- Parameter_NOPOKus = False
+               ----- Parameter_Ekspedisi = False
+               ----- Parameter_MOU = False
+               ----- Jika NoPOCustomer = Nothing
+                  ------ NoPOCustomer = "-"
+               ----- Jika Ekspedisi = Nothing
+                  ------ Ekspedisi = "-"
+               ----- Set Parameter_NOPOKus = NoPOCustomer
+               ----- Set Parameter_Ekspedisi = Ekspedisi
+               ----- Set Parameter_MOU = mou
+            ---- Dari ReportWindow
+               ----- CrystalReportViewer2 = Data dari r
+               ----- Refresh CrystalReportViewer2
 4. Button Exit
    - Keluar Form SuratJalanPrintListForm
 5. Button ReprintSatuan2
@@ -375,6 +500,133 @@ Surat Jalan Detail
                ----- Table 2 = Merge SJDS dan CopSJTable
             ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
                ----- Table 2 = Merge SJDS dan NonCopSJTable
+      -- Jika ProductID (grid kolom 9) dilihat 2 digit dari kiri = 61
+         --- r = Memanggil SuratJalanPrintCrystalReport_3_2Satuan_61
+         --- ReportWindow = Memanggil ReportViewerForm
+         --- Dari r
+            ---- Memanggil dataset SJDS
+            ---- Parameter_NOPOKus = False
+            ---- Parameter_Ekspedisi = False
+            ---- Parameter_MOU = False
+            ---- Jika NoPOCustomer = Nothing
+               ----- NoPOCustomer = "-"
+            ---- Jika Ekspedisi = Nothing
+               ----- Ekspedisi = "-"
+            ---- Set Parameter_NOPOKus = NoPOCustomer
+            ---- Set Parameter_Ekspedisi = Ekspedisi
+            ---- Set Parameter_MOU = mou
+         --- Dari ReportWindow
+            ---- CrystalReportViewer2 = Data dari r
+            ---- Refresh CrystalReportViewer2
+      -- Jika ProductID (grid kolom 9) dilihat 2 digit dari kiri = 59
+         --- r = Memanggil SuratJalanPrintCrystalReport_3_Kode_59
+         --- ReportWindow = Memanggil ReportViewerForm
+         --- Dari r
+            ---- Memanggil dataset SJDS
+            ---- Parameter_NOPOKus = False
+            ---- Parameter_Ekspedisi = False
+            ---- Parameter_MOU = False
+            ---- Jika NoPOCustomer = Nothing
+               ----- NoPOCustomer = "-"
+            ---- Jika Ekspedisi = Nothing
+               ----- Ekspedisi = "-"
+            ---- Set Parameter_NOPOKus = NoPOCustomer
+            ---- Set Parameter_Ekspedisi = Ekspedisi
+            ---- Set Parameter_MOU = mou
+         --- Dari ReportWindow
+            ---- CrystalReportViewer2 = Data dari r
+            ---- Refresh CrystalReportViewer2
+      -- Jika ProductID (grid kolom 9) dilihat 2 digit dari kiri = 60 OR 66 0R 67
+         --- r = Memanggil SuratJalanPrintCrystalReport_3
+         --- ReportWindow = Mrmanggil ReportViewerForm
+         --- Dari r
+            ---- Memanggil dataset SJDS
+            ---- Parameter_NOPOKus = False
+            ---- Parameter_Ekspedisi = False
+            ---- Parameter_MOU = False
+            ---- Jika NoPOCustomer = Nothing
+               ----- NoPOCustomer = "-"
+            ---- Jika Ekspedisi = Nothing
+               ----- Ekspedisi = "-"
+            ---- Set Parameter_NOPOKus = NoPOCustomer
+            ---- Set Parameter_Ekspedisi = Ekspedisi
+            ---- Set Parameter_MOU = mou
+         --- Dari ReportWindow
+            ---- CrystalReportViewer2 = Data dari r
+            ---- Refresh CrystalReportViewer2
+      -- Selain kondisi di atas
+         --- Jika LocationIDLog = L50001 OR L50002 OR L50003 OR L50004
+            ---- r = Memanggil SuratJalanPrintCrystalReport_3_2Satuan
+            ---- ReportWindow = Memanggil ReportViewerForm
+            ---- Dari r
+               ----- Memanggil dataset SJDS
+               ----- Parameter_NOPOKus = False
+               ----- Parameter_Ekspedisi = False
+               ----- Parameter_MOU = False
+               ----- Jika NoPOCustomer = Nothing
+                  ------ NoPOCustomer = "-"
+               ----- Jika Ekspedisi = Nothing
+                  ------ Ekspedisi = "-"
+               ----- Set Parameter_NOPOKus = NoPOCustomer
+               ----- Set Parameter_Ekspedisi = Ekspedisi
+               ----- Set Parameter_MOU = mou
+            ---- Dari ReportWindow
+               ----- CrystalReportViewer2 = Data dari r
+               ----- Refresh CrystalReportViewer2
+         --- Jika LocationIDLog = L30002
+            ---- r = Memanggil SuratJalanPrintCrystalReport_3_2Satuan
+            ---- ReportWindow = Memanggil ReportViewerForm
+            ---- Dari r
+               ----- Memanggil dataset SJDS
+               ----- Parameter_NOPOKus = False
+               ----- Parameter_Ekspedisi = False
+               ----- Parameter_MOU = False
+               ----- Jika NoPOCustomer = Nothing
+                  ------ NoPOCustomer = "-"
+               ----- Jika Ekspedisi = Nothing
+                  ------ Ekspedisi = "-"
+               ----- Set Parameter_NOPOKus = NoPOCustomer
+               ----- Set Parameter_Ekspedisi = Ekspedisi
+               ----- Set Parameter_MOU = mou
+            ---- Dari ReportWindow
+               ----- CrystalReportViewer2 = Data dari r
+               ----- Refresh CrystalReportViewer2
+         --- Jika LocationIDLog = L30003
+            ---- r = Memanggil SuratJalanPrintCrystalReport_3
+            ---- ReportWindow = Memanggil ReportViewerForm
+            ---- Dari r
+               ----- Memanggil dataset SJDS
+               ----- Parameter_NOPOKus = False
+               ----- Parameter_Ekspedisi = False
+               ----- Parameter_MOU = False
+               ----- Jika NoPOCustomer = Nothing
+                  ------ NoPOCustomer = "-"
+               ----- Jika Ekspedisi = Nothing
+                  ------ Ekspedisi = "-"
+               ----- Set Parameter_NOPOKus = NoPOCustomer
+               ----- Set Parameter_Ekspedisi = Ekspedisi
+               ----- Set Parameter_MOU = mou
+            ---- Dari ReportWindow
+               ----- CrystalReportViewer2 = Data dari r
+               ----- Refresh CrystalReportViewer2
+         --- Selain kondisi di atas
+            ---- r = Memanggil SuratJalanPrintCrystalReport_3
+            ---- ReportWindow = Memanggil ReportViewerForm
+            ---- Dari r
+               ----- Memanggil dataset SJDS
+               ----- Parameter_NOPOKus = False
+               ----- Parameter_Ekspedisi = False
+               ----- Parameter_MOU = False
+               ----- Jika NoPOCustomer = Nothing
+                  ------ NoPOCustomer = "-"
+               ----- Jika Ekspedisi = Nothing
+                  ------ Ekspedisi = "-"
+               ----- Set Parameter_NOPOKus = NoPOCustomer
+               ----- Set Parameter_Ekspedisi = Ekspedisi
+               ----- Set Parameter_MOU = mou
+            ---- Dari ReportWindow
+               ----- CrystalReportViewer2 = Data dari r
+               ----- Refresh CrystalReportViewer2
 6. Button PrintBarcode
    - Mengecek Printer
    - Print data
