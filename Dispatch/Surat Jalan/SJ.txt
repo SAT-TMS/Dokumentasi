@@ -73,7 +73,7 @@
                   ------ Keluar MessageBox Information
                ----- Jika Baris dalam tabel DS_SJ = 0
                   ------ Keluar dari SuratJalanForm
-            ---- Jika NomorPO (grid kolom 8) mengandung kata "/AW-" > 0
+            ---- Jika Label DoNo mengandung kata "/AW-" > 0
                ----- Get HeaderSJTable dari Trx_SuratJalanTbl
                ----- Get DetailSJTable dari Sls_Trx_Sj_AW_Print
                ----- Get NonCopSJTable dari SuratJalanNonCopPrint
@@ -85,7 +85,7 @@
                   ------ Table 2 = Merge SJDS dan CopSJTable
                ----- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
                   ------ Table 2 = Merge SJDS dan NonCopSJTable
-            ---- Jika selain kondisi NomorPO (kolom 8) diatas
+            ---- Jika selain kondisi diatas
                ----- Jika LocationID = L99001
                   ------ Get HeaderSJTable dari Trx_SuratJalanTbl
                   ------ Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
@@ -110,205 +110,187 @@
                      ------- Table 2 = Merge SJDS dan CopSJTable
                   ------ Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
                      ------- Table 2 = Merge SJDS dan NonCopSJTable
-         --- Jika LocationID = L40002
-            ---- Get HeaderSJTable dari Trx_SuratJalanTbl
-            ---- Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
-            ---- Get NonCopSJTable dari SuratJalanNonCopPrint
-            ---- Get CopSJTable dari SuratJalanCopPrint
-            ---- Get SJDS = DataSet SJDataSet dan Clear semua baris
-            ---- Table 0 = Merge SJDS dan HeaderSJTable
-            ---- Table 1 = Merge SJDS dan DetailSJTable
-            ---- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
-               ----- Table 2 = Merge SJDS dan CopSJTable
-            ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
-               ----- Table 2 = Merge SJDS dan NonCopSJTable
-         --- Jika LocationID = L30001
-            ---- Get HeaderSJTable dari Trx_SuratJalanTbl
-            ---- Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
-            ---- Get NonCopSJTable dari SuratJalanNonCopPrint
-            ---- Get CopSJTable dari SuratJalanCopPrint
-            ---- Get SJDS = DataSet SJDataSet dan Clear semua baris
-            ---- Table 0 = Merge SJDS dan HeaderSJTable
-            ---- Table 1 = Merge SJDS dan DetailSJTable
-            ---- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
-               ----- Table 2 = Merge SJDS dan CopSJTable
-            ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
-               ----- Table 2 = Merge SJDS dan NonCopSJTable
-         --- Jika LocationID = L30002
-            ---- Get HeaderSJTable dari Trx_SuratJalanTbl
-            ---- Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
-            ---- Get NonCopSJTable dari SuratJalanNonCopPrint
-            ---- Get CopSJTable dari SuratJalanCopPrint
-            ---- Get SJDS = DataSet SJDataSet dan Clear semua baris
-            ---- Table 0 = Merge SJDS dan HeaderSJTable
-            ---- Table 1 = Merge SJDS dan DetailSJTable
-            ---- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
-               ----- Table 2 = Merge SJDS dan CopSJTable
-            ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
-               ----- Table 2 = Merge SJDS dan NonCopSJTable
-         --- Jika LocationID = L30003
-            ---- Get HeaderSJTable dari Trx_SuratJalanTbl
-            ---- Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
-            ---- Get NonCopSJTable dari SuratJalanNonCopPrint
-            ---- Get CopSJTable dari SuratJalanCopPrint
-            ---- Get SJDS = DataSet SJDataSet dan Clear semua baris
-            ---- Table 0 = Merge SJDS dan HeaderSJTable
-            ---- Table 1 = Merge SJDS dan DetailSJTable
-            ---- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
-               ----- Table 2 = Merge SJDS dan CopSJTable
-            ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
-               ----- Table 2 = Merge SJDS dan NonCopSJTable
-         --- Jika LocationID = L20001
-            ---- Get HeaderSJTable dari Trx_SuratJalanTbl
-            ---- Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
-            ---- Get NonCopSJTable dari SuratJalanNonCopPrint
-            ---- Get CopSJTable dari SuratJalanCopPrint3
-            ---- Get SJDS = DataSet SJDataSet dan Clear semua baris
-            ---- Table 0 = Merge SJDS dan HeaderSJTable
-            ---- Table 1 = Merge SJDS dan DetailSJTable
-            ---- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
-               ----- Table 2 = Merge SJDS dan CopSJTable
-            ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
-               ----- Table 2 = Merge SJDS dan NonCopSJTable
-         --- Jika LocationID = L50001 OR L50002 OR L50003 OR L50004 OR L10001
-            ---- Get HeaderSJTable dari Trx_SuratJalanTbl
-            ---- Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
-            ---- Get NonCopSJTable dari SuratJalanNonCopPrint
-            ---- Get CopSJTable dari SuratJalanCopPrintPGS
-            ---- Get SJDS = DataSet SJDataSet dan Clear semua baris
-            ---- Table 0 = Merge SJDS dan HeaderSJTable
-            ---- Table 1 = Merge SJDS dan DetailSJTable
-            ---- Jika dalam TanyaPrintCopSurat, CheckBox dicentang
-               ----- Table 2 = Merge SJDS dan CopSJTable
-            ---- Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
-               ----- Table 2 = Merge SJDS dan NonCopSJTable
-      -- Jika ProductID (grid kolom 9) dilihat 2 digit dari kiri = 61
-         --- r = Memanggil SuratJalanPrintCrystalReport_3_2Satuan_61
-         --- ReportWindow = Memanggil ReportViewerForm
-         --- Dari r
-            ---- Memanggil dataset SJDS
-            ---- Parameter_NOPOKus = False
-            ---- Parameter_Ekspedisi = False
-            ---- Parameter_MOU = False
-            ---- Jika NoPOCustomer = Nothing
-               ----- NoPOCustomer = "-"
-            ---- Jika Ekspedisi = Nothing
-               ----- Ekspedisi = "-"
-            ---- Set Parameter_NOPOKus = NoPOCustomer
-            ---- Set Parameter_Ekspedisi = Ekspedisi
-            ---- Set Parameter_MOU = mou
-         --- Dari ReportWindow
-            ---- CrystalReportViewer2 = Data dari r
-            ---- Refresh CrystalReportViewer2
-      -- Jika ProductID (grid kolom 9) dilihat 2 digit dari kiri = 59
-         --- r = Memanggil SuratJalanPrintCrystalReport_3_Kode_59
-         --- ReportWindow = Memanggil ReportViewerForm
-         --- Dari r
-            ---- Memanggil dataset SJDS
-            ---- Parameter_NOPOKus = False
-            ---- Parameter_Ekspedisi = False
-            ---- Parameter_MOU = False
-            ---- Jika NoPOCustomer = Nothing
-               ----- NoPOCustomer = "-"
-            ---- Jika Ekspedisi = Nothing
-               ----- Ekspedisi = "-"
-            ---- Set Parameter_NOPOKus = NoPOCustomer
-            ---- Set Parameter_Ekspedisi = Ekspedisi
-            ---- Set Parameter_MOU = mou
-         --- Dari ReportWindow
-            ---- CrystalReportViewer2 = Data dari r
-            ---- Refresh CrystalReportViewer2
-      -- Jika ProductID (grid kolom 9) dilihat 2 digit dari kiri = 60 OR 66 0R 67
-         --- r = Memanggil SuratJalanPrintCrystalReport_3
-         --- ReportWindow = Mrmanggil ReportViewerForm
-         --- Dari r
-            ---- Memanggil dataset SJDS
-            ---- Parameter_NOPOKus = False
-            ---- Parameter_Ekspedisi = False
-            ---- Parameter_MOU = False
-            ---- Jika NoPOCustomer = Nothing
-               ----- NoPOCustomer = "-"
-            ---- Jika Ekspedisi = Nothing
-               ----- Ekspedisi = "-"
-            ---- Set Parameter_NOPOKus = NoPOCustomer
-            ---- Set Parameter_Ekspedisi = Ekspedisi
-            ---- Set Parameter_MOU = mou
-         --- Dari ReportWindow
-            ---- CrystalReportViewer2 = Data dari r
-            ---- Refresh CrystalReportViewer2
-      -- Selain kondisi di atas
-         --- Jika LocationIDLog = L50001 OR L50002 OR L50003 OR L50004
-            ---- r = Memanggil SuratJalanPrintCrystalReport_3_2Satuan
-            ---- ReportWindow = Memanggil ReportViewerForm
-            ---- Dari r
-               ----- Memanggil dataset SJDS
-               ----- Parameter_NOPOKus = False
-               ----- Parameter_Ekspedisi = False
-               ----- Parameter_MOU = False
-               ----- Jika NoPOCustomer = Nothing
-                  ------ NoPOCustomer = "-"
-               ----- Jika Ekspedisi = Nothing
-                  ------ Ekspedisi = "-"
-               ----- Set Parameter_NOPOKus = NoPOCustomer
-               ----- Set Parameter_Ekspedisi = Ekspedisi
-               ----- Set Parameter_MOU = mou
-            ---- Dari ReportWindow
-               ----- CrystalReportViewer2 = Data dari r
-               ----- Refresh CrystalReportViewer2
-         --- Jika LocationIDLog = L30002
-            ---- r = Memanggil SuratJalanPrintCrystalReport_3_2Satuan
-            ---- ReportWindow = Memanggil ReportViewerForm
-            ---- Dari r
-               ----- Memanggil dataset SJDS
-               ----- Parameter_NOPOKus = False
-               ----- Parameter_Ekspedisi = False
-               ----- Parameter_MOU = False
-               ----- Jika NoPOCustomer = Nothing
-                  ------ NoPOCustomer = "-"
-               ----- Jika Ekspedisi = Nothing
-                  ------ Ekspedisi = "-"
-               ----- Set Parameter_NOPOKus = NoPOCustomer
-               ----- Set Parameter_Ekspedisi = Ekspedisi
-               ----- Set Parameter_MOU = mou
-            ---- Dari ReportWindow
-               ----- CrystalReportViewer2 = Data dari r
-               ----- Refresh CrystalReportViewer2
-         --- Jika LocationIDLog = L30003
-            ---- r = Memanggil SuratJalanPrintCrystalReport_3
-            ---- ReportWindow = Memanggil ReportViewerForm
-            ---- Dari r
-               ----- Memanggil dataset SJDS
-               ----- Parameter_NOPOKus = False
-               ----- Parameter_Ekspedisi = False
-               ----- Parameter_MOU = False
-               ----- Jika NoPOCustomer = Nothing
-                  ------ NoPOCustomer = "-"
-               ----- Jika Ekspedisi = Nothing
-                  ------ Ekspedisi = "-"
-               ----- Set Parameter_NOPOKus = NoPOCustomer
-               ----- Set Parameter_Ekspedisi = Ekspedisi
-               ----- Set Parameter_MOU = mou
-            ---- Dari ReportWindow
-               ----- CrystalReportViewer2 = Data dari r
-               ----- Refresh CrystalReportViewer2
-         --- Selain kondisi di atas
-            ---- r = Memanggil SuratJalanPrintCrystalReport_3
-            ---- ReportWindow = Memanggil ReportViewerForm
-            ---- Dari r
-               ----- Memanggil dataset SJDS
-               ----- Parameter_NOPOKus = False
-               ----- Parameter_Ekspedisi = False
-               ----- Parameter_MOU = False
-               ----- Jika NoPOCustomer = Nothing
-                  ------ NoPOCustomer = "-"
-               ----- Jika Ekspedisi = Nothing
-                  ------ Ekspedisi = "-"
-               ----- Set Parameter_NOPOKus = NoPOCustomer
-               ----- Set Parameter_Ekspedisi = Ekspedisi
-               ----- Set Parameter_MOU = mou
-            ---- Dari ReportWindow
-               ----- CrystalReportViewer2 = Data dari r
-               ----- Refresh CrystalReportViewer2
+               ----- Jika LocationID = L40002
+                  ------ Get HeaderSJTable dari Trx_SuratJalanTbl
+                  ------ Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
+                  ------ Get NonCopSJTable dari SuratJalanNonCopPrint
+                  ------ Get CopSJTable dari SuratJalanCopPrint
+                  ------ Get SJDS = DataSet SJDataSet dan Clear semua baris
+                  ------ Table 0 = Merge SJDS dan HeaderSJTable
+                  ------ Table 1 = Merge SJDS dan DetailSJTable
+                  ------ Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+                     ------- Table 2 = Merge SJDS dan CopSJTable
+                  ------ Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+                     ------- Table 2 = Merge SJDS dan NonCopSJTable
+               ----- Jika LocationID = L30001
+                  ------ Get HeaderSJTable dari Trx_SuratJalanTbl
+                  ------ Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
+                  ------ Get NonCopSJTable dari SuratJalanNonCopPrint
+                  ------ Get CopSJTable dari SuratJalanCopPrint
+                  ------ Get SJDS = DataSet SJDataSet dan Clear semua baris
+                  ------ Table 0 = Merge SJDS dan HeaderSJTable
+                  ------ Table 1 = Merge SJDS dan DetailSJTable
+                  ------ Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+                     ------- Table 2 = Merge SJDS dan CopSJTable
+                  ------ Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+                     ------- Table 2 = Merge SJDS dan NonCopSJTable
+               ----- Jika LocationID = L30002
+                  ------ Get HeaderSJTable dari Trx_SuratJalanTbl
+                  ------ Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
+                  ------ Get NonCopSJTable dari SuratJalanNonCopPrint
+                  ------ Get CopSJTable dari SuratJalanCopPrint
+                  ------ Get SJDS = DataSet SJDataSet dan Clear semua baris
+                  ------ Table 0 = Merge SJDS dan HeaderSJTable
+                  ------ Table 1 = Merge SJDS dan DetailSJTable
+                  ------ Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+                     ------- Table 2 = Merge SJDS dan CopSJTable
+                  ------ Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+                     ------- Table 2 = Merge SJDS dan NonCopSJTable
+               ----- Jika LocationID = L30003
+                  ------ Get HeaderSJTable dari Trx_SuratJalanTbl
+                  ------ Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
+                  ------ Get NonCopSJTable dari SuratJalanNonCopPrint
+                  ------ Get CopSJTable dari SuratJalanCopPrint
+                  ------ Get SJDS = DataSet SJDataSet dan Clear semua baris
+                  ------ Table 0 = Merge SJDS dan HeaderSJTable
+                  ------ Table 1 = Merge SJDS dan DetailSJTable
+                  ------ Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+                     ------- Table 2 = Merge SJDS dan CopSJTable
+                  ------ Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+                     ------- Table 2 = Merge SJDS dan NonCopSJTable
+               ----- Jika LocationID = L20001
+                  ------ Get HeaderSJTable dari Trx_SuratJalanTbl
+                  ------ Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
+                  ------ Get NonCopSJTable dari SuratJalanNonCopPrint
+                  ------ Get CopSJTable dari SuratJalanCopPrint3
+                  ------ Get SJDS = DataSet SJDataSet dan Clear semua baris
+                  ------ Table 0 = Merge SJDS dan HeaderSJTable
+                  ------ Table 1 = Merge SJDS dan DetailSJTable
+                  ------ Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+                     ------- Table 2 = Merge SJDS dan CopSJTable
+                  ------ Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+                     ------- Table 2 = Merge SJDS dan NonCopSJTable
+               ----- Jika LocationID = L50001 OR L50002 OR L50003 OR L50004 OR L10001
+                  ------ Get HeaderSJTable dari Trx_SuratJalanTbl
+                  ------ Get DetailSJTable dari Sls_Trx_SuratJalanDetailTbl
+                  ------ Get NonCopSJTable dari SuratJalanNonCopPrint
+                  ------ Get CopSJTable dari SuratJalanCopPrintPGS
+                  ------ Get SJDS = DataSet SJDataSet dan Clear semua baris
+                  ------ Table 0 = Merge SJDS dan HeaderSJTable
+                  ------ Table 1 = Merge SJDS dan DetailSJTable
+                  ------ Jika dalam TanyaPrintCopSurat, CheckBox dicentang
+                     ------- Table 2 = Merge SJDS dan CopSJTable
+                  ------ Jika dalam TanyaPrintCopSurat, CheckBox tidak dicentang
+                     ------- Table 2 = Merge SJDS dan NonCopSJTable
+            ---- Jika ProductID (grid kolom 1) dilihat 2 digit dari kiri = 61
+               ----- r = Memanggil SuratJalanPrintCrystalReport_3_2Satuan_61
+               ----- ReportWindow = Memanggil ReportViewerForm
+               ----- Dari r
+                  ------ Memanggil dataset SJDS
+                  ------ Parameter_NOPOKus = False
+                  ------ Parameter_Ekspedisi = False
+                  ------ Parameter_MOU = False
+                  ------ Jika NoPOCustomer = Nothing
+                     ------- NoPOCustomer = "-"
+                  ------ Jika Ekspedisi = Nothing
+                     ------- Ekspedisi = "-"
+                  ------ Set Parameter_NOPOKus = NoPOCustomer
+                  ------ Set Parameter_Ekspedisi = Ekspedisi
+                  ------ Set Parameter_MOU = mou
+            ---- Jika ProductID (grid kolom 1) dilihat 2 digit dari kiri = 59
+               ----- r = Memanggil SuratJalanPrintCrystalReport_3_Kode_59
+               ----- ReportWindow = Memanggil ReportViewerForm
+               ----- Dari r
+                  ------ Memanggil dataset SJDS
+                  ------ Parameter_NOPOKus = False
+                  ------ Parameter_Ekspedisi = False
+                  ------ Parameter_MOU = False
+                  ------ Jika NoPOCustomer = Nothing
+                     ------- NoPOCustomer = "-"
+                  ------ Jika Ekspedisi = Nothing
+                     ------- Ekspedisi = "-"
+                  ------ Set Parameter_NOPOKus = NoPOCustomer
+                  ------ Set Parameter_Ekspedisi = Ekspedisi
+                  ------ Set Parameter_MOU = mou
+               ----- Dari ReportWindow
+                  ------ CrystalReportViewer2 = Data dari r
+                  ------ Refresh CrystalReportViewer2
+            ---- Jika ProductID (grid kolom 1) dilihat 2 digit dari kiri = 60 OR 66 0R 67
+               ----- r = Memanggil SuratJalanPrintCrystalReport_3
+               ----- ReportWindow = Memanggil ReportViewerForm
+               ----- Dari r
+                  ------ Memanggil dataset SJDS
+                  ------ Parameter_NOPOKus = False
+                  ------ Parameter_Ekspedisi = False
+                  ------ Parameter_MOU = False
+                  ------ Jika NoPOCustomer = Nothing
+                     ------- NoPOCustomer = "-"
+                  ------ Jika Ekspedisi = Nothing
+                     ------- Ekspedisi = "-"
+                  ------ Set Parameter_NOPOKus = NoPOCustomer
+                  ------ Set Parameter_Ekspedisi = Ekspedisi
+                  ------ Set Parameter_MOU = mou
+               ----- Dari ReportWindow
+                  ------ CrystalReportViewer2 = Data dari r
+                  ------ Refresh CrystalReportViewer2
+            ---- Selain kondisi di atas
+               ----- Jika LocationIDLog = L50001 OR L50002 OR L50003 OR L50004
+                  ------ r = Memanggil SuratJalanPrintCrystalReport_3_2Satuan
+                  ------ ReportWindow = Memanggil ReportViewerForm
+                  ------ Dari r
+                     ------- Memanggil dataset SJDS
+                     ------- Parameter_NOPOKus = False
+                     ------- Parameter_Ekspedisi = False
+                     ------- Parameter_MOU = False
+                     ------- Jika NoPOCustomer = Nothing
+                        -------- NoPOCustomer = "-"
+                     ------- Jika Ekspedisi = Nothing
+                        -------- Ekspedisi = "-"
+                     ------- Set Parameter_NOPOKus = NoPOCustomer
+                     ------- Set Parameter_Ekspedisi = Ekspedisi
+                     ------- Set Parameter_MOU = mou
+                  ------ Dari ReportWindow
+                     ------- CrystalReportViewer2 = Data dari r
+                     ------- Refresh CrystalReportViewer2
+               --- Jika LocationIDLog = L30003
+                  ------ r = Memanggil SuratJalanPrintCrystalReport_3
+                  ------ ReportWindow = Memanggil ReportViewerForm
+                  ------ Dari r
+                     ------- Memanggil dataset SJDS
+                     ------- Parameter_NOPOKus = False
+                     ------- Parameter_Ekspedisi = False
+                     ------- Parameter_MOU = False
+                     ------- Jika NoPOCustomer = Nothing
+                        -------- NoPOCustomer = "-"
+                     ------- Jika Ekspedisi = Nothing
+                        -------- Ekspedisi = "-"
+                     ------- Set Parameter_NOPOKus = NoPOCustomer
+                     ------- Set Parameter_Ekspedisi = Ekspedisi
+                     ------- Set Parameter_MOU = mou
+                  ------ Dari ReportWindow
+                     ------- CrystalReportViewer2 = Data dari r
+                     ------- Refresh CrystalReportViewer2
+               --- Selain kondisi di atas
+                  ------ r = Memanggil SuratJalanPrintCrystalReport_3
+                  ------ ReportWindow = Memanggil ReportViewerForm
+                  ------ Dari r
+                     ------- Memanggil dataset SJDS
+                     ------- Parameter_NOPOKus = False
+                     ------- Parameter_Ekspedisi = False
+                     ------- Parameter_MOU = False
+                     ------- Jika NoPOCustomer = Nothing
+                        -------- NoPOCustomer = "-"
+                     ------- Jika Ekspedisi = Nothing
+                        -------- Ekspedisi = "-"
+                     ------- Set Parameter_NOPOKus = NoPOCustomer
+                     ------- Set Parameter_Ekspedisi = Ekspedisi
+                     ------- Set Parameter_MOU = mou
+                  ------ Dari ReportWindow
+                     ------- CrystalReportViewer2 = Data dari r
+                     ------- Refresh CrystalReportViewer2
+            ---- Clear semua data setelah Print
+            ---- MessageBox : "Selesai !!!"
+            ---- PrintSuratJalanButton = Bisa diklik
    - Jika Function GantiProfil = True
       -- GantiProfil = False
       -- LocationIDLog = LocationIDLog_Before (LocationID sebelumnya)
