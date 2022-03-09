@@ -1,7 +1,43 @@
 ﻿Surat Jalan Header
 1. Form Load
 2. OrderMuatanButton
-   - Tambah baris dalam grid
+   - Memanggil Function AddRow
+      -- Membuka ListOrderMuatanForm
+      -- Get semua data dari View_ListOrderMuatanSjModifViewProcedure
+      -- Jika data dalam grid > 0
+         --- Get ID OM (kolom 0)
+         --- Get ProductID (kolom 1)
+         --- Get ProductName (kolom 2)
+         --- Jika ProductID (kolom 1) = 59
+            ---- Qty1 = Qty1 #,##0.##0
+         --- Jika ProductID (kolom 1) != 59
+            ---- Qty1 = Qty1 #,##0
+         --- Get Satuan1
+         --- Get Qty2 = Qty2 #,##0.##0
+         --- Get Satuan2
+         --- Get Keterangan (kolom 9)
+         --- Get PickSlipID (kolom 10)
+         --- Get PO ID (kolom 11)
+         --- Get SupplierID (kolom 21)
+         --- Get QtyLabel (kolom 32)
+         --- Get WPS (kolom 27)
+         --- Berat STD = QtyLabel * WPS
+         --- Porsi = 0
+         --- BeratPorsi = 0
+         --- Label MemoNo = NoMemo (kolom 10)
+         --- Label DoNo = DoNo (kolom 23)
+         --- Label NoSJ = Function MaxIDSJ
+         --- TextBox PIC = PIC (kolom 13)
+         --- TextBox Customer = Customer (kolom 15)
+         --- TextBox Project = Project (kolom 14)
+         --- TextBox Alamat1 = Alamat1 (kolom 16)
+         --- TextBox Alamat2 = Alamat2 (kolom 17)
+         --- TextBox Alamat3 = Alamat3 (kolom 18)
+         --- NamaAngkutan = NamaAngkutan (kolom 19)
+         --- NoSJSupplier = NOSJSupplier (kolom 20)
+         --- TextBox Supir = Supir (kolom 22)
+         --- NoPOCustomer = "/ NoPOCustomer (kolom 24)"
+         --- 
    - Jika baris dalam grid > 0
       -- Jika LocationID = L40001 atau L30001
          --- Variable vOM = " " (kosong)
