@@ -1,1 +1,18 @@
-Mill Sheet Prd
+Mill Sheet Prd Header
+1. Form Load
+2. Tab Calendar
+   - DateTimePicker1
+3. Tab Range
+   - DateTimePicker From
+   - DateTimePicker To
+   - Button Day
+   - Button Month
+   - Button Annual
+4. Button Add New Data
+5. Button View/Edit Data
+6. Button Report/Summary
+7. Grid
+   - Location
+   - 
+
+Mill Sheet Prd Detail
