@@ -27,6 +27,10 @@
          --- Label MemoNo = NoMemo (kolom 10)
          --- Label DoNo = DoNo (kolom 23)
          --- Label NoSJ = Function MaxIDSJ
+            ---- Function MaxIDSJ
+               ----- idsv = "Tanggal sekarang ("yy") / LocationNameLog / SJ"
+                  ------ yy = Tahun (2 digit dari belakang)
+               ----- Get data dari CariMaximumIdSj
          --- TextBox PIC = PIC (kolom 13)
          --- TextBox Customer = Customer (kolom 15)
          --- TextBox Project = Project (kolom 14)
@@ -37,7 +41,19 @@
          --- NoSJSupplier = NOSJSupplier (kolom 20)
          --- TextBox Supir = Supir (kolom 22)
          --- NoPOCustomer = "/ NoPOCustomer (kolom 24)"
-         --- 
+         --- Jika LocationIDLog = L40001 OR L30001
+            ---- TextBox Keterangan1 = "-"
+            ---- TextBox Keterangan2 = "-"
+         --- Jika ubahekspedisi = Ekspedisi (kolom 25)
+            ---- Angkutan_F_Or_L = "/F"
+         --- Jika ubahekspedisi != Ekspedisi (kolom 25)
+            ---- Angkutan_F_Or_L = "/L"
+         --- Label Angkutan_F_Or_L = Angkutan_F_Or_L
+         --- Jika CariOMApaSudahAda (ID OM (kolom 0)) = True
+            ---- MessageBox : "Maaf, ID Order Muatan Sudah Ada !!!"
+         --- Jika CariPOApaBeda (Keterangan (kolom 9)) = True
+            ---- MessageBox : "Maaf, Harus 1 Nomor PO dalam 1 Surat Jalan !!!"
+         --- mou = MOU (kolom 31)
    - Jika baris dalam grid > 0
       -- Jika LocationID = L40001 atau L30001
          --- Variable vOM = " " (kosong)
