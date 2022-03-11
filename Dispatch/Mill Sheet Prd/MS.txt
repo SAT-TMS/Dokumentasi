@@ -13,6 +13,42 @@ Mill Sheet Prd Header
 6. Button Report/Summary
 7. Grid
    - Location
-   - 
+   - CertificateNo
+   - NoPO
+   - CustomerName
+   - Project
+   - Tanggal
+   - Specification
+   - CreatedBy
+   - MillSheetID_Edit
 
 Mill Sheet Prd Detail
+1. Form Load
+2. TextBox CustomerName
+3. TextBox Project
+4. DateTimePicker Tanggal
+5. TextBox Specification
+6. TextBox Certificate No
+7. Grid DoNo
+   - Tanggal
+   - No PO
+   - No Order Muat
+8. Searching Button DoNo
+9. Grid
+   - No
+   - HeatID
+   - TanggalProduksi
+   - ProductID
+   - Marking
+   - Section
+   - Grade
+   - Quantity
+   - C
+   - Si
+   - Mn
+   - P
+   - S
+   - YP
+   - TS
+   - Ratio
+   - E
