@@ -1,38 +1,39 @@
 Mill Sheet Prd Header
 1. Form Load
 2. Tab Calendar
-   - DateTimePicker1
+   - Calendar, Kalender Tanggal Sekarang
 3. Tab Range
-   - DateTimePicker From
-   - DateTimePicker To
+   - txtDateFrom, Tanggal Awal Mill Sheet
+   - txtDateTo, Tanggal Akhir Mill Sheet
    - Button Day
+      -- txtDateFrom = Tanggal Sekarang
    - Button Month
    - Button Annual
 4. Button Add New Data
 5. Button View/Edit Data
 6. Button Report/Summary
 7. Grid
-   - Location
-   - CertificateNo
-   - NoPO
-   - CustomerName
-   - Project
-   - Tanggal
-   - Specification
-   - CreatedBy
-   - MillSheetID_Edit
+   - Location, Lokasi
+   - CertificateNo, Nomor Sertifikat
+   - NoPO, Nomor PO
+   - CustomerName, Nama Customer
+   - Project, Proyek
+   - Tanggal, Tanggal Pembuatan Mill Sheet
+   - Specification, Spesifikasi Mill Sheet
+   - CreatedBy, Pembuat Mill Sheet
+   - MillSheetID_Edit, ID Mill Sheet
 
 Mill Sheet Prd Detail
 1. Form Load
-2. TextBox CustomerName
-3. TextBox Project
-4. DateTimePicker Tanggal
-5. TextBox Specification
-6. TextBox Certificate No
+2. TextBox CustomerName, Nama Customer
+3. TextBox Project, Nama Project
+4. DateTimePicker Tanggal, Tanggal Pembuatan Mill Sheet
+5. TextBox Specification, Spesifikasi Mill Sheet
+6. TextBox Certificate No, Nomor Sertifikat
 7. Grid DoNo
-   - Tanggal
-   - No PO
-   - No Order Muat
+   - Tanggal, Tanggal Pembuatan Do
+   - No PO, Nomor PO
+   - No Order Muat, Nomor Order Muat
 8. Searching Button DoNo
 9. Grid
    - No
