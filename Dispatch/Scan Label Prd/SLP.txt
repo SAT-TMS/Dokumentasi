@@ -1,1 +1,10 @@
 Scan Label Prd
+1. Form Load
+	- Set Calendar Selection ke hari ini
+	- terdapat 2 Tab
+		-- Tab Calendar
+		-- Tab Range
+	- lalu pada tab "Range"
+		-- txtDateFrom = untuk Selection Start
+		-- txtDateTo = untuk Selection End
+		
