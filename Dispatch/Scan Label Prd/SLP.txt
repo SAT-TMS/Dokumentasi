@@ -5,6 +5,14 @@ Scan Label Prd
 		-- Tab Calendar
 		-- Tab Range
 	- lalu pada tab "Range"
-		-- txtDateFrom = untuk Selection Start
-		-- txtDateTo = untuk Selection End
+		-- txtDateFrom = untuk Selection Start tanggal 
+		-- txtDateTo = untuk Selection End tanggal
+2. BtnAdd (Add/Edit Detail) :
+3. Button6 (Report/Summary) : 
+4. DataGridView1
+5. TxtOrdermuat
+6. TxtPO
+7. TxtCustomer
+8. Mouse Right Click / Klik Kanan: 
+
 		
