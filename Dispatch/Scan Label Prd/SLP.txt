@@ -13,6 +13,7 @@ Scan Label Prd
 5. TxtOrdermuat
 6. TxtPO
 7. TxtCustomer
-8. Mouse Right Click / Klik Kanan: 
+8. Mouse Right Click / Klik Kanan : membuka mnuClick / Context Menu Strip
+
 
 		
