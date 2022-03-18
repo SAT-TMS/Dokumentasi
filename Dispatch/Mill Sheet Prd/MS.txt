@@ -1,17 +1,67 @@
 Mill Sheet Prd Header
 1. Form Load
+   - Memanggil AllData
 2. Tab Calendar
-   - Calendar, Kalender Tanggal Sekarang
+   - Calendar, Kalender Tanggal
 3. Tab Range
    - txtDateFrom, Tanggal Awal Mill Sheet
    - txtDateTo, Tanggal Akhir Mill Sheet
-   - Button Day
+   - BtnDay
       -- txtDateFrom = Tanggal Sekarang
+      -- txtDateTo = Tanggal Sekarang
    - Button Month
+      -- txtDateFrom = Tahun Sekarang, Bulan Sekarang, Tanggal 1
+      -- txtDateTo = Tahun Sekarang, Bulan Sekarang, Tanggal Sekarang
    - Button Annual
+      -- txtDateFrom = Tahun Sekarang, Bulan Januari, Tanggal 1
+      -- txtDateTo = Tahun Sekarang, Bulan Desember, Tanggal 31
 4. Button Add New Data
+   - Message Box : "Mau Entry Data Baru ?"
+   - Message Box Button : Yes dan No
+   - Jika pilih Yes
+      -- Memanggil Function Trx_StockInsert
+         --- Get data dari Sls_Trx_Faktur_Update
+         --- NotaID = LocationIDLog
+         --- Currency = " "
+         --- Param = MaxMillSheet
+         --- notads = Get data dari Sls_Trx_Faktur_Update
+         --- Jika tabel dalam notads > 0
+            ---- Jika jumlah baris dalam tabel notads > 0
+               ----- CertificateNoMax = NotaID (4 digit dari kanan = 0000)
+               ----- CertificateNo = CertificateNoMax / LocationIDLog / Tanggal (Format : "yy-MM") QC
+                  ------ y = Tahun
+                  ------ M = Bulan
+            ---- Jika jumlah baris dalam tabel notads = 0
+               ----- MessageBox : "Tidak Ada Data !!!"
+         --- Jika tabel dalam notads = 0
+            ---- MessageBox : "Tidak Ada Data !!!"
+         --- MillSheetID = M Tanggal Sekarang (Format = yyMMddHHmmss)
+            ---- y = Tahun
+            ---- M = Bulan
+            ---- d = Tanggal
+            ---- H = Jam
+            ---- m = Menit
+            ---- s = Detik
+         --- LocationID = LocationIDLog
+         --- CertificateNo = CertificateNo
+         --- CustomerName = -
+         --- Tanggal = Tanggal Sekarang (Format = dd-MM-yyyy)
+            ---- d = Tanggal
+            ---- M = Bulan
+            ---- y = Tahun
+         --- PONo = -
+         --- Specification = -
+         --- Project = -
+         --- Status = A
+         --- Get data dari Database Service Trx_MillsheetInsert
+      -- Memanggil AllData
+   - Jika pilih No
+      -- Keluar dari MillSheetHeaderForm
 5. Button View/Edit Data
+   - Memanggil Function DataGridView.DoubleClick
+      -- 
 6. Button Report/Summary
+   - Tidak melakukan perintah apapun
 7. Grid
    - Location, Lokasi
    - CertificateNo, Nomor Sertifikat
@@ -22,6 +72,21 @@ Mill Sheet Prd Header
    - Specification, Spesifikasi Mill Sheet
    - CreatedBy, Pembuat Mill Sheet
    - MillSheetID_Edit, ID Mill Sheet
+8. TxtCertificate
+   - Jika input > 2 karakter
+      -- Memanggil AllData
+   - Jika input = 0 karakter
+      -- Memanggil AllData
+9. TxtPO
+   - Jika input > 2 karakter
+      -- Memanggil AllData
+   - Jika input = 0 karakter
+      -- Memanggil AllData
+10. TxtCustomer
+   - Jika input > 2 karakter
+      -- Memanggil AllData
+   - Jika input = 0 karakter
+      -- Memanggil AllData
 
 Mill Sheet Prd Detail
 1. Form Load
@@ -35,6 +100,8 @@ Mill Sheet Prd Detail
    - No PO, Nomor PO
    - No Order Muat, Nomor Order Muat
 8. Searching Button DoNo
+   - Membuka Form DoNo
+      -- Isi Form DoNo = Grid DoNo
 9. Grid
    - No
    - HeatID
