@@ -19,15 +19,15 @@ Scan Label Prd
 	- Quantity Header
 	- Quantity Detail
 	- Update Stock
-5. TxtOrdermuat
-6. TxtPO
-7. TxtCustomer
+5. TextBox TxtOrdermuat
+6. TextBox TxtPO
+7. TextBox TxtCustomer
 8. Mouse Right Click / Klik Kanan : membuka mnuClick / Context Menu Strip
 	- Refresh Button
 		-- melakukan refresh data / memanggil AllData()
 	- Add/Edit Button (Harusnya Edit saja, tanpa Add)
 		-- memiliki fungsi yang sama, seperti double click pada gridview
-	- Report Button (Harusnya tidak ada didalam modul SLP)
+	- Report Button (Harusnya tidak ada didalam modul SLP) << tidak ada fungsi
 	- Exit : Close SLP
 
 
