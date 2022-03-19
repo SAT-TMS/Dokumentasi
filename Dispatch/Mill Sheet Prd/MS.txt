@@ -85,7 +85,7 @@ Mill Sheet Prd Header
             ---- nMillSheetID_Edit = MillSheetIDEdit (grid kolom 9)
 6. Button Report/Summary
    - Tidak melakukan perintah apapun
-7. Grid
+7. DataGridView
    - Location, Lokasi
    - CertificateNo, Nomor Sertifikat
    - NoPO, Nomor PO
