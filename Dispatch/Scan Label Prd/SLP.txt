@@ -45,6 +45,9 @@ Scan Label Prd
 
 ============ DETAIL ============
 
+FORM Load :
+- Jika IsInternetAvailable() = False
+	-- MessageBox Error "Jaringan Putus!!!"
 1. DateTimePicker Tanggal Order Muat
 2. TextBox Customer Name
 3. TextBox No. Order Muat
@@ -77,6 +80,62 @@ Scan Label Prd
 					----- Selain itu,
 						------ ProsesValidasi = True
 						------	membuka akses ke LinkCloud.Prd_CariProfilProduksiID
+			--- Jika ds.Tables(0).Rows.Count > 0, maka
+				---- Jika ProsesValidasi = True, maka
+					----- Jika ds.Tables(0).Rows(0).Item(19).ToString <> "", maka
+						----- MessageBox Warning "Label Sudah Terpakai di Order Muat "  & ds.Tables(0).Rows(0).Item(19).ToString
+						----- clear TextBox TxtProfilProduksiID
+				---- Jika Becahbundel(nData(0)) = True, maka
+					----- MessageBox Warning "Label Sudah Pecah Bundle !!!" & vbCrLf & PecahBundelDetail
+					----- clear TextBox TxtProfilProduksiID
 10. BtnClear, menghapus inputan pada TextBox Profil Produksi ID 
-11. BtnFind, mencari 
+11. BtnFind, 
+	-   JenisMarking = ""
+        CariProductProfilForm.NamaForm = "FrmOMDetail"
+        CariProductProfilForm.nProductid = ProductIDValid
+        CariProductProfilForm.TxtFindGrade.Text = GradeValid
+        CariProductProfilForm.TxtFindSection.Text = Microsoft.VisualBasic.Left(SectionValid, Microsoft.VisualBasic.Len(SectionValid) - 3) & Replace(Microsoft.VisualBasic.Right(SectionValid, 3), ".", "")
+        CariProductProfilForm.TxtFindGrade.Enabled = False
+        CariProductProfilForm.TxtFindSection.Enabled = False
+        CariProductProfilForm.ShowDialog()
 12. DataGridView1, 
+	- No.
+	- Tanggal Produksi
+	- Product ID
+	- Marking
+	- Section
+	- Grade
+	- Heat ID
+	- Tanggal Heat
+	- Bundle No.
+	- Qty
+	- Weight
+	- YP
+	- TS
+	- E
+	- Ratio
+	- YP
+	- TS
+	- Ratio
+	- Batch No
+13. Function Becahbundel,
+	- Becahbundel = False
+	- PecahBundelDetail = ""
+	- Jika IsInternetAvailable() = False
+		-- MessageBox Error "Jaringan Putus!!!"
+		-- Exit Function
+	- Apabila ada,
+		-- Jika dsharg.Tables.Count > 0, maka
+			--- dsharg.Tables(0).Rows.Clear()
+		
+		-- dsharg = AksesLinkCloud.Sls_Trx_Faktur_Update(Kunci, nData)	
+		-- Jika dsharg.Tables.Count > 0, maka
+			--- Jika dsharg.Tables(0).Rows.Count > 1, maka
+				---- Dim par As Boolean = False
+					 For i As Integer = 0 To dsharg.Tables(0).Rows.Count - 1
+                        PecahBundelDetail &= dsharg.Tables(0).Rows(i).Item(0).ToString & " - " & dsharg.Tables(0).Rows(i).Item(1).ToString & " - " & dsharg.Tables(0).Rows(i).Item(3).ToString & vbCrLf
+						If TxtProfilProduksiID.Text.Trim.ToLower = dsharg.Tables(0).Rows(i).Item(0).ToString.Trim.ToLower Then
+                            'MessageBox.Show(TxtProfilProduksiID.Text.Trim.ToLower & " - " & dsharg.Tables(0).Rows(i).Item(0).ToString.Trim.ToLower)
+                            If dsharg.Tables(0).Rows(i).Item(3).ToString = "00" Then
+                                Return True
+                            End If
