@@ -54,12 +54,35 @@ Mill Sheet Prd Header
          --- Project = -
          --- Status = A
          --- Get data dari Database Service Trx_MillsheetInsert
+         --- Menyimpan LogActivity
+         --- Memanggil MillSheetDetailForm
+            ---- TextBox MillSheetID = MillSheetID
+            ---- TextBox Customer = -
+            ---- TextBox Project = -
+            ---- TextBox Tanggal = Tanggal Sekarang
+            ---- TextBox Specification = -
+            ---- TextBox CertificateNo = CertificateNo
+            ---- TextBox Quantity = 0
+            ---- TextBox NoDo = " "
+            ---- TextBox TotalPerSize = " "
+            ---- DataGridView1 = Clear semua baris
+            ---- DataGridView2 = Clear semua baris
       -- Memanggil AllData
    - Jika pilih No
       -- Keluar dari MillSheetHeaderForm
 5. Button View/Edit Data
    - Memanggil Function DataGridView.DoubleClick
-      -- 
+      -- Jika baris dalam grid > 0
+         --- Memanggil MillSheetDetailForm
+            ---- TextBox TotalPerSize = " "
+            ---- TextBox Quantity = " "
+            ---- TextBox MillSheetID = MillSheetID (grid kolom 0)
+            ---- TextBox Customer = Customer (grid kolom 4)
+            ---- TextBox Project = Project (grid kolom 5)
+            ---- TextBox Tanggal = Tanggal (grid klom 6)
+            ---- TextBox Specification = Specification (grid kolom 7)
+            ---- TextBox CertificateNo = NoCertificate (grid kolom 2)
+            ---- nMillSheetID_Edit = MillSheetIDEdit (grid kolom 9)
 6. Button Report/Summary
    - Tidak melakukan perintah apapun
 7. Grid
@@ -90,19 +113,20 @@ Mill Sheet Prd Header
 
 Mill Sheet Prd Detail
 1. Form Load
-2. TextBox CustomerName, Nama Customer
-3. TextBox Project, Nama Project
-4. DateTimePicker Tanggal, Tanggal Pembuatan Mill Sheet
-5. TextBox Specification, Spesifikasi Mill Sheet
-6. TextBox Certificate No, Nomor Sertifikat
-7. Grid DoNo
+2. TextBox MillSheetID, ID MillSheet
+3. TextBox CustomerName, Nama Customer
+4. TextBox Project, Nama Project
+5. DateTimePicker Tanggal, Tanggal Pembuatan Mill Sheet
+6. TextBox Specification, Spesifikasi Mill Sheet
+7. TextBox Certificate No, Nomor Sertifikat
+8. DataGridView2
    - Tanggal, Tanggal Pembuatan Do
    - No PO, Nomor PO
    - No Order Muat, Nomor Order Muat
-8. Searching Button DoNo
+9. Searching Button DoNo
    - Membuka Form DoNo
-      -- Isi Form DoNo = Grid DoNo
-9. Grid
+      -- Isi Form DoNo = DataGridView2
+10. DataGridView1
    - No
    - HeatID
    - TanggalProduksi
