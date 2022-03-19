@@ -1,27 +1,39 @@
 Scan Label Prd
+
+============ HEADER ============
+
 1. Form Load
 	- Set Calendar Selection ke hari ini
 	- terdapat 2 Tab
 		-- Tab Calendar
 		-- Tab Range
-	- lalu pada tab "Range"
-		-- txtDateFrom = untuk Selection Start tanggal 
-		-- txtDateTo = untuk Selection End tanggal
+			-- txtDateFrom = untuk Selection Start tanggal 
+			-- txtDateTo = untuk Selection End tanggal
+			-- BtnDay = 
+				--- mengubah tanggal, bulan, dan tahun pada txtDateFrom menjadi hari ini
+				--- mengubah tanggal, bulan, dan tahun pada txtDateTo menjadi hari ini
+			-- BtnMonth = 
+				--- mengubah tanggal, dan bulan pada txtDateFrom menjadi awal (contoh : 1 Januari 2022) 
+				--- mengubah tanggal, dan bulan pada txtDateTo menjadi akhir (contoh : 31 Januari 2022)
+			-- BtnAnnual =
+				--- mengubah tanggal, bulan, dan tahun pada txtDateFrom menjadi awal (contoh : 1 Januari 2022) 
+				--- mengubah tanggal, bulan, dan tahun pada txtDateTo menjadi akhir (contoh : 31 Desember 2022)
 2. BtnAdd (Add/Edit Detail) : memiliki fungsi yang sama, seperti double click pada gridview
+	- membuka Form QMQCDetailForm
 3. Button6 (Report/Summary) : Harusnya tidak ada didalam modul SLP 
 4. DataGridView1 :
-	- Order Muat
-	- No PO
-	- Customer Name
-	- Tanggal
-	- Product ID
-	- Product Name
-	- Quantity Header
-	- Quantity Detail
+	- Order Muat = ID dari Order Muat
+	- No PO = Nomor PO
+	- Customer Name = Nama Customer
+	- Tanggal = Tanggal Order Muat dibuat
+	- Product ID = ID Produk
+	- Product Name = Nama Produk
+	- Quantity Header = Quantity yang diinput
+	- Quantity Detail 
 	- Update Stock
-5. TextBox TxtOrdermuat
-6. TextBox TxtPO
-7. TextBox TxtCustomer
+5. TextBox TxtOrdermuat = untuk search menurut list Order Muat
+6. TextBox TxtPO = untuk search menurut list No PO
+7. TextBox TxtCustomer = untuk search menurut list Nama Customer
 8. Mouse Right Click / Klik Kanan : membuka mnuClick / Context Menu Strip
 	- Refresh Button
 		-- melakukan refresh data / memanggil AllData()
@@ -31,4 +43,40 @@ Scan Label Prd
 	- Exit : Close SLP
 
 
-		
+============ DETAIL ============
+
+1. DateTimePicker Tanggal Order Muat
+2. TextBox Customer Name
+3. TextBox No. Order Muat
+4. TextBox NomorPO
+5. TextBox Nama FI
+6. TextBox Nama Sopir
+7. TextBox Nama Produk
+8. TextBox Quantity
+9. TextBox Profil Produksi ID,
+	- Jika TxtProfilProduksiID.Text <> "", maka
+		-- Jika cells.item("column13").Value = TxtProfilProduksiID.Text, maka
+			--- rowindex = CShort(row.Index.ToString())
+			--- MessageBox : "Profil Produksi ID : " & TxtProfilProduksiID.Text & " sudah ada di baris No. " & CInt(rowindex) + 1
+			--- lalu clear TextBox TxtProfilProduksiID
+			--- melakukan pengecekan terhadap jaringan internet
+				---- jika IsInternetAvailable() = False, maka
+					----- MessageBox "Jaringan Putus !!!"
+				---- jika ada,
+					----- jika ds.Tables.Count > 0, maka
+						------ ds.Tables(0).Rows.Clear()
+					
+					----- ProsesValidasi = False
+					----- Jika LocationIDLog = "50001" atau "L30002", maka
+						------ Jika JenisMarking = "Bar in Coil"
+							------- ProsesValidasi = True
+							------- membuka akses ke LinkCloud.Prd_CariProfilProduksiID
+						------ Selain itu,
+							------- ProsesValidasi = True
+							------- membuka akses ke LinkCloud.Prd_CariProfilProduksiIDWR
+					----- Selain itu,
+						------ ProsesValidasi = True
+						------	membuka akses ke LinkCloud.Prd_CariProfilProduksiID
+10. BtnClear, menghapus inputan pada TextBox Profil Produksi ID 
+11. BtnFind, mencari 
+12. DataGridView1, 
