@@ -149,10 +149,24 @@ FORM Load :
 			--- Selain itu,
 				---- Trx_StockPengeluaranInsert()
 			--- memanggil AllData() pada Form QMQCForm
-	- MnuAccept
-- MnuExit : 
-		--	
-16. Function Becahbundel,
+	- MnuAccept :
+		-- Jika DataGridView1.Rows.Count > 0, maka
+			--- For i As Integer = 0 To DataGridView1.Rows.Count - 1
+				---- Jika (CDbl(DataGridView1.Item(14, i).Value) = 0 Or CDbl(DataGridView1.Item(16, i).Value) = 0 Or CDbl(DataGridView1.Item(17, i).Value) = 0), maka
+					----- MessageBox Warning : "Ada label belum ada uji tarik !!!" & vbCrLf & "Hub Bagian QC"
+				---- Jika kriteria terpenuhi, MessageBox Question YesNo : "Apakah data sudah diperiksa?"
+					----- Jika Yes : MessageBox Question YesNo : "Yakin data akan di accept?"
+						------ Jika Yes :
+							------- memanggil fungsi Trx_StockInsert()
+							------- memanggil fungsi UpdateAccepted()
+							------- Close Form
+	- MnuExit : 
+		--	Jika Bukan MnuUpdateStock.Enabled = False, maka
+			--- MessageBox Question YesNo : "Apakah data ingin di Simpan?"
+				---- Jika Yes = memanggil fungsi MnuSave_Click
+				---- Selain itu, Close Form
+			--- Apabila Form sudah disave, maka tidak akan muncul MessageBox, namun langsung Close Form
+17. Function Becahbundel,
 	- Becahbundel = False
 	- PecahBundelDetail = ""
 	- Jika IsInternetAvailable() = False
