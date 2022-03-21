@@ -1,6 +1,7 @@
 Mill Sheet Prd Header
 1. Form Load
    - Memanggil AllData
+      -- Memanggil Data dari Database Service Sls_Trx_Millsheet_Header_List
 2. Tab Calendar
    - Calendar, Kalender Tanggal
 3. Tab Range
@@ -113,6 +114,8 @@ Mill Sheet Prd Header
 
 Mill Sheet Prd Detail
 1. Form Load
+   - Memanggil AllData
+      -- Memanggil Data dari Database Service Prd_MillSheetDetailList
 2. TextBox MillSheetID, ID MillSheet
 3. TextBox CustomerName, Nama Customer
 4. TextBox Project, Nama Project
@@ -127,14 +130,14 @@ Mill Sheet Prd Detail
    - Membuka Form DoNo
       -- Isi Form DoNo = DataGridView2
 10. DataGridView1
-   - No
-   - HeatID
-   - TanggalProduksi
-   - ProductID
-   - Marking
-   - Section
-   - Grade
-   - Quantity
+   - No, Nomor Kolom
+   - HeatID, ID Heat
+   - TanggalProduksi, Tanggal Produksi
+   - ProductID, ID Produk
+   - Marking, Marking
+   - Section, Bagian Produk
+   - Grade, Kualitas
+   - Quantity, Kuantitas
    - C
    - Si
    - Mn
