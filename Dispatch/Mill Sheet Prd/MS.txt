@@ -10,10 +10,10 @@ Mill Sheet Prd Header
    - BtnDay
       -- txtDateFrom = Tanggal Sekarang
       -- txtDateTo = Tanggal Sekarang
-   - Button Month
+   - BtnMonth
       -- txtDateFrom = Tahun Sekarang, Bulan Sekarang, Tanggal 1
       -- txtDateTo = Tahun Sekarang, Bulan Sekarang, Tanggal Sekarang
-   - Button Annual
+   - BtnAnnual
       -- txtDateFrom = Tahun Sekarang, Bulan Januari, Tanggal 1
       -- txtDateTo = Tahun Sekarang, Bulan Desember, Tanggal 31
 4. Button Add New Data
@@ -56,6 +56,10 @@ Mill Sheet Prd Header
          --- Status = A
          --- Get data dari Database Service Trx_MillsheetInsert
          --- Menyimpan LogActivity
+            ---- Mengubah MillSheetHeaderForm
+            ---- Mengubah MillSheetID
+            ---- Mengubah Status = Add
+            ---- Mengubah Database Trx_Millsheet
          --- Memanggil MillSheetDetailForm
             ---- TextBox MillSheetID = MillSheetID
             ---- TextBox Customer = -
