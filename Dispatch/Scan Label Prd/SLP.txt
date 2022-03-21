@@ -90,14 +90,25 @@ FORM Load :
 					----- clear TextBox TxtProfilProduksiID
 10. BtnClear, menghapus inputan pada TextBox Profil Produksi ID 
 11. BtnFind, 
-	-   JenisMarking = ""
-        CariProductProfilForm.NamaForm = "FrmOMDetail"
-        CariProductProfilForm.nProductid = ProductIDValid
-        CariProductProfilForm.TxtFindGrade.Text = GradeValid
-        CariProductProfilForm.TxtFindSection.Text = Microsoft.VisualBasic.Left(SectionValid, Microsoft.VisualBasic.Len(SectionValid) - 3) & Replace(Microsoft.VisualBasic.Right(SectionValid, 3), ".", "")
-        CariProductProfilForm.TxtFindGrade.Enabled = False
-        CariProductProfilForm.TxtFindSection.Enabled = False
-        CariProductProfilForm.ShowDialog()
+	- Membuka Form CariProductProfilForm
+		-- KeluarButton_Click : menutup Form
+		-- DataGridView1 : apabila diklik, maka
+			--- Jika NamaForm = "FrmOMDetail"
+				---- OMQCDetailForm.JenisMarking = CStr(DataGridView1.SelectedCells(5).Value)
+					 OMQCDetailForm.TxtProfilProduksiID.Text = CStr(DataGridView1.SelectedCells(0).Value)
+		-- TextBox TxtFindMarking
+			--- memanggil AllData()
+		-- TextBox TxtFindSection
+			--- memanggil AllData()
+		-- TextBox TxtFindGrade
+			--- memanggil AllData()
+		-- TextBox TxtFindHeat
+			--- memanggil AllData()
+		-- TextBox TxtFindBundleNo
+			--- memanggil AllData()
+		-- TextBox Batch_No_TextBox1
+			--- memanggil AllData()
+	
 12. DataGridView1, 
 	- No.
 	- Tanggal Produksi
@@ -118,7 +129,30 @@ FORM Load :
 	- TS
 	- Ratio
 	- Batch No
-13. Function Becahbundel,
+13. TextBox TxtBundel : menampilkan total Bundel
+14. TextBox TxtQty : menampilkan total Qty
+15. TextBox TxtBerat : menampilkan total Berat
+16. Right Click/Klik Kanan menampilkan MenuStrip : 
+	- Mnusave
+	- MnuUpdateStock : 
+		-- Jika lEdit = True, maka
+			--- MessageBox Question YesNo : "Yakin akan di Update Stock ?"
+			--- Jika DialogResult.Yes, maka
+				---- memanggil fungsi UpdateStok()
+			--- Jika dalam TxtNamaProduk terdapat "(HR)", maka
+				---- MessageBox Question YesNo : "Apakah data produk akan dirubah menjadi High Ratio (HR)?"
+					----- Jika DialogResult.Yes, maka
+						------ memanggil fungsi ProductIDProductionUpdate()
+						------ memanggil fungsi ProductIDStockUpdate()
+						------ memanggil fungsi AllData()
+						------ memanggil fungsi Trx_StockPengeluaranInsert()
+			--- Selain itu,
+				---- Trx_StockPengeluaranInsert()
+			--- memanggil AllData() pada Form QMQCForm
+	- MnuAccept
+- MnuExit : 
+		--	
+16. Function Becahbundel,
 	- Becahbundel = False
 	- PecahBundelDetail = ""
 	- Jika IsInternetAvailable() = False
