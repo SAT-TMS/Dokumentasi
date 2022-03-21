@@ -133,7 +133,16 @@ FORM Load :
 14. TextBox TxtQty : menampilkan total Qty
 15. TextBox TxtBerat : menampilkan total Berat
 16. Right Click/Klik Kanan menampilkan MenuStrip : 
-	- Mnusave
+	- MnuSave : 
+		-- Jika TxtNamaFI.Text = "", maka
+			--- MessageBox : "Nama Final Inspection harus diisi !"
+			--- lalu cursor akan langsung focus ke TextBox TxtNamaFI
+		-- Jika sudah terpenuhi,
+			--- memanggil fungsi Trx_OrderMuatUpdate()
+			--- memanggil fungsi Trx_OrderMuatProfilDelete()
+			--- memanggil fungsi Trx_OrderMuatProfilInsert()
+			--- Close form
+			--- memanggil AllData()
 	- MnuUpdateStock : 
 		-- Jika lEdit = True, maka
 			--- MessageBox Question YesNo : "Yakin akan di Update Stock ?"
