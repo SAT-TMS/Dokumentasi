@@ -1,0 +1,183 @@
+============ HEADER =============
+
+1. Load : 
+	- Memanggil AllData()
+2. DataGridView1
+	- OrderMuat
+	- No PO
+	- Customer Name
+	- Tanggal
+	- Product ID
+	- Product Name
+	- Quantity Header
+	- Quantity Detail
+	- Accepted
+	- Surat Jalan
+3. TextBox TxtOrderMuat,
+	- mencari berdasarkan Order Muat
+4. TextBox TxtPO
+	- mencari berdasarkan No PO
+5. TextBox TxtProductName
+	- mencari berdasarkan Product Name
+6. Right Click / Klik Kanan : ContextMenuStrip mnuClick
+	- MnuRefresh
+		-- memanggil AllData()
+	- MnuAdd
+		-- membuka Form QMQCDetailForm
+	- MnuExit
+		-- Menutup Form FrmMutasiProfil
+		
+		
+		============ DETAIL =============
+
+FORM Load :
+- Jika IsInternetAvailable() = False
+	-- MessageBox Error "Jaringan Putus!!!"
+1. DateTimePicker Tanggal Order Muat
+2. TextBox Customer Name
+3. TextBox No. Order Muat
+4. TextBox NomorPO
+5. TextBox Nama FI
+6. TextBox Nama Sopir
+7. TextBox Nama Produk
+8. TextBox Quantity
+9. TextBox Profil Produksi ID,
+	- Jika TxtProfilProduksiID.Text <> "", maka
+		-- Jika cells.item("column13").Value = TxtProfilProduksiID.Text, maka
+			--- rowindex = CShort(row.Index.ToString())
+			--- MessageBox : "Profil Produksi ID : " & TxtProfilProduksiID.Text & " sudah ada di baris No. " & CInt(rowindex) + 1
+			--- lalu clear TextBox TxtProfilProduksiID
+			--- melakukan pengecekan terhadap jaringan internet
+				---- jika IsInternetAvailable() = False, maka
+					----- MessageBox "Jaringan Putus !!!"
+				---- jika ada,
+					----- jika ds.Tables.Count > 0, maka
+						------ ds.Tables(0).Rows.Clear()
+					
+					----- ProsesValidasi = False
+					----- Jika LocationIDLog = "50001" atau "L30002", maka
+						------ Jika JenisMarking = "Bar in Coil"
+							------- ProsesValidasi = True
+							------- membuka akses ke LinkCloud.Prd_CariProfilProduksiID
+						------ Selain itu,
+							------- ProsesValidasi = True
+							------- membuka akses ke LinkCloud.Prd_CariProfilProduksiIDWR
+					----- Selain itu,
+						------ ProsesValidasi = True
+						------	membuka akses ke LinkCloud.Prd_CariProfilProduksiID
+			--- Jika ds.Tables(0).Rows.Count > 0, maka
+				---- Jika ProsesValidasi = True, maka
+					----- Jika ds.Tables(0).Rows(0).Item(19).ToString <> "", maka
+						----- MessageBox Warning "Label Sudah Terpakai di Order Muat "  & ds.Tables(0).Rows(0).Item(19).ToString
+						----- clear TextBox TxtProfilProduksiID
+				---- Jika Becahbundel(nData(0)) = True, maka
+					----- MessageBox Warning "Label Sudah Pecah Bundle !!!" & vbCrLf & PecahBundelDetail
+					----- clear TextBox TxtProfilProduksiID
+10. BtnClear, menghapus inputan pada TextBox Profil Produksi ID 
+11. BtnFind, 
+	- Membuka Form CariProductProfilForm
+		-- KeluarButton_Click : menutup Form
+		-- DataGridView1 : apabila diklik, maka
+			--- Jika NamaForm = "FrmOMDetail"
+				---- OMQCDetailForm.JenisMarking = CStr(DataGridView1.SelectedCells(5).Value)
+					 OMQCDetailForm.TxtProfilProduksiID.Text = CStr(DataGridView1.SelectedCells(0).Value)
+		-- TextBox TxtFindMarking
+			--- memanggil AllData()
+		-- TextBox TxtFindSection
+			--- memanggil AllData()
+		-- TextBox TxtFindGrade
+			--- memanggil AllData()
+		-- TextBox TxtFindHeat
+			--- memanggil AllData()
+		-- TextBox TxtFindBundleNo
+			--- memanggil AllData()
+		-- TextBox Batch_No_TextBox1
+			--- memanggil AllData()
+	
+12. DataGridView1, 
+	- No.
+	- Tanggal Produksi
+	- Product ID
+	- Marking
+	- Section
+	- Grade
+	- Heat ID
+	- Tanggal Heat
+	- Bundle No.
+	- Qty
+	- Weight
+	- YP
+	- TS
+	- E
+	- Ratio
+	- YP
+	- TS
+	- Ratio
+	- Batch No
+13. TextBox TxtBundel : menampilkan total Bundel
+14. TextBox TxtQty : menampilkan total Qty
+15. TextBox TxtBerat : menampilkan total Berat
+16. Right Click/Klik Kanan menampilkan MenuStrip : 
+	- MnuSave : 
+		-- Jika TxtNamaFI.Text = "", maka
+			--- MessageBox : "Nama Final Inspection harus diisi !"
+			--- lalu cursor akan langsung focus ke TextBox TxtNamaFI
+		-- Jika sudah terpenuhi,
+			--- memanggil fungsi Trx_OrderMuatUpdate()
+			--- memanggil fungsi Trx_OrderMuatProfilDelete()
+			--- memanggil fungsi Trx_OrderMuatProfilInsert()
+			--- Close form
+			--- memanggil AllData()
+	- MnuUpdateStock : 
+		-- Jika lEdit = True, maka
+			--- MessageBox Question YesNo : "Yakin akan di Update Stock ?"
+			--- Jika DialogResult.Yes, maka
+				---- memanggil fungsi UpdateStok()
+			--- Jika dalam TxtNamaProduk terdapat "(HR)", maka
+				---- MessageBox Question YesNo : "Apakah data produk akan dirubah menjadi High Ratio (HR)?"
+					----- Jika DialogResult.Yes, maka
+						------ memanggil fungsi ProductIDProductionUpdate()
+						------ memanggil fungsi ProductIDStockUpdate()
+						------ memanggil fungsi AllData()
+						------ memanggil fungsi Trx_StockPengeluaranInsert()
+			--- Selain itu,
+				---- Trx_StockPengeluaranInsert()
+			--- memanggil AllData() pada Form QMQCForm
+	- MnuAccept :
+		-- Jika DataGridView1.Rows.Count > 0, maka
+			--- For i As Integer = 0 To DataGridView1.Rows.Count - 1
+				---- Jika (CDbl(DataGridView1.Item(14, i).Value) = 0 Or CDbl(DataGridView1.Item(16, i).Value) = 0 Or CDbl(DataGridView1.Item(17, i).Value) = 0), maka
+					----- MessageBox Warning : "Ada label belum ada uji tarik !!!" & vbCrLf & "Hub Bagian QC"
+				---- Jika kriteria terpenuhi, MessageBox Question YesNo : "Apakah data sudah diperiksa?"
+					----- Jika Yes : MessageBox Question YesNo : "Yakin data akan di accept?"
+						------ Jika Yes :
+							------- memanggil fungsi Trx_StockInsert()
+							------- memanggil fungsi UpdateAccepted()
+							------- Close Form
+	- MnuExit : 
+		--	Jika Bukan MnuUpdateStock.Enabled = False, maka
+			--- MessageBox Question YesNo : "Apakah data ingin di Simpan?"
+				---- Jika Yes = memanggil fungsi MnuSave_Click
+				---- Selain itu, Close Form
+			--- Apabila Form sudah disave, maka tidak akan muncul MessageBox, namun langsung Close Form
+17. Function Becahbundel,
+	- Becahbundel = False
+	- PecahBundelDetail = ""
+	- Jika IsInternetAvailable() = False
+		-- MessageBox Error "Jaringan Putus!!!"
+		-- Exit Function
+	- Apabila ada,
+		-- Jika dsharg.Tables.Count > 0, maka
+			--- dsharg.Tables(0).Rows.Clear()
+		
+		-- dsharg = AksesLinkCloud.Sls_Trx_Faktur_Update(Kunci, nData)	
+		-- Jika dsharg.Tables.Count > 0, maka
+			--- Jika dsharg.Tables(0).Rows.Count > 1, maka
+				---- Dim par As Boolean = False
+					 For i As Integer = 0 To dsharg.Tables(0).Rows.Count - 1
+                        PecahBundelDetail &= dsharg.Tables(0).Rows(i).Item(0).ToString & " - " & dsharg.Tables(0).Rows(i).Item(1).ToString & " - " & dsharg.Tables(0).Rows(i).Item(3).ToString & vbCrLf
+						If TxtProfilProduksiID.Text.Trim.ToLower = dsharg.Tables(0).Rows(i).Item(0).ToString.Trim.ToLower Then
+                            'MessageBox.Show(TxtProfilProduksiID.Text.Trim.ToLower & " - " & dsharg.Tables(0).Rows(i).Item(0).ToString.Trim.ToLower)
+                            If dsharg.Tables(0).Rows(i).Item(3).ToString = "00" Then
+                                Return True
+                            End If
