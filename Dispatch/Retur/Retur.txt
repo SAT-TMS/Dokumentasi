@@ -1,0 +1,109 @@
+Retur Header
+1. Form Load
+	- Menyimpan LogActivity
+		-- Mengubah FrmReturSJ
+		-- Mengubah Database Trx_SuratJalanretur
+		-- Mengubah Status = View
+	- Memanggil AllDataDetail
+		-- Get data dari Database Service MSSJReturList
+	- Memanggil AllDataDetailRetur
+		-- Get data dari Database Service View_Trx_SuratJalanretur_list
+2. TxtNoSJ
+	- Memanggil AllDataDetail
+	- Memanggil AllDataDetailRetur
+3. TxtSuppl
+	- Memanggil AllDataDetail
+	- Memanggil AllDataDetailRetur
+4. TxtNoPO
+	- Memanggil AllDataDetail
+	- Memanggil AllDataDetailRetur
+5. TxtPS
+	- Memanggil AllDataDetail
+	- Memanggil AllDataDetailRetur
+6. DataGridView1
+	- NoSJ, Nomor Surat Jalan
+	- Supl_Name, Nama Supplier
+	- TanggalSJ, Tanggal Surat Jalan
+	- NomorPO, Nomor PO
+	- PickSlipID, ID Pick Slip
+	- OrderMuatID, ID Order Muat
+	- Quantity, Quantity
+	- SatuanID, ID Satuan
+	- Quantity2, Quantity2
+	- Satuan2ID, ID Satuan2
+	- KodeMarketing, Kode Marketing
+	- ProductID, ID Product
+	- POID, ID PO
+7. DataGridView1.DoubleClick
+	- Jika dalam grid terdiri dari > 0 baris
+		-- Membuka FrmReturSJInput
+8. DataGridView2
+	- ReturSJID, ID Retur Surat Jalan
+	- Supl_Name, Nama Supplier
+	- Tanggal, Tanggal Retur
+	- NomorPO, Nomor PO
+	- PickSlipID, ID Pick Slip
+	- OrderMuatID, ID Order Muat
+	- NoSJ, Nomor Surat Jalan
+	- KodeMarketing, Kode Marketing
+	- Qty1, Quantity1
+	- Satuan1, Satuan1
+	- Qty2, Quantity2
+	- Satuan2, Satuan2
+9. ExitButton
+	- Keluar dari FrmReturSJ
+10. Key Press ESC
+	- Keluar dari FrmReturSJ
+
+Retur Detail
+1. TxtReturID, ID Retur
+2. TxtNoSJ, Nomor Surat Jalan
+3. TxtNoPS, Nomor Pick Slip
+4. TxtNoOrderMuat, Nomor Order Muat
+5. TxtQty1, Quantity 1
+6. TxtSatuan1, Satuan 1
+7. TxtQty2, Quantity 2
+8  TxtSatuan2, Satuan 2
+9. TxtNoTimbangan, Nomor Timbangan
+10. AddButton
+	- Jika (ProductID dilihat 2 digit dari kiri = 61 AND TxtQty2 > 0) OR (ProductID != 61 AND TxtQty1 > 0 AND TxtQty2 > 0)
+		-- Jika TxtQty1 > qty1
+			--- MessageBox : "Quantity Melebihi Surat Jalan !!!" 
+		-- Jika TxtQty2 > qty2
+			--- MessageBox : "Quantity Melebihi Surat Jalan !!!"
+		-- Keluar MessageBox : "Yakin Surat Jalan Akan di Retur ?"
+		-- Keluar MessageBox Button : Yes dan No
+			--- Jika memilih Yes
+				---- Memanggil Function CariTimbanganRetur
+					----- Keluar Searching Form
+						------ TextBox NoTiket
+						------ TextBox Cust
+						------ Grid
+							------- TransID
+							------- date_in
+							------- NoMobil
+							------- Supl_Name
+							------- KodeMarketing
+							------- WIN
+							------- WOUT
+							------- WNET
+					----- Mengisi TxtNoTimbangan = TransID (yang dipilih)
+				---- Memanggil Function InsertReturSJ
+					----- Mengecek semua data
+					----- Get semua data berdasarkan TextBox hasil input
+					----- Jika TxtNoTimbangan = kosong
+						------ Keluar MessageBox : "Harus Pilih Timbang Retur !!!"
+						------ Keluar dari FrmReturSJInput
+					----- Menyimpan LogActivity
+						------ Mengubah FrmReturSJInput
+						------ Mengubah ReturID
+						------ Mengubah Database Trx_SuratJalanretur
+						------ Mengubah Status = Add
+					----- Simpan semua data ke dalam Database Service Trx_SuratJalanReturInsert
+				---- Menutup FrmReturSJInput
+	- Jika selain kondisi di atas
+		-- MessageBox : "Untuk RBA Qty2 tidak boleh 0 atau Untuk Non-RBA Qty2 tidak boleh 0 !!!"
+11. CloseButton
+	- FrmReturSJInput
+12. Key Press F6
+	- Memanggil Function CariTimbangRetur
