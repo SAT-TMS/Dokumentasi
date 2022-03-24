@@ -1,0 +1,21 @@
+================ HEADER ================
+
+1. Form Load
+2. KeyPress F2 : 
+	- membuka Form FrmPenerimaanSJ2
+	- dengan kondisi 
+		-- TxtSJ.Text = sesuai dengan data pada Row yang dipilih
+		-- TxtTonaseTabel.Text = TxtWTabel.Text
+		-- TxtTotalNyata.Text = TxtWNyata.Text
+		-- TxtOa.Text = sesuai dengan data pada Row yang dipilih
+		-- ket = sesuai dengan data pada Row yang dipilih
+	- ShowDialog form FrmPenerimaanSJ2
+	- memanggil AllData()
+3. Button GOButton = bekerja sebagai refresh
+	- memanggil fungsi StartUp()
+4. TextBox TxtSupplier : bekerja sebagai search box berdasarkan Supplier
+	- memanggil AllData()
+5. TextBox TxtNoSJ : bekerja sebagai search box berdasarkan NoSJ
+	- Jika yang yangdiketikan > 10, maka
+		-- memanggil AllData()
+6. Button CloseButton : Menutup Form
