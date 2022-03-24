@@ -19,3 +19,31 @@
 	- Jika yang yangdiketikan > 10, maka
 		-- memanggil AllData()
 6. Button CloseButton : Menutup Form
+
+
+================ DETAIL ================
+
+1. TextBox TxtSJ
+2. DateTimePicker1 Tanggal Terima	
+3. ComboBox Expedisi
+4. TextBox TxtOa =
+	- Jika TxtOa.Text <> "", maka
+		-- TxtOa.Text = FilterAngka(TxtOa)
+		-- TxtOa.Select(TxtOa.Text.Length, 0)
+		
+5. TextBox TxtTotalTonaseTabel
+	- Jika TxtTonaseTabel.Text <> "", maka
+		-- TxtTonaseTabel.Text = FilterAngka(TxtTonaseTabel)
+		-- TxtTonaseTabel.Select(TxtTonaseTabel.Text.Length, 0)
+
+6. TextBox TxtTotalNyata
+	- Jika TxtTotalNyata.Text <> "", maka
+		-- TxtTotalNyata.Text = FilterAngka(TxtTotalNyata)
+		-- TxtTotalNyata.Select(TxtTotalNyata.Text.Length, 0)
+7. TextBox TxtTotal 
+	- Jika TxtTotal.Text <> "", maka
+		-- TxtTotal.Text = FilterAngka(TxtTotal)
+		-- TxtTotal.Select(TxtTotal.Text.Length, 0)
+		
+8. BtnApp = menyimpan semua data, yang telah diinput
+9. CloseButton = Menutup Form FrmPenerimaanSJ2
