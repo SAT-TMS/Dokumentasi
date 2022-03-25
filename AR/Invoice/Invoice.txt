@@ -63,15 +63,40 @@
 		-- memanggil fungsi DataGridView1_DoubleClick
 		-- nilaifaktur = 0
 	- Report/Summary
-		-- Export CSV
-		-- Buku Faktur
-		-- Buku Faktur (Retur)
-		-- Lap. Penjualan per Customer
-		-- Lap. Penjualan per Kontrak
+		-- Export CSV = 
+			--- MessageBox Question YesNo = "Export ke CSV tanggal " & *sesuai dengan Tanggal menurut "From"* & " ?"
+			--- Jika Yes = memanggil fungsi eFaktur()
+		-- Buku Faktur = Export ke Excel
+		-- Buku Faktur (Retur) = MessageBox Question YesNo = "Eksport Buku Faktur Retur ?"
+			--- Jika Yes = 
+				---- Panel1.Visible = True
+				---- Index = "Buku Faktur Retur"
+				---- LblIndex.Text = Index
+				---- memanggil fungsi UangMuka()
+		-- Lap. Penjualan per Customer = MessageBox Question YesNo = "Eksport Laporan Penjualan ?"
+			--- Jika Yes = 
+				---- Panel1.Visible = True
+				---- Index = "Laporan Penjualan by Customer"
+				---- LblIndex.Text = Index
+				---- memanggil fungsi UangMuka()
+		-- Lap. Penjualan per Kontrak = MessageBox Question YesNo = "Eksport Laporan Penjualan (Kontrak) ?"
+			--- Jika Yes = 
+				---- Panel1.Visible = True
+				---- Index = "Laporan Penjualan by Kontrak"
+				---- LblIndex.Text = Index
+				---- memanggil fungsi UangMuka()
 		-- Pajak Keluaran
+			--- memanggil fungsi PajakKeluaran()
 		-- Sisa Uang Muka
+			--- Panel1.Visible = True
+			---	Index = "UangMuka"
+			---	LblIndex.Text = Index
+			---	memanggil fungsi UangMuka()
 		-- Sisa Uang Muka All
+			--- memanggil fungsi SisaUangMukaAll()
 		-- Sisa Uang Muka All Pilih Tgl
+			--- Jika MessageBox Question YesNo = "Proses Laporan Sisa Uang Muka " & *mengambil tanggal dari txtDateFrom*
+				---- Jika Yes = memanggil fungsi SisaUangMukaAllPilihTgl()
 	- Void
 		-- Jika DataGridView1.RowCount > 0, maka
 			--- MessageBox Question YesNo = "Nomor Nota : " & *mengambil data dari DataGridView1 yang dipilih, pada kolom 1* & " status menjadi BATAL ?"
@@ -91,6 +116,32 @@
                 .DrawImage((QrCodeImgControl.Image), 45, 18)
                 .DrawString(CStr(DataGridView1.Item(1, rowindex).Value), New Font("Calibri", 8, FontStyle.Bold), Brushes.Black, 7, 73)
             End With
+
+8. TxtBarcode_TextChanged = field ketika barcode discan, akan muncul disini
+	- apabila IsInternetAvailable = False, maka
+		-- MessageBox Error : "Jaringan Putus!!!"
+	- apabila dsBarcode.Tables.Count > 0, maka
+		-- ds.barcode.Tables(0).Rows.Clear()
+	-Apabila (TxtBarcode.Text) > 12, maka
+		-- apabila dsBarcode.Tables.Count > 0, maka
+			--- membuka FrmFakturDetail
+				---- .TxtNotaID.Text = dsBarcode.Tables(0).Rows(0).Item(0).ToString() 'TxtBarcode.Text
+                ---- .MnuSave.Enabled = False
+                ---- .MnuAccept.Visible = True
+                ---- TxtBarcode.Text = ""
+                ---- .ShowDialog()
+		-- Jika tidak = FrmFakturDetail.Close
+		
+9. DataGridView1, 
+	- Nomor Nota
+	- Tgl Nota
+	- Nomor Faktur
+	- No. Kontrak
+	- Jenis Faktur
+	- Nama Customer (Faktur)
+	- F/L = Franco / Loco
+	- Column Kosong
+	- JenisFakturIndex
 
 
 
