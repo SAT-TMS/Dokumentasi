@@ -1,0 +1,58 @@
+============ HEADER ============ 
+1. Form Load
+	- Setting Calendar ke tanggal sekarang
+	- setting txtDateFrom ke tanggal sekarang
+	- setting txtDateTo ke tanggal sekarang
+	- setting txtDateFromP ke tanggal sekarang
+	- setting txtDateToP ke tanggal sekarang
+	- TabControl1.SelectedTab = TabPage2
+	- TabControl1.SelectedTab = TabPage1
+	- memanggil AllData()
+	- Panel1.Visible = False
+	- memanggil AllData() <<<< memanggil AllData() 2x ??? 
+	
+	
+	- TglEditNotaMax = CDate(TglCloud.ToString("dd MM yyyy"))
+	- Jika UserIDLog = "yan" atau "WEN", maka
+		-- Jika Microsoft.VisualBasic.Day(TglEditNotaMax) >= 100, maka
+			--- TglEditNotaMax = DateAdd("m" -1500, CDate(TglCloud.ToString("dd MMM yyyy")))
+			--- TglEditNotaMax = DateSerial(Year(TglEditNotaMax), Month(TglEditNotaMax), 1)
+		-- selain itu,
+			--- TglEditNotaMax = DateAdd("m" -1500, CDate(TglCloud.ToString("dd MMM yyyy")))
+			--- TglEditNotaMax = DateSerial(Year(TglEditNotaMax), Month(TglEditNotaMax), 1)
+	- Selain "yan" atau "WEN", maka
+		-- Jika Microsoft.VisualBasic.Day(TglEditNotaMax) >= 25, maka
+			--- TglEditNotaMax = DateSerial(Year(TglEditNotaMax), Month(TglEditNotaMax), 1)
+		-- Selain itu,		
+			--- TglEditNotaMax = DateAdd("m" -1, CDate(TglCloud.ToString("dd MMM yyyy")))
+			--- TglEditNotaMax = DateSerial(Year(TglEditNotaMax), Month(TglEditNotaMax), 1)
+	
+	- BtnAdd.Enabled = False
+	- MnuAdd.Enabled = False
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+============ DETAIL ============ 
