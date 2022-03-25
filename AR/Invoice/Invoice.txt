@@ -48,7 +48,7 @@
 4. BtnEdit Click = 
 	-- memanggil DataGridView1_DoubleClick
 	
-5.	BtnTandaTerima Click = 
+5. BtnTandaTerima Click = 
 	-- menampilkan Form FrmFakturTT
 	
 6. Klik kanan/Right Click akan memanggil = MnuClick = menampilkan ContextMenuStrip
@@ -142,13 +142,27 @@
 	- F/L = Franco / Loco
 	- Column Kosong
 	- JenisFakturIndex
-
-
-
-
-
-
-
+	
+	
+10. Fungsi UangMuka()
+	- Jika IsInternetAvailable() = False, maka
+		-- MessageBox Error = Jaringan Putus!!!"
+	- Jika ds.Tables.Count > 0, maka
+		-- ds.Tables(0).Rows.Clear()
+	- Jika Index = "Laporan Penjualan by Customer", maka
+		-- ds = AksesLinkCloud.SupplierList(Kunci, nData)
+	- selain itu,
+		-- ds = AksesLinkCloud.CariUangMuka(Kunci, nData)
+	- Jika Index = "Laporan Penjualan by Customer", maka
+		-- DgvCustomers.Visible = True
+		-- Panel2.Visible = True
+		-- membuka DgvCustomers, lalu clear semua object didalamnya
+	- selain itu,
+		-- membuka DgvUangMuka
+		-- DgvCustomers.Visible = False
+		-- Panel2.Visible = False
+		-- .Rows.Clear()
+		
 
 
 
