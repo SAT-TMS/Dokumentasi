@@ -1,0 +1,126 @@
+LC Header
+1. Form Load
+	- txtDateFrom = Tanggal Sekarang (Format = dd-MMM-yy)
+		-- d = Tanggal
+		-- M = Bulan
+		-- y = Tahun
+	- txtDateTo = Tanggal Sekarang (Format = dd-MMM-yy)
+		-- d = Tanggal
+		-- M = Bulan
+		-- y = Tahun
+	- Memanggil AllData
+		-- Memanggil Dataset dari Database Service Trx_LC_List
+2. TabControl1
+	- Tab Calendar
+		-- Calendar, Kalendar
+	- Tab Range
+		-- txtDateFrom, Tanggal Batas Awal LC 
+		-- txtDateTo, Tanggal Batas Akhir LC
+		-- BtnDay
+			--- txtDateFrom = Tanggal Sekarang
+			--- txtDateTo = Tanggal Sekarang
+		-- BtnWeek
+			--- txtDateFrom = Tanggal Hari Minggu (tanggal sekarang dihitung mundur), Bulan Sekarang, Tahun Sekarang
+			--- txtDateTo = Tanggal Hari Sabtu (tanggal sekarang dihitung maju), Bulan Sekarang, Tahun Sekarang
+			--- Selisih antara txtDateFrom dan txtDateTo = 6 hari
+		-- BtnMonth
+			--- txtDateFrom = Tanggal Awal Bulan (tanggal 1), Bulan Sekarang, Tahun Sekarang
+			--- txtDateTo = Tanggal Akhir Bulan, Bulan Sekarang, Tahun Sekarang
+		-- BtnAnnual
+			--- txtDateFrom = Tanggal 1, Bulan 1, Tahun Sekarang
+			--- txtDateTo = Tanggal 31, Bulan 12, Tahun Sekarang
+3. Grid
+	- Customer, Nama Customer
+	- No LC, Nomor LC (Letter of Credit)
+	- Tgl LC, Tanggal LC
+	- Jenis LC, Jenis LC
+	- Import, Import
+	- Amount LC, Banyaknya LC
+	- Bank Penerima, Bank Penerima LC
+	- Usance, Usance
+	- Tanggal Terima LC, Tanggal Terima LC
+	- Tanggal Expired LC, Tanggal LC Expired
+	- Tanggal Last Shipment, Tanggal Last Shipment
+	- Tanggal Presentasi, Tanggal Presentasi
+	- Status, Status LC
+4. TxtNoLC
+	- Jika input >= 3 karakter
+		-- Memanggil AllData
+	- Jika input = 0 karakter
+		-- Memanggil AllData
+5. TxtNamaSupplier
+	- Jika input >= 3 karakter
+		-- Memanggil AllData
+	- Jika input = 0 karakter
+		-- Memanggil AllData
+6. BtnAdd
+	- Memanggil Funcion MnuAdd
+		-- Memanggil FrmLCDetailn
+			-- LblAddNew = "Add New  "
+		-- Memanggil AllData
+7. BtnEdit
+	- Memanggil Function MnuEdit
+		-- Jika dalam grid terdiri dari > 0 baris
+			--- Jika ViewStatus = True
+				---- Memanggil FrmLCDetailn
+					----- LblAddNew = "View  "
+					----- BtnSave.Enabled = False
+					----- TxtLCID = NoLC(Grid kolom 0)
+			--- Jika ViewStatus = False
+				---- Memanggil FrmLCDetailn
+					----- LblAddNew = "Edit  "
+					----- TxtLCID = DataGrid kolom 0 baris 0
+			--- Memanggil AllData
+		-- Jika dalam grid terdiri dari 0 baris
+			--- MessageBox : "No Voucher Belum Dipilih !!!"
+8. BtnVoid
+	- Memanggil Function MnuVoid
+		-- Jika dalam grid terdiri dari > 0
+			--- NoLC = NoLC (Grid kolom 0)
+			--- MessageBox : "Yakin No. LC : (Customer (Grid kolom 1)) Akan di Void ?"
+			--- MessageBox Button : Yes dan No
+			--- Jika pilih Yes
+				---- Get data dari Database Service Trx_LC_Delete
+			--- Memanggil AllData
+		-- Jika dalam grid terdiri dari 0 baris
+			--- MessageBox : "No LC Belum Dipilih !!!"
+9. BtnView
+	- Memanggil Function MnuEdit
+		-- Jika dalam grid terdiri dari > 0 baris
+			--- Jika ViewStatus = True
+				---- Memanggil FrmLCDetailn
+					----- LblAddNew = "View  "
+					----- BtnSave.Enabled = False
+					----- TxtLCID = NoLC(Grid kolom 0)
+			--- Jika ViewStatus = False
+				---- Memanggil FrmLCDetailn
+					----- LblAddNew = "Edit  "
+					----- TxtLCID = DataGrid kolom 0 baris 0
+			--- Memanggil AllData
+		-- Jika dalam grid terdiri dari 0 baris
+			--- MessageBox : "No Voucher Belum Dipilih !!!"
+10. BtnPrint
+	- Tidak melakukan perintah apapun
+11. BtnRefresh
+	- Memanggil AllData
+12. BtnHelp
+	- MessageBox :	"Tombol F1 = Add Data / Save Data
+			 Tombol F2 = Edit / Update Data
+			 Tombol F3 = Void / Delete
+			 Tombol F4 = Print
+			 Tombol F5 = Refresh
+			 Tombol ESC = Exit"
+13. BtnExit
+	- Keluar dari FrmLC
+14. KeyPress F1
+	- Memanggil Function MnuAdd
+15. KeyPress F2
+	- Memanggil Function MnuEdit
+16. KeyPress F3
+	- Memanggil Function MnuVoid
+17. KeyPress F4
+	- Tidak melakukan perintah apapun
+18. KeyPress F5
+	- Memanggil AllData
+
+LC Detail
