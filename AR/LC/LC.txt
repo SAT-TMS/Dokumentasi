@@ -124,3 +124,101 @@ LC Header
 	- Memanggil AllData
 
 LC Detail
+1. Form Load
+	- Memanggil AddListPartialDispatch
+		-- Clear CboPartialDispatch
+		-- Add Item di CboPartialDispatch = Allowed
+		-- Add Item di CboPartialDispatch = Not Allowed
+		-- Set Item Default = Prohibited
+	- Memanggil AddListTransShipment
+		-- Clear CboTransShipment
+		-- Add Item di CboTransShipment = Prohibited
+		-- Add Item di CboTransShipment = Not Prohibited
+		-- Set Item Default = Prohibited
+2. LblAddNew
+3. GroupBox1
+	- RadioButton SKBDN
+	- RadioButton SCF
+4. GroupBox2
+	- RadioButton Lokal
+	- RadioButton Impor
+5. Panel1
+	- TxtLCID, ID LC
+	- TxtNoLC, Nomor LC
+	- DateTimePicker TglLC, Tanggal Pembuatan LC
+	- DateTimePicker TglTerimaLC, Tanggal Terima LC
+	- DateTimePicker TglExpiredLC, Tanggal LC Expired
+	- TxtAmountLC, Banyaknya LC
+6. Panel2
+	- DateTimePicker TglShipment, Tanggal Shipment
+	- DateTimePicker TglPresentasi, Tanggal Presentasi
+	- CboPartialDispatch
+		-- Allowed
+		-- Not Allowed
+	- CboTransShipment
+		-- Prohibited
+		-- Not Prohibited
+	- TxtUsance
+		-- Isi TxtUsance default = 0
+		-- Format Penulisan = #,###.00
+7. Panel3
+	- TxtNamaCustomer, Nama Customer
+	- TxtNamaBank, Nama Bank
+	- Search Button NamaBank
+		-- Memanggil Searching Form Bank
+			-- Isi Grid : BankID, NamaBank
+			-- TextBox NamaBank
+				--- Input Nama Bank sebanyak 3 karakter
+	- TxtBankPenerima, Nama Bank Penerima
+	- Search Button BankPenerima
+		-- Memanggil Searching Form Bank Penerima
+			-- Isi Grid : RekeningBankID, NamaBank, Status
+			-- TextBox NamaBank
+				--- Input Nama Bank sebanyak 3 karakter
+8. DgvKontrak
+	- Kontrak ID, ID Kontrak
+	- No Kontrak, Nomor Kontrak
+9. Search Button Cari Kontrak
+	- Memanggil Searching Form Kontrak
+	- Isi Grid : KontrakID, NoKontrak, TglKontrak, NamaCustomer, StatusKontrak
+	- TextBox NoKontrak
+		-- Input No Kontrak sebanyak 3 karakter
+10. DgvDokumen
+	- Dokumen, Nama Jenis Dokumen
+	- Original
+		-- CheckBox apakah Dokumen = Original
+	- Original Sheet, Original Sheet
+	- Copy
+		-- CheckBox apakah Dokumen = Copy
+	- Copy Sheet, Original Copy
+11. BtnSave
+	- Jika LblAddNew = "Add New  "
+		-- Jika terdeteksi error
+			--- Keluar dari FrmLCDetailn
+		-- Jika tidak terdeteksi error
+			--- TxtLCID = LCMaxID
+			--- MessageBox : "Simpan No Voucher : (TxtNoLC) ?"
+			--- MessageBox Button : Yes dan No
+			--- Jika pilih Yes
+				---- Get Database Service Trx_LC_Insert
+				---- Get Database Service Trx_LCDetail_Insert
+				---- Menyimpan semua data
+				---- Menutup FrmLCDetailn
+	- Jika LblAddNew = "Edit  "
+		-- Jika terdeteksi error
+			--- Keluar dari FrmLCDetailn
+		-- Jika tidak terdeteksi error
+			--- MessageBox : "Replace No Voucher : (TxtNoLC) ?"
+			--- MessageBox Button : Yes dan No
+			--- Jika pilih Yes
+				---- Get Database Service Trx_LC_Update
+				---- Get Database Service Trx_LCDetail_Delete
+				---- Get Database Service Trx_LCDetail_Insert
+				---- Menyimpan semua data
+				---- Menutup FrmLCDetailn
+12. BtnHelp
+	- MessageBox :	"Tombol Save = Save Data
+			 Tombol Help = Help
+			 Tombol Exit = Keluar"
+13. BtnExit
+	- Keluar dari FrmLCDetailn
