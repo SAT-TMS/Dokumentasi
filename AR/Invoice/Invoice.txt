@@ -45,7 +45,13 @@
 	- mengclear / men-default semua object yang ada pada FrmFakturDetail
 	- memanggil AllData()
 	
-4. Klik kanan/Right Click akan memanggil = MnuClick = menampilkan ContextMenuStrip
+4. BtnEdit Click = 
+	-- memanggil DataGridView1_DoubleClick
+	
+5.	BtnTandaTerima Click = 
+	-- menampilkan Form FrmFakturTT
+	
+6. Klik kanan/Right Click akan memanggil = MnuClick = menampilkan ContextMenuStrip
 	- Refresh 
 		-- memanggil AllData()
 	- Print Barcode
@@ -57,7 +63,15 @@
 		-- memanggil fungsi DataGridView1_DoubleClick
 		-- nilaifaktur = 0
 	- Report/Summary
-		-- tidak ada fungsi
+		-- Export CSV
+		-- Buku Faktur
+		-- Buku Faktur (Retur)
+		-- Lap. Penjualan per Customer
+		-- Lap. Penjualan per Kontrak
+		-- Pajak Keluaran
+		-- Sisa Uang Muka
+		-- Sisa Uang Muka All
+		-- Sisa Uang Muka All Pilih Tgl
 	- Void
 		-- Jika DataGridView1.RowCount > 0, maka
 			--- MessageBox Question YesNo = "Nomor Nota : " & *mengambil data dari DataGridView1 yang dipilih, pada kolom 1* & " status menjadi BATAL ?"
@@ -66,9 +80,10 @@
 				---- kemudian sisanya menjadi ""
 				---- lalu menyimpan
 				---- memanggil AllData()
-	- Exit
+	- Exit 
+		-- menutup Form FrmFaktur / Invoice
 
-5. Fungsi PrintQR =
+7. Fungsi PrintQR =
 	- Jika DataGridView1.RowCount > 0, maka
             rowindex = DataGridView1.CurrentCell.RowIndex
             QrCodeImgControl.Text = CStr(DataGridView1.Item(0, rowindex).Value)
