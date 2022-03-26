@@ -1,0 +1,21 @@
+BAP Header
+1. Form Load
+2. DataGridView1
+	- Customer Name
+	- No BAP
+	- No Kontrak
+	- Nomor LC
+	- Nominal BAP
+	- SPM
+	- Tgl BAP
+	- 
+3. TxtSuppl
+4. NoBAPTextBox
+5. NoKontrakTextBox
+6. TxtNoLC
+7. BtnAddNew
+8. BtnEdit
+9. BtnVoid
+10. ExitButon
+
+BAP Detail
