@@ -218,5 +218,19 @@
 36. TextBox	TxtDPPrp
 37. CheckBox ChkPPN
 38. TextBox TxtPPN
-
+39. CheckBox ChkPPH22
+40. TextBox TxtPPH22
+41. CheckBox ChkPPH22BUMN
+42. TextBox TxtPPH22BUMN
+43. CheckBox ChkPPH23
+44. TextBox TxtPPH23
+45. CheckBox ChkMeterai
+46. TextBox TxtMeterai
+47. TextBox TxtTotal
+48. Panel1,
+	- DgvRincianUM
+	- NomorfakturLabel11
+	- TextBox TxtSumUangMuka
+	- TextBox TxtSumDPP
+	- TextBox TxtSisaUM
 
