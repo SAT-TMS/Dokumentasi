@@ -202,5 +202,21 @@
 	- Berat
 	- Harga
 	- Jumlah
-23. 
-24. 
+23. DgvUangMuka
+24. BtnRefresh
+25. TextBox TxtSisaUangMuka
+26. TextBox TxtKeterangang
+27. BtnRefreshKet
+28. ComboBox CboCurrency
+29. TextBox TxtKurs
+30. TextBox TxtJumlah
+31. TextBox TxtPotongan
+32. TextBox TxtPremi
+33. CheckBox ChkUangMuka
+34. TextBox TxtUangMuka
+35. TextBox TxtDPP
+36. TextBox	TxtDPPrp
+37. CheckBox ChkPPN
+38. TextBox TxtPPN
+
+
