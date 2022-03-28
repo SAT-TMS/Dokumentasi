@@ -1,5 +1,7 @@
 BAP Header
 1. Form Load
+	- Memanggil AllData
+		-- Get data dari Database Service BAP_List_N
 2. DataGridView1
 	- Customer Name
 	- No BAP
@@ -8,14 +10,81 @@ BAP Header
 	- Nominal BAP
 	- SPM
 	- Tgl BAP
-	- 
+	- Status Kirim
+	- Tgl Kirim
+	- Status Balik
+	- Tgl Balik
+	- Status Terima Bank
+	- Tgl Terima Bank
+	- Status Accept Bank
+	- Tgl Accept Bank
+	- Tgl JT
+	- Pembuat BAP
+	- Status BAP
 3. TxtSuppl
+	- Jika input >= 3 karakter
+		-- Memanggil AllData
+	- Jika input = 0 karakter
+		-- Memanggil AllData
 4. NoBAPTextBox
+	- Jika input >= 3 karakter
+		-- Memanggil AllData
+	- Jika input = 0 karakter
+		-- Memanggil AllData
 5. NoKontrakTextBox
+	- Jika input >= 3 karakter
+		-- Memanggil AllData
+	- Jika input = 0 karakter
+		-- Memanggil AllData
 6. TxtNoLC
+	- Jika input >= 3 karakter
+		-- Memanggil AllData
+	- Jika input = 0 karakter
+		-- Memanggil AllData
 7. BtnAddNew
+	- Memanggil BAPInsertRev
+	- variableid = 0
+	- Memanggil AllData
 8. BtnEdit
+	- Memanggil BAPInsertRev
+	- variableid = 1
+	- Jika Baris dalam grid > 0
+		-- TxtBAPID = BAPID (grid kolom 17)
+		-- LCID = LCID (grid kolom 19)
+		-- TxtLCID = NoLC (grid kolom 3)
+		-- DateTglBAP = TglBAP (grid kolom 6)
+		-- DateTglKirim = TglKirim (grid kolom 8)
+		-- DateTglBalik = TglBalik (grid kolom 10)
+		-- DateTglTerima = TglTerima (grid kolom 12)
+		-- DateTglAccept = TglAccept (grid kolom 14)
+		-- DateTglJT = TglJT (grid kolom 15)
+		-- Jika StatusTerimaBank (grid kolom 11) = True
+			--- ChkBoxTerima = Check
+		-- Jika StatusTerimaBank (grid kolom 11) = True
+			--- ChkBoxTerima = Tidak Check
+		-- Jika StatusAcceptBank (grid kolom 13) = True
+			--- ChkBoxAccept = Check
+		-- Jika StatusAcceptBank (grid kolom 13) = True
+			--- ChkBoxAccept = Tidak Check
+		-- Jika StatusBalik (grid kolom 9) = True
+			--- ChkBoxBalik = Check
+		-- Jika StatusBalik (grid kolom 9) = True
+			--- ChkBoxBalik = Tidak Check
+		-- Jika StatusKirim (grid kolom 7) = True
+			--- ChkBoxKirim = Check
+		-- Jika StatusKirim (grid kolom 7) = True
+			--- ChkBoxKirim = Tidak Check
+		-- TxtNominal = NominalBAP (grid kolom 4)
+		-- TxtSPM = SPM (grid kolom 5)
+		-- custid = CustID (grid kolom 21)
+		-- TxtNoBAP = NoBAP (grid kolom 1)
+		-- Jika PembuatBAP (grid kolom 16) = Master
+			--- variabel = 0
+		-- Jika PembuatBAP (grid kolom 16) != Master
+			--- variabel = 1
+	- Memanggil AllData
 9. BtnVoid
 10. ExitButon
+	- Keluar dari FrmBAPRev
 
 BAP Detail
