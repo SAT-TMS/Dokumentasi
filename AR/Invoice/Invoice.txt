@@ -133,7 +133,7 @@
 		-- Jika tidak = FrmFakturDetail.Close
 		
 9. DataGridView1, 
-	- Nomor Nota
+	- Nomor Nota, 
 	- Tgl Nota
 	- Nomor Faktur
 	- No. Kontrak
@@ -164,16 +164,43 @@
 		-- .Rows.Clear()
 		
 
-
-
-
-
-
-
-
-
-
-
-
-
 ============ DETAIL ============ 
+
+1. CheckBox ChkNoNota
+2. TextBox TxtNomorNota
+3. DateTimePicker TxtTglNota
+4. BtnNonFaktur
+5. TextBox TxtStatusFaktur
+6. TextBox TxtNomorFaktur
+7. DateTimePicker TxtTglFaktur
+8. ComboBox CboJenisFaktur
+9. TextBox Supplier
+10. TextBox Supplier Faktur
+11. BtnAddOngkos
+12. TblCopyBerat
+13. ChkCetak
+14. ChkBayar
+15. TextBox TxtNotaID
+16. LblNoKwitansi
+17. ChkPerKG 
+18. ChkTandaTerima
+19. DateTimePicker TxtTglTandaTerima
+20. DateTimePicker TxtTglJatuhTempo
+21. DataGridView1,
+	- Nomor Referensi
+	- Jenis Faktur
+	- Indexs
+	- No PO
+	- BtnCariReff
+22. DataGridView2,
+	- Product ID
+	- Nama Barang
+	- Quantity
+	- Satuan
+	- Berat Standar
+	- Satuan
+	- Berat
+	- Harga
+	- Jumlah
+23. 
+24. 
