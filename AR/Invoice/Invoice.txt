@@ -169,7 +169,7 @@
 1. CheckBox ChkNoNota
 2. TextBox TxtNomorNota
 3. DateTimePicker TxtTglNota
-4. BtnNonFaktur
+4. BtnNonFaktur <<<<<<<<<<<<< TIDAK ADA FUNGSI 
 5. TextBox TxtStatusFaktur
 6. TextBox TxtNomorFaktur
 7. DateTimePicker TxtTglFaktur
