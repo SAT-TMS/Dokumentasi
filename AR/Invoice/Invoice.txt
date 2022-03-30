@@ -163,6 +163,16 @@
 		-- Panel2.Visible = False
 		-- .Rows.Clear()
 		
+11. DgvCustomers,
+	- Customers ID
+	- Nama Customer
+
+12. DgvUangMuka,
+	- Nomor Kontrak
+	- Add
+	- Nama Supplier
+	- Project
+		
 
 ============ DETAIL ============ 
 
@@ -174,9 +184,30 @@
 6. TextBox TxtNomorFaktur
 7. DateTimePicker TxtTglFaktur
 8. ComboBox CboJenisFaktur
+	- Jika CboJenisFaktur.Text = "Detail Barang", maka
+		-- ChkUangMuka.Enabled = True
+	- Jika tidak,
+		-- ChkUangMuka.Enabled = False
+	- Jika CboJenisFaktur.Text - "Ongkos Angkut", maka
+		-- ChkPPH23.Enabled = True
+		-- TxtPPH23.Enabled = True
+	- Jika bukan,
+		-- Jika UserIDLog = NELLY  atau ARIF atau "WEN"
+			--- ChkPPH23.Enabled = True
+			--- TxtPPH23.Enabled = True
+		-- Jika bukan,
+			--- ChkPPH23.Enabled = False
+			--- TxtPPH23.Enabled = False
 9. TextBox Supplier
 10. TextBox Supplier Faktur
-11. BtnAddOngkos
+11. BtnAddOngkos 
+	- Jika DataGridView2.RowCount <> 0, maka
+		-- Jika CboJenisFaktur.Text = "Detail Barang", maka
+			--- Dim row As String() = New String() {ProductID, "Ongkos", "1.00", "KG", "0.00", "KG", "0", "0", "0"}
+            --- DataGridView2.Rows.Add(row)
+		-- Jika CboJenisFaktur.Text = "Lain Lain", maka
+			--- Dim row As String() = New String() {"0", "", "0.00", "-", "0.00", "-", "0", "0", "0"}
+            --- DataGridView2.Rows.Add(row) 
 12. TblCopyBerat
 13. ChkCetak
 14. ChkBayar
@@ -191,7 +222,26 @@
 	- Jenis Faktur
 	- Indexs
 	- No PO
-	- BtnCariReff
+	- BtnCariReff =
+		-- Jika CboJenisFaktur.Text = "", maka
+			--- MessageBox = "Combo jenis faktur dipilih dulu..!"
+			--- lalu kursor ke CboJenisFaktur
+		-- Selain itu,
+			--- LocationIdV = FrmFakturRevisi.DataGridView1.Item(12, FrmFakturRevisi.DataGridView1.CurrentCell.RowIndex).Value.ToString
+			--- membuka Form FrmFakturRef, dengan kondisi,
+				---- TxtPOID.Text = ""
+				---- TabControl1.SelectedIndex = 4
+				---- menampilkan Dialog()
+				---- nilaifaktur = 1
+				---- memanggil fungsi HitungSisaUM()
+				---- CboCurrency.Text = a.curr
+				
+				---- Jika TxtNomorFaktur.Text = "-" Or TxtNomorFaktur.Text.Trim = ""
+					----- ChkPPN.Checked = False
+				
+				---- Jika IsInternetAvailable() = False, maka
+					----- MessageBox Error = "Jaringan Putus !!!"
+			
 22. DataGridView2,
 	- Product ID
 	- Nama Barang
@@ -202,11 +252,17 @@
 	- Berat
 	- Harga
 	- Jumlah
-23. DgvUangMuka
-24. BtnRefresh
+23. DgvUangMuka, double click = menampilkan Panel 1, memanggil AllDataRincianUangMuka() dan RincianUangMuka()
+	- Nomor Kontrak
+	- Add
+	- %
+	- Amount
+24. BtnRefresh, 
+	- memanggil AllDataUangMuka()
 25. TextBox TxtSisaUangMuka
 26. TextBox TxtKeterangang
 27. BtnRefreshKet
+	- TxtKeterangan.Text = "No Faktur : " & TxtNomorFaktur.Text
 28. ComboBox CboCurrency
 29. TextBox TxtKurs
 30. TextBox TxtJumlah
@@ -230,7 +286,23 @@
 48. Panel1,
 	- DgvRincianUM
 	- NomorfakturLabel11
-	- TextBox TxtSumUangMuka
-	- TextBox TxtSumDPP
-	- TextBox TxtSisaUM
+	- TextBox TxtSumUangMuka, Uang Muka
+	
+	
+	
+	
+============= DETAIL 2 =============
+1. TabControl1,
+	- Kontrak
+	- Addendum
+	- PO
+	- PickSlip
+	- Surat Jalan
+	- Customer
+2. TextBox TxtNo
+3. TextBox TxtCustomer
+4. BtnInsertAll
+5. TextBox TxtPOID
+
+
 
