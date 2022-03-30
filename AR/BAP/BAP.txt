@@ -84,6 +84,29 @@ BAP Header
 			--- variabel = 1
 	- Memanggil AllData
 9. BtnVoid
+	- BAPID = bap_id (grid kolom 17)
+	- ds2BAP = Get database dari Database Servie BAP_Detail_List_N
+	- Jika ds2BAP > 0 table
+		-- Clear semua baris dalam table
+	- Jika ds2BAP > 0 baris dalam table
+		-- MessageBox : Masih Ada Detail, Mohon Dihapus Dulu !!!", Void BAP
+	- Jika ds2BAP = 0 baris dalam table
+		-- MessageBox : "Void BAP (NoBAP (grid kolom 1))" , Void BAP
+		-- MessageBox Button : OK
+		-- Jika klik OK
+			--- BAPID = bap_id (grid kolom 17)
+			--- StatusBAP = D
+		-- Menyimpan UserActivityLog
+			--- UserIDLog
+                	--- Tanggal Sekarang
+                	--- FrmBAPRev 
+                	--- Status = Void
+                	--- Get NoBAP = bap_id (grid kolom 17)
+                	--- Mengubah Database Trx_BAP_N 
+                	--- FlagAction = 0
+                	--- Mengubah VolumeSerial
+                	--- Mengubah LogInCurrent
+	- Memanggil AllData
 10. ExitButon
 	- Keluar dari FrmBAPRev
 
