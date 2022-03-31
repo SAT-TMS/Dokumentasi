@@ -294,15 +294,89 @@
 ============= DETAIL 2 =============
 1. TabControl1,
 	- Kontrak
+		-- DgvKontrak,
+			--- No. Kontrak
+			--- Tanggal
+			--- Customer
+			--- Nama Barang
+			--- Uang Muka (Rp)
+			--- Uang Muka (%)
+			--- Uang Muka (Kg)
+			--- Harga per Kilo
+			--- No. Nota
+			--- PPN
 	- Addendum
+		-- DgvAddendum,
+			--- No. Kontrak
+			--- Tanggal
+			--- Customer
+			--- Add
+			--- Nama Barang
+			--- Uang Muka (Rp)
+			--- Uang Muka (%)
+			--- Uang Muka (Kg)
+			--- Harga per Kilo
+			--- No. Nota
+			--- PPN
 	- PO
+		-- DgvPO
+			--- No. PO
+			--- Tanggal
+			--- Customer
+			--- Barang
+			--- No. Faktur
+			--- Jenis Faktur
+			--- Void/Batal
+		-- DgvDetailPO
+			--- Product ID
+			--- Nama Barang
+			--- Quantity
+			--- TxtDetailPO
 	- PickSlip
+		-- DgvPickslip
+			--- No. Pickslip
+			--- Tanggal
+			--- Customer
+			--- Barang
+			--- No. Faktur
+			--- Jenis Faktur
+		-- DgvDetailPickslip
+			--- Product ID
+			--- Nama Barang
+			--- Quantity
+			--- TxtDetailPickslip
 	- Surat Jalan
 	- Customer
 2. TextBox TxtNo
 3. TextBox TxtCustomer
 4. BtnInsertAll
+	- Jika UserIDLog <> "wen", maka
+		-- Dim selectedItems As DataGridViewSelectedRowCollection = DgvSuratJalan.SelectedRows
+            For Each selectedItem As DataGridViewRow In selectedItems
+                NoReff = CStr(selectedItem.Cells.Item(0).Value)
+                NamaProduk = CStr(selectedItem.Cells.Item(4).Value)
+                TxtPOID.Text = CStr(selectedItem.Cells.Item(5).Value)
+                mark_revisi = CBool(selectedItem.Cells.Item(11).Value)
+                --- memanggil fungsi InsertSuratJalan()
 5. TextBox TxtPOID
 
+6. Fungsi InsertSuratJalan()
+	- Jika UserIDLog <> "wen", maka
+		-- For Each row As DataGridViewRow In FrmFakturDetail.DataGridView1.Rows
+                    If CStr(row.Cells.Item("Column4").Value) <> CStr(.SelectedCells(5).Value) Then
+                        rowindex = CShort(row.Index.ToString())
+					--- MessageBox : "Tidak boleh memasukkan Nomor PO yang berbeda..!!"
+	
+	- Jika FrmFakturDetail.CboJenisFaktur.Text = "Detail Barang", maka
+		- If CStr(.SelectedCells(6).Value) <> "" And CBool(.SelectedCells(11).Value) = False Then
+			-- MessageBox : "Sudah dibuat Faktur ..!"
+		- Selain itu,
+			-- memanggil fungsi PesanInserFaktur()
+	- Selain itu, Jika FrmFakturDetail.CboJenisFaktur.Text = "Ongkos Angkut"
+		- If CStr(.SelectedCells(6).Value) <> "" Then
+			-- memanggil fungsi InserFakturOngkosAngkut()
+	- memanggil AllDataSuratJalan()
+	- Membuka FrmFakturDetail.JatuhTempo()
+	
 
 
