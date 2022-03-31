@@ -46,7 +46,7 @@ BAP Header
 	- variableid = 0
 	- Memanggil AllData
 8. BtnEdit
-	- Memanggil BAPInsertRev
+	- Memanggil FrmBAPInsertRev
 	- variableid = 1
 	- Jika Baris dalam grid > 0
 		-- TxtBAPID = BAPID (grid kolom 17)
@@ -111,3 +111,67 @@ BAP Header
 	- Keluar dari FrmBAPRev
 
 BAP Detail
+1. Form Load
+	- Jika variabelid = 1
+		-- DateTglKirim = DateTglBAP
+            	-- DateTglBalik = DateTglKirim
+            	-- DateTglTerima = DateTglBalik
+            	-- DateTglAccept = DateTglTerima
+            	-- DateTglJT = DateTglAccept
+	- Jika variabelid = 0
+            	-- DateTglKirim = DateTglBAP
+            	-- DateTglBalik = DateTglKirim
+            	-- DateTglTerima = DateTglBalik
+            	-- DateTglAccept = DateTglTerima
+            	-- DateTglJT = DateTglAccept
+	- Memanggil AllDataDetailTerima
+		-- Get data dari BAP_Detail_List_N
+	- Memanggil AllData
+		-- Get data dari BAP_Faktur_List_N
+2. Panel2
+	- TextBox NoBAP
+	- ComboBox PembuatBAP
+		-- Master
+		-- Customer
+	- TextBox SPM
+	- TextBox NominalBAP
+	- TextBox LCID
+	- Search Button LCID
+		-- Membuka FrmLC
+3. Panel1
+	- DateTimePicker TglBAP
+	- DateTimePicker TglKirimBAP
+	- CheckBox TglKirimBAP
+	- DateTimePicker TglBalik
+	- CheckBox TglBalik
+	- DateTimePicker TglTerimaBank
+	- CheckBox TglTerimaBank
+	- DateTimePicker AcceptBank
+	- CheckBox TglAcceptBank
+	- DateTimePicker TglJatuhTempo
+	- CheckBox TglJatuhTempo
+4. TxtNoNota
+	- Jika input >= 3 karakter
+		-- Memanggil AllData
+	- Jika input = 0 karakter
+		-- Memamggil AllData
+5. DgvListInvoice
+	- Customer
+	- No Nota
+	- Tgl Nota
+	- Total
+	- No Kontrak
+	- Tgl JT
+6. DgvListInvoiceSelect
+	- Customer
+	- No Nota
+	- Tgl Nota
+	- Total
+	- No Kontrak
+	- Tgl JT
+7. LblEdit
+8. SaveButton
+9. HelpButton
+	- Tidak Melakukan Perintah Apapun
+10. CloseBtn
+	- Menutup FrmBAPInsertRev
