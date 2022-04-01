@@ -129,26 +129,41 @@ BAP Detail
 	- Memanggil AllData
 		-- Get data dari BAP_Faktur_List_N
 2. Panel2
-	- TextBox NoBAP
+	- TextBox NoBAP, No BAP
 	- ComboBox PembuatBAP
 		-- Master
 		-- Customer
-	- TextBox SPM
-	- TextBox NominalBAP
-	- TextBox LCID
+	- TextBox SPM, SPM
+	- TextBox NominalBAP, Nominal BAP
+	- TextBox LCID, ID LC
 	- Search Button LCID
 		-- Membuka FrmLC
 3. Panel1
-	- DateTimePicker TglBAP
-	- DateTimePicker TglKirimBAP
+	- DateTimePicker TglBAP, Tanggal BAP
+	- DateTimePicker TglKirimBAP, Tanggal Kirim BAP
 	- CheckBox TglKirimBAP
-	- DateTimePicker TglBalik
+		-- Jika CheckBox Kirim tidak dicek
+			--- CheckBox Balik tidak dicek
+			--- CheckBox Terima tidak dicek
+			--- CheckBox Accept tidak dicek
+	- DateTimePicker TglBalik, Tanggal BAP Balik
 	- CheckBox TglBalik
-	- DateTimePicker TglTerimaBank
+		-- Jika CheckBox Kirim tidak dicek
+			--- CheckBox Balik tidak dicek
+		-- Jika CheckBox Balik tidak dicek
+			--- CheckBox Terima tidak dicek
+			--- CheckBox Accept tidak dicek
+	- DateTimePicker TglTerimaBank, Tanggal Bank menerima BAP
 	- CheckBox TglTerimaBank
-	- DateTimePicker AcceptBank
+		-- Jika CheckBox Balik tidak dicek
+			--- CheckBox Terima tidak dicek
+		-- Jika CheckBox Terima tidak dicek
+			--- CheckBox Accept tidak dicek
+	- DateTimePicker AcceptBank, Tanggap Bank aceept BAP
 	- CheckBox TglAcceptBank
-	- DateTimePicker TglJatuhTempo
+		-- Jika CheckBox Terima tidak dicek
+			--- CheckBox Accept tidak dicek
+	- DateTimePicker TglJatuhTempo, Tanggal Jatuh Tempo
 	- CheckBox TglJatuhTempo
 4. TxtNoNota
 	- Jika input >= 3 karakter
@@ -171,6 +186,72 @@ BAP Detail
 	- Tgl JT
 7. LblEdit
 8. SaveButton
+	- Jika variabelid = 0
+		-- Memanggil Function Save
+			--- Mengecek semua data
+			--- Jika ada data ([Object]) yang belum diisi
+				---- MessageBox : "[Object] harus diisi terlebih dahulu !!!"
+			--- Mengecek DgvListInvoice
+				---- Mengecek semua data hasil input
+				---- Jika BAPID (dari Database) != TextBox BAPID
+					----- MessageBox : "No BAP akan diubah menjadi (BAPID (dari Database))
+				---- Get data dari database Service Trx_BAPInsert_N
+				---- Menyimpan ActivityLog
+					----- UserIDLog
+            				----- Tanggal Sekarang
+            				----- FrmBAPInsertRev
+            				----- Status = Add
+            				----- No BAP = BAP_ID
+            				----- Mengubah Database Trx_BAP_N
+            				----- Flag Action = 0
+            				----- VolumeSerial
+            				----- LogInCurrent
+			--- Mengecek DgvListInvocieSelect
+				---- Mengecek semua data hasil input
+				---- BAPID = BAP_ID (Database Trx_BAPInsert_N)
+				---- Get data dari database Service Trx_BAPDetailInsert_N
+				---- Menyimpan ActivityLog
+					----- UserIDLog
+            				----- Tanggal Sekarang
+            				----- FrmBAPInsertRev
+            				----- Status = Add
+            				----- No BAP = BAP_ID
+            				----- Mengubah Database Trx_BAP_Detail_N
+            				----- Flag Action = 0
+            				----- VolumeSerial
+            				----- LogInCurrent
+	- Jika variabelid = 1
+		-- Memanggil Function Edit
+			--- Mengecek semua data
+			--- Jika ada data ([Object]) yang belum diisi
+				---- MessageBox : "[Object] harus diisi terlebih dahulu !!!"
+			--- Mengecek DgvListInvoice
+				---- Mengecek semua data hasil input
+				---- Get data dari database Service Trx_BAPUpdate_N
+				---- Menyimpan ActivityLog
+					----- UserIDLog
+            				----- Tanggal Sekarang
+            				----- FrmBAPInsertRev
+            				----- Status = Edit - Header
+            				----- No BAP = BAP_ID
+            				----- Mengubah Database Trx_BAP_N
+            				----- Flag Action = 0
+            				----- VolumeSerial
+            				----- LogInCurrent
+			--- Mengecek DgvListInvocieSelect
+				---- Mengecek semua data hasil input
+				---- BAPID = BAP_ID (Database Trx_BAPInsert_N)
+				---- Get data dari database Service Trx_BAPDetailInsert_N
+				---- Menyimpan ActivityLog
+					----- UserIDLog
+            				----- Tanggal Sekarang
+            				----- FrmBAPInsertRev
+            				----- Status = Edit
+            				----- No BAP = BAP_ID
+            				----- Mengubah Database Trx_BAP_Detail_N
+            				----- Flag Action = 0
+            				----- VolumeSerial
+            				----- LogInCurrent
 9. HelpButton
 	- Tidak Melakukan Perintah Apapun
 10. CloseBtn
