@@ -10,3 +10,35 @@
 	- memanggil AllData()
 	- memanggil AllData() <<<< memanggil AllData() 2x ??? 
 	
+2. TabControl1
+	- Calendar,
+		-- Menampilkan Kalender tanggal dari faktur
+	- Range 
+		-- Mencari faktur berdasarkan harian, mingguan, bulanan, tahunan
+
+3. DataGridView1
+4. BtnAdd
+	- membuka FrmFakturReturDetail dengan fungsi AddNew()
+	- menampilkan Dialog dari FrmFakturReturDetail
+5. BtnEdit
+	- berfungsi seperti Double Click pada DataGridView1
+
+6. Right-Click / Klik Kanan,
+	- ContextMenuStrip
+		-- Refresh < ==== tidak ada fungsi
+		-- View/Edit Data < ==== tidak ada fungsi
+		-- Void
+			--- Jika DataGridView1.RowCount > 0, maka
+				---- MessageBox Show : "Nomor Nota Retur : *cell yang dipilih pada datagridview* "
+		-- Exit < ==== tidak ada fungsi
+		
+7. DataGridView1,
+	- Nomor Nota
+	- Tgl Nota
+	- Nomor Nota Retur
+	- No. Kontrak
+	- Jenis Faktur
+	- Nama Customer(Faktur)
+	- 
+	- Jumlah
+	
