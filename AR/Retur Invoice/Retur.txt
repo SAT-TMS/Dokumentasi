@@ -1,0 +1,12 @@
+============ HEADER ============ 
+1. Form Load
+	- Setting Calendar ke tanggal sekarang
+	- setting txtDateFrom ke tanggal sekarang
+	- setting txtDateTo ke tanggal sekarang
+	- setting txtDateFromP ke tanggal sekarang
+	- setting txtDateToP ke tanggal sekarang
+	- TabControl1.SelectedTab = TabPage2
+	- TabControl1.SelectedTab = TabPage1
+	- memanggil AllData()
+	- memanggil AllData() <<<< memanggil AllData() 2x ??? 
+	
