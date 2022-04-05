@@ -1,0 +1,50 @@
+SCF Header
+1. Form Load
+	- Memanggil AllData
+2. Grid
+	- Customer Name
+	- No BAP
+	- No Kontrak
+	- SPM
+	- Nomor Tanda Terima Kwitansi
+	- Nominal BAP
+	- Nominal SCF
+	- Tanggal BAP
+	- Status Kirim
+	- Tanggal Kirim
+	- Status Tanda Terima
+	- Tanggal Terima Kwitansi
+	- Status Jatuh Tempo
+	- Tanggal Jatuh Tempo
+	- Tanggal Cair
+	- Pembuat BAP
+3. TxtSupl
+	- Jika input >= 3 karakter
+		-- Memanggil AllData
+	- Jika input = 0 karakter
+		-- Memanggil AllData
+4. NoBAPTextBox
+	- Jika input >= 3 karakter
+		-- Memanggil AllData
+	- Jika input = 0 karakter
+		-- Memanggil AllData
+5. NoKontrakTextBox
+	- Jika input >= 3 karakter
+		-- Memanggil AllData
+	- Jika input = 0 karakter
+		-- Memanggil AllData
+6. BtnAddNew
+	- Memanggil FrmSCFInsertRev
+	- variabelid = 0
+	- Memanggil AllData
+7. BtnEdit
+	- Memanggil FrmSCFInsertRev
+	- variabelid = 1
+	- Mengecek Hasil Data Input dari FrmSCFInsertRev
+	- Memasukkan hasil semua data input ke dalam grid
+	- Memanggil AllData
+8. BtnVoid
+9. CloseBtn
+	- Menutup FrmSCFRev
+
+SCF Detail
