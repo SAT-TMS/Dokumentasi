@@ -286,7 +286,7 @@
 48. Panel1,
 	- DgvRincianUM
 	- NomorfakturLabel11
-	- TextBox TxtSumUangMuka, Uang Muka
+	- TextBox TxtSumUangMuka
 	
 	
 	
