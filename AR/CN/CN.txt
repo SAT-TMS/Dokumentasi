@@ -1,0 +1,30 @@
+CN Header
+1. Form Load
+	- Memanggil AllData
+		-- Memanggil data dari Database Service Sls_ListInvoiceOutstanding
+2. TxtCustomerID
+	- Memanggil AllData
+3. FindButton Customer
+	- Memanggil Search Form Customer
+4. CboIndex
+5. DataGridView1
+6. DateTimePicker TanggalTerima
+7. TxtValas
+	- Jika TxtValas tidak kosong
+		-- TxtJumlahIDR = TxtValas * TxtKurs
+8. TxtKurs
+9. TxtMataUang
+9. TxtJumlahIDR
+10. CboJenisCN
+	- AR Write off / Sundry Balance Write
+	- Bank Charger
+	- Bukti Potong PPH22
+	- Bukti Potong PPH23
+	- Bukti Potong PPH4 (2)
+	- Discounting Charger - AR
+	- Selisih Kurs
+	- SSP
+11. TxtKeterangan1
+12. SaveButton
+13. CloseButton
+	- Menutup FrmPenerimaanCN
