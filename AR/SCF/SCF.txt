@@ -44,7 +44,172 @@ SCF Header
 	- Memasukkan hasil semua data input ke dalam grid
 	- Memanggil AllData
 8. BtnVoid
+	- Get SCF_ID = SCF_ID (grid kolom 19)
+	- Get ds2ap = Database Service BAP_Detail_List_N
+	- Mengecek jika dalam table ds2BAP terdapat > 0 baris
+		-- Clear semua baris
+	- Jika dalam table ds2BAP terdapat > 0 baris
+		-- MessageBox : "Masih Ada Detail, Mohon Dihapus Dulu !!!", "Void BAP"
+		-- Mengeluarkan MessageBox Button : OK
+	- Jika dalam table ds2BAP terdapat = 0 baris
+		-- SCF ID = SCF_ID (grid kolom 19)
+		-- Status_SCF = D
+		-- Menyimpan UserActivityLog
+			--- UserIDLog
+			--- Tanggal Sekarang
+			--- Nama Form = FrmSCFRev
+			--- Status = Void - Header
+			--- Mengubah NoBAP berdasarkan No_BAP (kolom 17)
+			--- Mengubah Trx_SCF_N
+			--- FlagAction = 0
+			--- Menyimpan VolumeSerial
+			--- Menyimpan LogInCurrent
+		-- UserActivityLog = Simpan ke Database Service UserActivityLogRev2
+	- Memanggil AllData
 9. CloseBtn
 	- Menutup FrmSCFRev
 
 SCF Detail
+1. Form Load
+	- Jika variabelid = 1
+		-- DateTglKirim = DateTglBAP
+            	-- DateTglBalik = DateTglKirim
+            	-- DateTglTerima = DateTglBalik
+            	-- DateTglJT = DateTglTerima
+		-- DateTglCair = DateTglJT
+	- Jika variabelid = 0
+            	-- DateTglKirim = DateTglBAP
+            	-- DateTglBalik = DateTglKirim
+            	-- DateTglTerima = DateTglBalik
+            	-- DateTglJT = DateTglTerima
+            	-- DateTglCair = DateTglJT
+	- Memanggil AllDataDetailTerima
+	- Memanggil AllData
+2. TextBox BAP_ID, ID BAP
+3. Panel2
+	- TextBox NoBAP, No BAP
+	- ComboBox PembuatBAP
+		-- Master
+		-- Customer
+	- TextBox SPM, SPM
+	- TextBox NoTTKwt, Nomor Tanda Terima Kwitansi
+	- TextBox NominalBAP, Nominal BAP
+	- TextBox NominalSCF, Nomimal SCF
+	- TextBox Kontrak, Kontrak
+	- Search Button Kontrak
+		-- Membuka FrmKontrak
+4. Panel1
+	- DateTimePicker TglBAP, Tanggal BAP
+	- DateTimePicker TglKirimBAP, Tanggal Kirim BAP
+	- CheckBox TglKirimBAP
+		-- Jika CheckBox Kirim tidak dicek
+			--- CheckBox Balik tidak dicek
+			--- CheckBox TTKwt tidak dicek
+			--- CheckBox JT tidak dicek
+	- DateTimePicker TglBalik, Tanggal BAP Balik
+	- CheckBox TglBalik
+		-- Jika CheckBox Kirim tidak dicek
+			--- CheckBox Balik tidak dicek
+		-- Jika CheckBox Balik tidak dicek
+			--- CheckBox TTKwt tidak dicek
+			--- CheckBox JT tidak dicek
+	- DateTimePicker TglTerimaKwt, Tanggal menerima Kwitansi
+	- CheckBox TglTerimaKwt
+		-- Jika CheckBox Balik tidak dicek
+			--- CheckBox TTKwt tidak dicek
+		-- Jika CheckBox TTKwt tidak dicek
+			--- CheckBox JT tidak dicek
+	- DateTimePicker TglJatuhTempo, Tanggal Jatuh Tempo
+	- CheckBox TglJatuhTempo
+		-- Jika CheckBox TTKwt tidak dicek
+			--- CheckBox JT tidak dicek
+	- DateTimePicker TglCair, Tanggal SCF Cair
+5. TxtNoNota
+	- Jika input >= 3 karakter
+		-- Memanggil AllData
+	- Jika input = 0 karakter
+		-- Memamggil AllData
+6. DgvListInvoice
+	- Customer
+	- No Nota
+	- Tgl Nota
+	- Total
+	- No Kontrak
+	- Tgl JT
+7. DgvListInvoiceSelect
+	- Customer
+	- No Nota
+	- Tgl Nota
+	- Total
+	- No Kontrak
+	- Tgl JT
+8. LblEdit
+9. SaveButton
+	- Jika variabelid = 0
+		-- Memanggil Function Save
+			--- Mengecek semua data
+			--- Jika ada data ([Object]) yang belum diisi
+				---- MessageBox : "[Object] harus diisi terlebih dahulu !!!"
+			--- Mengecek DgvListInvoice
+				---- Mengecek semua data hasil input
+				---- Get data dari database Service Trx_SCFInsert_N
+				---- Menyimpan ActivityLog
+					----- UserIDLog
+            				----- Tanggal Sekarang
+            				----- FrmSCFInsertRev
+            				----- Status = Add
+            				----- No BAP = BAP_ID
+            				----- Mengubah Database Trx_SCF_N
+            				----- Flag Action = 0
+            				----- VolumeSerial
+            				----- LogInCurrent
+			--- Mengecek DgvListInvocieSelect
+				---- Mengecek semua data hasil input
+				---- BAPID = BAP_ID (Database Trx_BAPInsert_N)
+				---- Get data dari database Service Trx_BAPDetailInsert_N
+				---- Menyimpan ActivityLog
+					----- UserIDLog
+            				----- Tanggal Sekarang
+            				----- FrmSCFInsertRev
+            				----- Status = Add
+            				----- No BAP = BAP_ID
+            				----- Mengubah Database Trx_BAP_Detail_N
+            				----- Flag Action = 0
+            				----- VolumeSerial
+            				----- LogInCurrent
+	- Jika variabelid = 1
+		-- Memanggil Function Edit
+			--- Mengecek semua data
+			--- Jika ada data ([Object]) yang belum diisi
+				---- MessageBox : "[Object] harus diisi terlebih dahulu !!!"
+			--- Mengecek DgvListInvoice
+				---- Mengecek semua data hasil input
+				---- Get data dari database Service Trx_SCFUpdate_N
+				---- Menyimpan ActivityLog
+					----- UserIDLog
+            				----- Tanggal Sekarang
+            				----- FrmSCFInsertRev
+            				----- Status = Edit - Header
+            				----- No BAP = TextBox BAP_ID
+            				----- Mengubah Database Trx_BAP_N
+            				----- Flag Action = 0
+            				----- VolumeSerial
+            				----- LogInCurrent
+			--- Mengecek DgvListInvocieSelect
+				---- Mengecek semua data hasil input
+				---- BAPID = BAP_ID (Database Trx_BAPInsert_N)
+				---- Get data dari database Service Trx_BAPDetailInsert_N
+				---- Menyimpan ActivityLog
+					----- UserIDLog
+            				----- Tanggal Sekarang
+            				----- FrmSCFInsertRev
+            				----- Status = Edit
+            				----- No BAP = TextBox BAP_ID - (BAP_ID (grid baris kolom 4))
+            				----- Mengubah Database Trx_BAP_Detail_N
+            				----- Flag Action = 0
+            				----- VolumeSerial
+            				----- LogInCurrent
+10. HelpButton
+	- Tidak Melakukan Perintah Apapun
+11. CloseBtn
+	- Menutup FrmBAPInsertRev
