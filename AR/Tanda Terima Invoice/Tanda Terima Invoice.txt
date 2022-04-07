@@ -1,0 +1,53 @@
+============ HEADER ============ 
+
+1. Form Load
+	- Setting Calendar ke tanggal sekarang
+	- setting txtDateFrom ke tanggal sekarang
+	- setting txtDateTo ke tanggal sekarang
+	- TabControl1.SelectedTab = TabPage2
+	- TabControl1.SelectedTab = TabPage1
+	- memanggil AllData()
+
+2. TabControl1
+	- Calendar,
+		-- Menampilkan Kalender tanggal dari faktur
+	- Range 
+		-- Mencari faktur berdasarkan harian, mingguan, bulanan, tahunan 
+		
+3. DataGridView1, 
+	- Nomor Tanda Terima, 
+	- Nama Customer
+	- Tgl Kirim
+	- Nama Penerima
+	- Tgl Terima
+	- Tgl Konfirmasi
+	- Lokasi
+	- Sudah Diterima
+	
+4. BtnAdd
+	- MessageBox Question YesNo : "Mau Tambah data baru ?"
+		-- Jika Yes : 
+			--- membuka FrmFakturReturDetail dengan fungsi AddNew()
+			--- menampilkan Dialog dari FrmFakturReturDetail
+		-- Jika No : 
+			-- Exit
+			
+5. BtnReport / Btn6 <==== TIDAK ADA FUNGSI
+
+6. DataGridView1_DoubleClick,
+	- membuka FrmFakturTTDetail
+
+7. TxtNoTT = mencari berdasarkan Nomor Tanda Terima
+8. TxtCustomer = mencari berdasarkan Nama Customer
+
+9. Right-click / Klik Kanan = Menampilkan Context Menu Strip
+	- Refresh
+		-- Memanggil AllData()
+	- Add New Data
+		-- memanggil fungsi BtnAdd
+	- View / Edit Data
+		-- memanggil fungsi DataGridView1_DoubleClick
+	- Tanda Terima Finance
+		-- membuka Form FrmFakturTTFinance
+	- Exit
+		-- menutup Form Tanda Terima Invoice

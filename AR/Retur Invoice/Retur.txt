@@ -16,7 +16,16 @@
 	- Range 
 		-- Mencari faktur berdasarkan harian, mingguan, bulanan, tahunan
 
-3. DataGridView1
+3. DataGridView1,
+	- Nomor Nota, 
+	- Tgl Nota
+	- Nomor Nota Retur
+	- No. Kontrak
+	- Jenis Faktur
+	- Nama Customer (Faktur)
+	- Column Kosong
+	- Jumlah
+	
 4. BtnAdd
 	- membuka FrmFakturReturDetail dengan fungsi AddNew()
 	- menampilkan Dialog dari FrmFakturReturDetail
