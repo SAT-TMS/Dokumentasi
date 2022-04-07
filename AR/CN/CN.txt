@@ -90,7 +90,7 @@ CN Header
 		-- NotaID = NotaID (grid kolom 17)
 		-- Pelunasan = TxtValas
 		-- Pelunasan1 = TxtJumlahIDR
-	- Menyimpan data ActivityLog
+	- Menyimpan data UserActivityLog
 		-- UserID
 		-- Tanggal Sekarang (Format : dd MM yyyy  HH:mm:ss)
 			--- d = Tanggal
