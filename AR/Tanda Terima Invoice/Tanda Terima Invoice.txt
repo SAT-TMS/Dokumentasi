@@ -51,3 +51,176 @@
 		-- membuka Form FrmFakturTTFinance
 	- Exit
 		-- menutup Form Tanda Terima Invoice
+		
+		
+		
+
+============ DETAIL ============ 
+===== Tanda Terima Faktur Detail =====
+
+1. TextBox TxtNoTT
+2. TextBox TxtCustomers
+3. DateTimePicker Tanggal Kirim
+4. TextBox TxtNoResi
+5. TextBox TxtKeterangan
+6. TextBox TxtNamaPenerima
+7. DateTimePicker Tanggal Terima Plant
+8. CheckBox ChkTandaTerimaPlant
+9. DateTimePicker Tanggal Terima
+10. CheckBox ChkTandaTerima
+11. DateTimePicker Tanggal Konfirmasi
+12. ComboBox CboKurir
+13. TextBox TxtFakturID
+14. Button TxtClear = mengclear object pada TextBox TxtFakturID
+15. Button BtnFind = 
+	- membuka Form FrmCariFaktur
+16. DataGridView1,
+	- No
+	- Nomor Nota
+	- Tgl Faktur
+	- Jenis Faktur
+	- Nama Customer (Faktur)
+	- kolom kosong
+	- Jumlah
+	- Tgl Jatuh Tempo
+	- Status
+17. TextBox TxtJumlah, menampilkan total jumlah
+18. Klik Kanan / Right-Click = 
+	- Save,
+		-- Jika TxtNamaPenerima.Text = "", maka
+			--- MessageBox Show = "Nama Penerima Inspection harus diisi !"
+			--- lalu cursor focus ke textbox yang bersangkutan.
+		-- Selain itu,
+			--- memanggil fungsi Trx_FakturTTUpdate()
+			--- memanggil fungsi Trx_FaktruUpdateJatuhTempo()
+			--- memanggil fungsi Trx_FakturTTDetailDelete()
+			--- memanggil fungsi Trx_FakturTTDetailInsert()
+			--- memanggil fungsi AllData()
+				---- MessageBox Question YesNo : "Apakah ingin dicetak?"
+					----- Jika Yes = memanggil fungsi MnuPrint_Click
+					----- Jika tidak = MessageBox Show = "Data sudah tersimpan", lalu close form
+	- Print
+		-- If IsInternetAvailable() = False Then
+            MessageBox.Show("Jaringan Putus !!!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+        Try
+            If ds.Tables.Count > 0 Then
+                ds.Tables(0).Rows.Clear()
+            End If
+            Dim nData As String()
+            nData = New String(0) {}
+            nData(0) = TxtNoTT.Text
+            ds = AksesLinkCloud.TTFakturReport(Kunci, nData)
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+        Dim RptFakturTT As New RptFakturTT
+        RptFakturTT.SetDataSource(ds.Tables(0))
+        With RptFakturTT.ReportDefinition.Sections(2)
+            Dim TxtNama As CrystalDecisions.CrystalReports.Engine.TextObject = CType(.ReportObjects("TxtNama"), CrystalDecisions.CrystalReports.Engine.TextObject)
+            Dim TxtBarcode As CrystalDecisions.CrystalReports.Engine.TextObject = CType(.ReportObjects("TxtBarcode"), CrystalDecisions.CrystalReports.Engine.TextObject)
+            Dim TxtJumlah As CrystalDecisions.CrystalReports.Engine.TextObject = CType(.ReportObjects("TxtJumlah"), CrystalDecisions.CrystalReports.Engine.TextObject)
+            Dim TxtTelp As CrystalDecisions.CrystalReports.Engine.TextObject = CType(.ReportObjects("TxtTelp"), CrystalDecisions.CrystalReports.Engine.TextObject)
+            Dim TxtAlamat As CrystalDecisions.CrystalReports.Engine.TextObject = CType(.ReportObjects("TxtAlamat"), CrystalDecisions.CrystalReports.Engine.TextObject)
+            'TxtAlamat
+            TxtNama.Text = "( " & UserNameLog & " )"
+            TxtBarcode.Text = Code128B(TxtNoTT.Text)
+            TxtJumlah.Text = CStr(DataGridView1.RowCount)
+            If LocationIDLog = "L10001" Then
+                TxtTelp.Text = "Mohon ditandatangani dan di fax kembali ( 021-39835500, 39837700, 39839900 ext 1) atau di email ke zahra@themastersteel.com " & _
+                                        "sebagai bukti bahwa Bapak/ Ibu telah menerima dokumen tersebut dari kami (PT. THE MASTER STEEL. Mfc)."
+                TxtAlamat.Text = "Jl. HOS Cokroaminoto 49 Telp : 021-39835500, 39837700, 39839900 Fax  ext 1"
+            ElseIf LocationIDLog = "L50001" Then
+                TxtTelp.Text = "Mohon ditandatangani dan di fax kembali ( 021-46826972) sebagai bukti bahwa Bapak/ " & _
+                                        "Ibu telah menerima dokumen tersebut dari kami (PT. THE MASTER STEEL. Mfc)."
+                TxtAlamat.Text = "Jl. Pulolentut No 3 Telp : 021-4613585 Fax  021-46826972"
+            End If
+        End With
+
+        With FrmViewReport
+            .CrvReport.ReportSource = RptFakturTT
+            .CrvReport.Refresh()
+            .Text = "Tanda Terima Faktur"
+            .ShowDialog()
+        End With
+    End Sub
+	
+	- Label
+		-- memanggil Form FrmFakturTTAlamat
+		
+	- Exit
+		-- menutup form	
+		
+		
+============ DETAIL ============ 
+===== Form Cari Faktur =====
+
+1. Load 
+	- memanggil AllData()
+
+2. DataGridView1,
+	- Nomor Nota
+	- Nomor Faktur
+	- Tgl Faktur
+	- Jenis Faktus
+	- Nama Customer (Faktur)
+	- Kolom Kosong
+	- Jumlah
+	- No. Tanda Terima
+	- Status Invoice
+
+3. TextBox TxtNoFaktur,
+	- memanggil AllData()
+4. TextBox TxtCustomers
+	- memanggil AllData()
+
+5. DataGridView1_DoubleClick,
+	- Jika NamaForm = FormFakturRetur
+		-- FrmFakturReturDetail.TxtNotaID.Text = CStr(.SelectedCells(7).Value)
+        -- Me.Close() 
+	- Jika NamaForm = FormTandaTerima,
+		--  If CStr(.SelectedCells(9).Value) = "A" Then
+            --- If CStr(.SelectedCells(8).Value) <> "-" Then
+				---- MessageBox Question = "Apakah akan dibuat ulang Surat Tanda Terima ?"
+					----- Jika Yes,
+						------ FrmFakturTTDetail.TxtFakturID.Text = CStr(.SelectedCells(7).Value)
+                        ------ TxtCustomers.Text = CStr(.SelectedCells(4).Value)
+					----- Jika No,
+						------ Exit
+				---- Selain itu,
+					----- FrmFakturTTDetail.TxtFakturID.Text = CStr(.SelectedCells(7).Value)
+                    ----- TxtCustomers.Text = CStr(.SelectedCells(4).Value)
+			--- Selain itu,
+				---- MessageBox Error : "Status Invoice Tidak Aktif"
+				
+				
+============ DETAIL ============ 
+===== Form Faktur Alamat / Print Alamat Kirim =====
+
+1. Load
+	- ChkEdit.Checked = False
+	- ChkCetakFrom.Checked = True
+	- ChkCetakTo.Checked = True
+	- memanggil AllData()
+
+2. TextBox TxtAlamat1
+3. TextBox TxtAlamat2
+4. TextBox TxtAlamat3
+5. TextBox TxtHelp
+6. TextBox TxtUP
+7. CheckBox ChkEdit
+8. CheckBox ChkCetakFrom
+9. CheckBox ChkCetakTo
+
+10. Klik Kanan / Right-Click,
+	- Print
+		-- Jika ChkEdit.Checked = True, maka
+			--- memanggil fungsi AddressDocUpdate()
+		-- Jika ChkCetakFrom.Checked = True, maka
+			--- memanggil fungsi PRintFrom()
+		-- Jika ChkCetakTo.Checked = True
+			--- memanggil fungsi PrintTo()
+		-- memanggil AllData() pada FrmFakturTT 
+	- Exit
+		-- menutup Form Faktur Alamat
