@@ -224,3 +224,28 @@
 		-- memanggil AllData() pada FrmFakturTT 
 	- Exit
 		-- menutup Form Faktur Alamat
+		
+		
+============ DETAIL ============ 
+===== Form Faktur Alamat / Print Alamat Kirim =====
+
+1. DateTimePicker TxtTglFrom
+2. DateTimePicker TxtTglTo
+3. ComboBox CboKurir
+4. Button BtnRefresh,
+	- memanggil AllData()
+5. DataGridView1
+	- Nama Customer(Faktur)
+	- Project
+	- Nomor Nota
+	- Jumlah
+	- Tanggal Input
+
+6. Klik Kanan / Right-Click
+	- Refresh
+		-- Memanggil fungsi BtnRefresh
+	- Print
+		-- memanggil fungsi print 
+	- Exit
+		-- menutup form tanda terima finance
+	
