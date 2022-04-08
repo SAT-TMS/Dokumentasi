@@ -6,15 +6,46 @@ CN Header
 	- Memanggil AllData
 3. FindButton Customer
 	- Memanggil Search Form Customer
-4. CboIndex
-5. DataGridView1
-6. DateTimePicker TanggalTerima
-7. TxtValas
+4. DataGridView1
+	- NomorNota
+	- NomorFaktur
+	- Customer
+	- TanggalNota
+	- Currency
+	- DPP
+	- Kurs
+	- DPPRp
+	- PPN
+	- PPH22
+	- PPH22BUMN
+	- AmountPPH23
+	- Potongan
+	- Retur
+	- CustomerID
+	- NotaID
+	- Pelunasan
+	- Sisa
+	- UserID
+	- NotaID1
+	- NomorPO
+	- NomorKontrak
+	- ProjectName
+	- Penjual
+	- NomorPO1
+	- NomorKontrak1
+5. DateTimePicker TanggalTerima, Tanggal Terima Credit Note
+6. TxtValas
 	- Jika TxtValas tidak kosong
 		-- TxtJumlahIDR = TxtValas * TxtKurs
-8. TxtKurs
-9. TxtMataUang
+	- Memberi Format Penulisan TxtValas
+	- TxtValas.Select(TxtValas.Text.Length, 0)
+7. TxtKurs
+	- Memberi Format Penulisan TxtKurs
+	- TxtKurs.Select(TxtKurs.Text.Length, 0)
+8. TxtMataUang, Mata Uang yang akan digunakan
 9. TxtJumlahIDR
+	- Memberi Format Penulisan TxtJumlahMataIDR
+	- TxtJumlahIDR.Select(TxtJumlahIDR.Text.Length, 0)
 10. CboJenisCN
 	- AR Write off / Sundry Balance Write
 	- Bank Charger
@@ -24,7 +55,55 @@ CN Header
 	- Discounting Charger - AR
 	- Selisih Kurs
 	- SSP
-11. TxtKeterangan1
+11. TxtKeterangan1, Keterangan
 12. SaveButton
+	- Mengecek semua data
+	- Jika ada data ([Object]) yang belum diisi
+		-- MessageBox : [Object] Harus Dipilih !!!
+		-- Keluar dari FrmPenerimaanCN
+	- Memasukkan data ke dalam Database Service Trx_TerimaInsert
+		-- terimaidv = (Tanggal Sekarang : yyyyMMdd) /  CN (Database CariCNID bagian Kunci : diambil 5 digit)
+			--- y = Tahun
+			--- M = Bulan
+			--- d = Tanggal
+		-- TerimaID = terimaidv
+		-- SuplID = 10 digit diambil dari kiri
+		-- TanggalTerima = DateTimePicker1
+		-- TanggalGiro = DateTimePicker1
+		-- CariDiRK = 1
+		-- TanggalRK = DateTimePicker1
+		-- RekeningBankID = RBID0090
+		-- NoRefBank = CN
+		-- TypePenerimaanID = TRM01
+		-- Keterangan1 = TxtKeterangan1
+		-- Keterangan2 = CN Faktur No (NomorFaktur (grid kolom 0)
+		-- Amount = TxtValas
+		-- CurrencyID = TxtMataUang
+		-- Kurs = TxtKurs
+		-- Amount1 = TxtJumlahIDR
+		-- Status = A
+		-- JenisCNID = CboJenis
+	- Memasukkan data ke dalam Database Service Trx_TerimaDetailInsert
+		-- TerimaID = terimaidv
+		-- Tanggal = DateTimePicker1
+		-- Supl_ID = TxtCustomerID (ambil 10 digit dari kiri)
+		-- NotaID = NotaID (grid kolom 17)
+		-- Pelunasan = TxtValas
+		-- Pelunasan1 = TxtJumlahIDR
+	- Menyimpan data UserActivityLog
+		-- UserID
+		-- Tanggal Sekarang (Format : dd MM yyyy  HH:mm:ss)
+			--- d = Tanggal
+			--- M = Bulan
+			--- y = Tahun
+			--- H = Jam
+			--- m = Menit
+			--- s = Detik
+		-- FrmPenerimaanCN
+		-- Status = Add
+		-- Mengubah TxtNomor
+		-- Mengubah Database Trx_Terima
+		-- FlagAction = 0
+	- Memanggil AllData
 13. CloseButton
 	- Menutup FrmPenerimaanCN
