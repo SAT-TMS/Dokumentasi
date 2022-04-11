@@ -1,0 +1,57 @@
+============ HEADER ============ 
+
+1. Load,
+	- memanggil SegalaCombo()
+	- memanggil StartUp()
+	- memanggil AllData()
+	
+2. DateTimePicker1 : setting tanggal Dari
+3. DateTimePicker2 : setting tanggal Sampai
+4. TextBox TxtPelanggan
+5. TextBox TxtTerima
+6. RadioButton RBInput
+7. RadioButton RBRK
+8. ComboBox CboBankPenerima
+9. Button GOButton
+	- memanggil StartUp()
+	- Jika RBInput.Checked = True, maka
+		-- memanggil AllData()
+	- Selain itu,
+		-- memanggil AllDataRK()
+10. DataGridView1
+11. Button BtnPrint,
+	- memanggil fungsi print
+12. Button AddButton
+	- membuka Form FrmPenerimaan
+	- kontrakv = "b"
+	- kondisi EditButton.Visible = False
+	- ShowDialog()
+	- memanggil AllData()
+13. Button BtnVoid
+	- Jika DataGridView1.RowCount > 0, maka
+		-- rowindex = DataGridView1.CurrentCell.RowIndex
+		-- Jika sudahada(CStr(DataGridView1.Item(0, DataGridView1.CurrentCell.RowIndex).Value)) = True, maka
+			--- MessageBox = "Sudah Ada Faktur !!!"
+		-- Selain itu,
+			--- MessageBox Question = "Data Akan Di Batalkan, Apakah Anda Yakin???"
+			--- Jika Yes, maka
+				---- Melakukan Void
+				---- memanggil fungsi StartUp()
+14. Button CloseButton
+	- menutup form Penerimaan
+	
+15. KeyPress,
+	- F2, Entry Data Faktur
+		-- Jika KeyCode = Keys.F2, maka
+			--- Jika UserIDLog = "aichen" atau "tamara" atau "melinda" atau "wen" atau "husain", maka
+				---- With DataGridView1
+					----- Jika .RowCount > 0, maka
+						------ supplieridAR = CStr(.Item(16, .CurrentCell.RowIndex).Value)
+					----- Jika tidak,
+						------ Exit
+	- F4, Hapus Data Faktur
+	- F5, DN
+	- +, Entry Data Penerimaan
+	- Double Click, Edit Data
+
+
