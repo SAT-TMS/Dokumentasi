@@ -1,0 +1,101 @@
+Penerimaan SSF Header
+1. Form Load
+	- Memanggil AllData
+		-- Memanggil data dari Database Service PenerimaanFakturList2
+2. TxtNomorNota, Nomor Nota
+3. TxtCustomer, Nama Customer
+4. Tab Pembayaran SSP
+	- ChkSSPPPN
+		-- Jika ChkSSPPPN dicek
+            		--- TxtTglSSPPPN = Tanggal Sekarang
+            		--- TxtTglInputPPN = Tanggal Sekarang
+        	-- Jika ChkSSPPPN tidak dicek
+            		--- TxtTglSSPPPN = 2000-01-01
+            		--- TxtTglInputPPN = 2000-01-01
+	- ChkSSPPPH22
+		-- Jika ChkSSPPPH22 dicek
+            		--- TxtTglSSPPPH22 = Tanggal Sekarang
+            		--- TxtTglInputPPH22 = Tanggal Sekarang
+        	-- Jika ChkSSPPPH22 tidak dicek
+            		--- TxtTglSSPPPH22 = 2000-01-01
+            		--- TxtTglInputPPH22 = 2000-01-01
+	- ChkSSPPPH23
+		-- Jika ChkSSPPPH23 dicek
+            		--- TxtTglSSPPPH23 = Tanggal Sekarang
+            		--- TxtTglInputPPH23 = Tanggal Sekarang
+        	-- Jika ChkSSPPPH23 tidak dicek
+            		--- TxtTglSSPPPH23 = 2000-01-01
+            		--- TxtTglInputPPH23 = 2000-01-01
+	- TxtTglSSPPPN
+		-- Jika TxtTglSSPPPN = 2000-01-01
+            		---TxtTglSSPPPN.Enabled = False
+            		--- TxtTglInputPPN.Enabled = False
+        	-- Jika TxtTglSSPPPN != 2000-01-01
+            		--- TxtTglSSPPPN.Enabled = True
+            		--- TxtTglInputPPN.Enabled = True
+	- TxtTglSSPPPH22
+		-- Jika TxtTglSSPPPH22 = 2000-01-01
+            		---TxtTglSSPPPH22.Enabled = False
+            		--- TxtTglInputPPH22.Enabled = False
+        	-- Jika TxtTglSSPPPH22 != 2000-01-01
+            		--- TxtTglSSPPPH22.Enabled = True
+            		--- TxtTglInputPPH22.Enabled = True
+	- TxtTglSSPPPH23
+		-- Jika TxtTglSSPPPH23 = 2000-01-01
+            		---TxtTglSSPPPH23.Enabled = False
+            		--- TxtTglInputPPH23.Enabled = False
+        	-- Jika TxtTglSSPPPH23 != 2000-01-01
+            		--- TxtTglSSPPPH23.Enabled = True
+            		--- TxtTglInputPPH23.Enabled = True
+	- TxtNoSSPPPN, Nomor SSP PPN
+	- TxtNoSSPPPH22, Nomor SSP PPH22
+	- TxtNoSSPPPH23, Nomor SSP PPH23
+	- TxtTglInputPPN, Tanggal Input PPN
+	- TxtTglInputPPH22, Tanggal Input PPH22
+	- TxtTglInputPPH23, Tanggal Input PPH23
+	- TxtNotaID
+		-- Memanggil AllDataFaktur
+			--- Memanggil data dari Database Service PenerimaanSSP
+5. Tab Detail
+	- TxtTglNota, Tanggal Nota
+	- TglCurrency, Mata uang
+	- TxtKurs, Kurs
+	- TxtDPP, DPP
+	- TxtPPN, PN
+	- TxtDPPRp, Total DPP dalam Rupiah
+	- TxtPPH22, PPH22
+	- TxtPPH22BUMN, PPH22 oleh BUMN
+	- TxtPPH23, PPH23
+	- TxtTotal, Total SSF
+	- TxtPelunasan, Pelunasan
+	- TxtSisa, Sisa SSF
+6. ChkStatus
+	- Jika ChkStatus dicek
+		-- Text di ChkStatus = SSP yang sudah dibayar
+	- Jika ChkStatus tidak dicek
+		-- Text di ChkStatus = SSP yang belum dibayar
+	- Memanggil AllData
+7. DataGridView1
+	- NomorNota
+	- NomorFaktur
+	- TglNota
+	- NamaCustomer
+	- Keterangan
+	- PPN
+	- PPH
+	- PPH23
+8. TxtNoNota
+	- Jika input > 2 karakter
+		-- Memanggil AllData
+	- Jika input = 0 karakter
+		-- Memanggil AllData
+9. TxtNoFaktur
+	- Jika input > 2 karakter
+		-- Memanggil AllData
+	- Jika input = 0 karakter
+		-- Memanggil AllData
+10. TxtCustomers
+	- Jika input > 2 karakter
+		-- Memanggil AllData
+	- Jika input = 0 karakter
+		-- Memanggil AllData
