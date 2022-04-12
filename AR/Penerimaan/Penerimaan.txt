@@ -18,7 +18,8 @@
 		-- memanggil AllData()
 	- Selain itu,
 		-- memanggil AllDataRK()
-10. DataGridView1
+10. DataGridView1,
+	- membuka FrmPenerimaan
 11. Button BtnPrint,
 	- memanggil fungsi print
 12. Button AddButton
@@ -49,9 +50,123 @@
 						------ supplieridAR = CStr(.Item(16, .CurrentCell.RowIndex).Value)
 					----- Jika tidak,
 						------ Exit
-	- F4, Hapus Data Faktur
+					----- membuka FrmLinkUangMasukFaktur
+					----- memanggil AllData()
+					
+	- F4, Hapus Data Faktur,
+		--  Jika KeyCode = Keys.F4, maka
+			--- With DataGridView1
+				---- Jika .RowCount > 0, maka
+					----- supplieridAR = CStr(.Item(0, .CurrentCell.RowIndex).Value)
+				---- Jika tidak,
+					----- Exit
+				---- membuka FrmListTerimaDetail
+				---- memanggil AllData()
 	- F5, DN
+		-- Jika KeyCode = Keys.F5, maka
+			--- With DataGridView1
+				---- Jika .RowCount > 0, maka
+					----- supplieridAR = CStr(.Item(16, .CurrentCell.RowIndex).Value)
+				---- Jika tidak,
+					----- Exit
+				---- membuka FrmPenerimaanDN
+				---- memanggil AllData()
 	- +, Entry Data Penerimaan
 	- Double Click, Edit Data
 
 
+============ DETAIL ============ 
+===== Penerimaan AR =====
+
+1. Load
+	- Memanggil fungsi SegalaCombo()
+	- Memanggil fungsi SegalaCombo2()
+	- Memanggil fungsi SegalaCombo3()
+	- Jika NilaiInsert = "1", maka
+		-- CboBankPenerima.SelectedText = "CN"
+		-- CboTypePenerimaan.SelectedText = "Penerimaan Piutang"
+		
+		-- CboJenisCN.Text = nJenisCNID
+	
+	-- CboTypePenerimaan.Text = nTypePeneriman
+    -- CboMataUang.Text = nCurrency
+    -- CboBankPenerima.Text = nBankPenerima
+    -- TxtTerimaID.Text = nTerimaID
+	
+	-- Jika UserIDLog = "aichen" atau "tamara" atau "melinda", maka
+		--- ???
+		
+	-- Selain itu,
+		--- SaveButton.Visible = False
+		--- EditButton.Visible = False
+
+2. TextBox TxtTerimaID
+3. TextBox TextBox1
+4. TextBox TxtCustomerID
+5. Button FindButton,
+	- membuka Form FrmSearchinAR
+	- ShowDialog()
+	- Jika for.DataGridView1.RowCount > 0, maka
+		-- TxtCustomerID.Text = CStr(form.DataGridView1.Item(0, rowindex).Value) & "-" & CStr(form.DataGridView1.Item(2, rowindex).Value)
+	- selain itu,
+		-- exit
+6. ComboBox CboTypePenerimaan
+7. DateTimePicker1
+8. DateTimePicker2
+9. DateTimePicker3
+10. ComboBox CboJenisCN
+11. ComboBox CboStatusGiro
+12. ComboBox CboBankPenerima
+13. TextBox TxtNoRefBank
+14. TextBox TxtKet1
+15. TextBox TxtKet2
+16. TextBox TxtValas,
+	- Jika TxtValas.Text <> "", maka
+		-- TxtValas.Text = FilterAngka(TxtValas)
+		-- TxtValas.Select(TxtValas.Text.Length, 0)
+		-- If TxtKurs.Text <> "", maka
+			--- TxtJumlahIDR.Text = CStr(CDbl(TxtValas.Text) * CDbl(TxtKurs.Text))
+
+	
+17. ComboBox CboMataUang,
+	- Jika CboMataUang.Text = "IDR", maka
+		-- TxtKurs.Text - "1"
+	- Selain itu,
+		-- Dim ndata As String()
+            ndata = New String(1) {}
+            ndata(0) = CboMataUang.Text
+            If IsInternetAvailable() = False Then
+                MessageBox.Show("Jaringan Putus !!!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+            Try
+                SatuanDs = AksesLinkCloud.CariKursSekarang(Kunci, ndata)
+            Catch ex As Exception
+                MessageBox.Show(ex.ToString, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+18. TextBox TxtKurs
+	- Jika TxtValas.Text <> "", maka
+		-- Jika TxtKurs <> "", maka
+			--- TxtKurs.Text = FilterAngka(TxtKurs)
+			--- TxtKurs.Select(TxtKurs.Text.Length, 0)
+			--- TxtJumlahIDR.Text = CStr(CDbl(TxtValas.Text) * CDbl(TxtKurs.Text))
+	
+19. TextBox TxtJumlahIDR
+20. Button SaveButton,
+	- Jika TxtTerimaID.Text = "", maka
+		-- MessageBox Error : "TerimaID harus Diisi !!!"
+		-- Cursor focus ke TxtTerimaID
+	- Jika TxtCustomerID.Text = "", maka
+		-- MessageBox Error : "Customer harus Diisi !!!"
+		-- Cursor focus ke TxtCustomerID
+	- Jika TxtTerimaID.Text = "", maka
+		-- MessageBox Error : "TerimaID harus Diisi !!!"
+		-- Cursor focus ke TxtTerimaID
+	- Jika TxtTerimaID.Text = "", maka
+		-- MessageBox Error : "TerimaID harus Diisi !!!"
+		-- Cursor focus ke TxtTerimaID
+	- Jika TxtTerimaID.Text = "", maka
+		-- MessageBox Error : "TerimaID harus Diisi !!!"
+		-- Cursor focus ke TxtTerimaID
+21. Button CloseButton,
+	- menutup form
