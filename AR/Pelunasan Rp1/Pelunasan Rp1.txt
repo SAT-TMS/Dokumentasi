@@ -1,0 +1,38 @@
+Pelunasan Rp1 Header
+1. Form Load
+	- Memanggil AllData
+		-- Memanggil data dari Database Service Sls_List_InvoiceRP1
+2. TxtCustomerID
+	- Jika input >= 3 karakter
+		-- Memanggil AllData
+	- Jika input = 0 karakter
+		-- Memanggil AllData
+3. DataGridView1
+	- NomorNota
+	- NomorFaktur
+	- Customer
+	- Tanggal Nota
+	- Currency
+	- DPP
+	- Kurs
+	- DPPRp
+	- Total
+	- Pelunasan
+	- Sisa
+	- Supl_ID
+	- Nota_ID
+4. SaveButton
+	- Jika baris dalam grid > 0
+		-- Memanggil Function Save_trx_terima
+		-- MessageBox : "Data berhasil diinput !!!"
+		-- Memanggil AllData
+5. ProsesAllButton
+	- Jika baris dalam grid > 0
+		-- Lakukan pengulangan sampai (Baris - 1)
+			--- Memanggil Function Save_trx_terima_All
+		-- MessageBox : "Data berhasil diinput !!!"
+		-- Memanggil AllData
+6. CloseButton
+	- Menutup _9_13_Pelunasan_Invoice_Rp1_Form
+7. Key Press ESC
+	- Menutup _9_13_Pelunasan_Invoice_Rp1_Form
