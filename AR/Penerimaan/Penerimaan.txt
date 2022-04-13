@@ -116,7 +116,19 @@
 9. DateTimePicker3
 10. ComboBox CboJenisCN
 11. ComboBox CboStatusGiro
-12. ComboBox CboBankPenerima
+12. ComboBox CboBankPenerima,
+	- Jika CboBankPenerima.Text = "CN", maka
+		-- terimaidv = CStr(Date.Now.ToString("yyyyMMdd")) & "/" & "CN" & Microsoft.VisualBasic.Right("00000" & CStr(AksesLinkCloud.CariCNID(Kunci)), 5)
+	- Selain itu,
+		-- terimaidv= TglTrm & Microsoft.VisualBasic.Right("00000" & CStr(AksesLinkCloud.CariTerimaID(Kunci, nData1)), 5) & "/" & nPenerimaanID
+	
+	- Jika kontrakv = "a", maka
+		-- ????
+	- Selain itu,
+		-- TxtTerimaID.Text = terimaidv
+	
+	- TextBox1.Text = TglTrm & Microsoft.VisualBasic.Right("00000" & CStr(AksesLinkCloud.CariTerimaIDtest(Kunci, nData1)), 5) & "/" & nPenerimaanID
+
 13. TextBox TxtNoRefBank
 14. TextBox TxtKet1
 15. TextBox TxtKet2
@@ -151,7 +163,11 @@
 			--- TxtKurs.Select(TxtKurs.Text.Length, 0)
 			--- TxtJumlahIDR.Text = CStr(CDbl(TxtValas.Text) * CDbl(TxtKurs.Text))
 	
-19. TextBox TxtJumlahIDR
+19. TextBox TxtJumlahIDR,
+	- Jika TxtJumlahIDR.Text <> "", maka
+		-- TxtJumlahIDR.Text = FilterAngka(TxtJumlahIDR)
+		-- TxtJumlahIDR.Select(TxtJumlahIDR.Text.Length, 0)
+		
 20. Button SaveButton,
 	- Jika TxtTerimaID.Text = "", maka
 		-- MessageBox Error : "TerimaID harus Diisi !!!"
@@ -159,14 +175,74 @@
 	- Jika TxtCustomerID.Text = "", maka
 		-- MessageBox Error : "Customer harus Diisi !!!"
 		-- Cursor focus ke TxtCustomerID
-	- Jika TxtTerimaID.Text = "", maka
-		-- MessageBox Error : "TerimaID harus Diisi !!!"
-		-- Cursor focus ke TxtTerimaID
-	- Jika TxtTerimaID.Text = "", maka
-		-- MessageBox Error : "TerimaID harus Diisi !!!"
-		-- Cursor focus ke TxtTerimaID
-	- Jika TxtTerimaID.Text = "", maka
-		-- MessageBox Error : "TerimaID harus Diisi !!!"
-		-- Cursor focus ke TxtTerimaID
+	- Jika CboTypePenerimaan.SelecedIndex = "", maka
+		-- MessageBox Error : "Tipe Penerimaan harus Diisi !!!"
+		-- Cursor focus ke CboTypePenerimaan 
+	- Jika CboStatusGiro.SelecedIndex = "", maka
+		-- MessageBox Error : "Status Giro harus Diisi !!!"
+		-- Cursor focus ke CboStatusGiro
+	- Jika TxtNoRefBank.Text = "", maka
+		-- MessageBox Error : "No Refrensi Bank harus Diisi !!!"
+		-- Cursor focus ke TxtNoRefBank
+	- Jika CboBankPenerima.Text = "ALL", maka
+		-- MessageBox Error : "Salah Pilih Bank !!!"
+		-- Cursor focus ke CboBankPenerima
+	- Jika CboBankPenerima.Text = "DATA LAMA", maka
+		-- MessageBox Error : "Salah Pilih Bank !!!"
+		-- Cursor focus ke CboBankPenerima
+	- Jika TxtKet1.Text = "", maka
+		-- MessageBox Error : "Keterangan harus Diisi !!!"
+		-- Cursor focus ke TxtKet1
+	- Jika TxtKet2.Text = "", maka
+		-- MessageBox Error : "Keterangan 2 harus Diisi !!!"
+		-- Cursor focus ke TxtKet2 
+	- Jika TxtValas.Text = "", maka
+		-- MessageBox Error : " Valas harus Diisi !!!"
+		-- Cursor focus ke TxtValas
+	- Jika TxtKurs.Text = "", maka
+		-- MessageBox Error : "Kurs	harus Diisi !!!"
+		-- Cursor focus ke TxtKurs
+	- Jika TxtJumlahIDR.Text = "", maka
+		-- MessageBox Error : "Total harus Diisi !!!"
+		-- Cursor focus ke 
+	- Jika CboMataUang.SelectedIndex = "", maka
+		-- MessageBox Error : "Mata Uang harus Diisi !!!"
+		-- Cursor focus ke CboMataUang
+
+
 21. Button CloseButton,
 	- menutup form
+	
+============ DETAIL ============ 
+===== Form Searching AR =====
+
+1. Load
+	- memanggil fungsi StartUp()
+	
+2. TextBox SearchingKodeTextBox
+	- Jika CboAdd.SelecedIndex = 0, maka
+		-- memanggil AllDataAR()
+	- Jika CboAdd.SelecedIndex = 1, maka
+		-- memanggil AllDataAP()
+3. TextBox SearchingNamaTextBox,
+	- Jika CboAdd.SelecedIndex = 0, maka
+		-- memanggil AllDataAR()
+	- Jika CboAdd.SelecedIndex = 1, maka
+		-- memanggil AllDataAP()
+4. ComboBox CboAdd
+	- Jika CboAdd.SelecedIndex = 0, maka
+		-- memanggil AllDataAR()
+	- Jika CboAdd.SelecedIndex = 1, maka
+		-- memanggil AllDataAP()
+5. DataGridView1,
+	- Jika DataGridView1.RowCount > 0, maka
+		-- rowindex = DataGridView1.CurrentCell.RowIndex
+	- Menutup Form
+
+============ DETAIL ============ 
+===== Form Pemakaian Uang Masuk =====
+
+1. Load,
+	- StartUp
+	- memanggil fungsi SegalaCombo()
+	- CboCust.SelectedIndex = 0
