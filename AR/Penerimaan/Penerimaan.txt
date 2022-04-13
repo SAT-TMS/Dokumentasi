@@ -322,3 +322,12 @@
 			--- rowindex = Me.DataGridView1.CurrentCell.RowIndex
 			--- TxtValas.Text = CDec(.Item(19, rowindex).Value).ToString("###,##0.#0")
 			--- TxtKurs.Text = .Item(6, rowindex).Value.ToString
+
+============ DETAIL ============ 
+===== Form List Detail Penerimaan =====
+
+1. Load,
+	- StartUp()
+
+2. DataGridView1
+
