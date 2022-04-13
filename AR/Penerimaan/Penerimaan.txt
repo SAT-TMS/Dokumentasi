@@ -246,3 +246,79 @@
 	- StartUp
 	- memanggil fungsi SegalaCombo()
 	- CboCust.SelectedIndex = 0
+
+2. ComboBox CboCust,
+	- Jika DataGridView1.RowCount > 0, maka
+		-- rowindex = Me.DataGridView1.CurrentCell.RowIndex
+		-- AssignToedit()
+	- Jika tidak,
+		-- rowindex = Me.DataGridView1.CurrentCell.RowIndex
+        -- AssignToEdit()
+3. Button Button1
+	- memanggil AllData()
+4. Label label6,
+	- untuk menampilkan Nomor
+5. DataGridView1,
+6. DateTimePicker1
+7. TextBox TxtJumlahPenerimaan
+	- Jika TxtJumlahPenerimaan.Text <> "", maka
+		-- For i As Integer = 0 To 3
+            --- TxtJumlahPenerimaan.Text = FilterAngka(TxtJumlahPenerimaan)
+            --- TxtJumlahPenerimaan.Select(TxtJumlahPenerimaan.Text.Length, 0)
+8. TextBox TxtJumlahPenerimaanIDR
+	- Jika TxtJumlahPenerimaanIDR.Text <> "", maka
+		-- TxtJumlahPenerimaanIDR.Text = FilterAngka(TxtJumlahPenerimaanIDR)
+        -- TxtJumlahPenerimaanIDR.Select(TxtJumlahPenerimaanIDR.Text.Length, 0)
+9. TextBox TxtSisa
+	- Jika TxtSisa.Text <> ""
+		-- TxtSisa.Text = FilterAngka(TxtSisa)
+		-- TxtSisa.Select(TxtSisa.Text.Length, 0)
+10. TextBox TxtSisaIDR,
+	- Jika (TxtSisaIDR.Text) <> ""
+		-- TxtSisaIDR.Text = FilterAngka(TxtSisaIDR)
+		-- TxtSisaIDR.Select(TxtSisaIDR.Text.Length, 0)
+11. TextBox TxtValas,
+	- Jika TxtValas.Text <> "", maka
+		-- For i As Integer = 0 To 3
+			--- TxtValas.Text = FilterAngka(TxtValas)
+			--- TxtValas.Select(TxtValas.Text.Length, 0)
+	- Jika TxtKurs.Text <> "", maka
+		-- ammount = CDbl(TxtValas.Text) * CDbl(TxtKurs.Text)
+		-- TxtRp.Text = (ammount).ToString("###,#0.#0")
+12. TextBox TxtKurs
+	- ammount = CDbl(TxtValas.Text) * CDbl(TxtKurs.Text)
+	- TxtRp.Text = (ammount).ToString("###,#0.#0")
+	- Jika TxtKurs.Text <> ""
+		-- TxtKurs.Text = FilterAngka(TxtKurs)
+		-- TxtKurs.Select(TxtKurs.Text.Length, 0)
+13. TextBox TxtRp
+	- Jika TxtRp.Text <> ""
+		-- TxtRp.Text = FilterAngka(TxtRp)
+		-- TxtRp.Select(TxtRp.Text.Length, 0)
+14. Button SaveButton
+	- Jika TxtValas.Text = "", maka
+		-- MessageBox Error : "Jumlah yang Akan Dilunaskan harus Diisi !!!"
+		-- Cursor focus ke TxtValas
+	- Jika TxtKurs.Text = "", maka
+		-- MessageBox Error : "Kurs Harus Diisi !!!"
+		-- Cursor focus ke TxtKurs
+	- Jika TxtRp.Text = "", maka
+		-- MessageBox Error : "Jumlah yang Akan Dilunaskan harus Diisi !!!"
+		-- Cursor focus ke TxtRp
+	
+	- d = TxtRp
+	- f = TxtSisaIDR
+	- sisatagihan = sisa tagihan berdasar yang ada oada datagridview tersebut
+	
+	- Jika d > f
+		-- MessageBox Error : "Jumlah yang Akan Dilunaskan Lebih Besar Dari Sisa Penerimaan !!!" 
+	- Jika sisatagihan < d, maka
+		-- MessageBox Error : "Jumlah yang Akan Dilunaskan Lebih Besar Dari Tagihan !!!"
+		
+15. Button CloseButton
+16. fungsi AssignToEdit(),
+	- Dengan DataGridView1
+		-- Jika .RowCount > 0, maka
+			--- rowindex = Me.DataGridView1.CurrentCell.RowIndex
+			--- TxtValas.Text = CDec(.Item(19, rowindex).Value).ToString("###,##0.#0")
+			--- TxtKurs.Text = .Item(6, rowindex).Value.ToString
