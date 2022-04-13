@@ -8,28 +8,98 @@ Pelunasan Rp1 Header
 	- Jika input = 0 karakter
 		-- Memanggil AllData
 3. DataGridView1
-	- NomorNota
-	- NomorFaktur
-	- Customer
-	- Tanggal Nota
-	- Currency
-	- DPP
-	- Kurs
-	- DPPRp
-	- Total
-	- Pelunasan
-	- Sisa
-	- Supl_ID
-	- Nota_ID
+	- NomorNota, Nomor Nota
+	- NomorFaktur, Nomor Faktur
+	- Customer, Nama Customer
+	- Tanggal Nota, Tanggal Nota
+	- Currency, Mata Uang
+	- DPP, DPP
+	- Kurs, Kurs
+	- DPPRp, DPP dalam Rupiah
+	- Total, Total harga
+	- Pelunasan, Pelunasan
+	- Sisa, Sisa
+	- Supl_ID, ID Supplier
+	- Nota_ID, ID Nota
 4. SaveButton
 	- Jika baris dalam grid > 0
 		-- Memanggil Function Save_trx_terima
+			--- Jika data dalam grid > 0 baris
+				---- Menyimpan semua data ke Database Service Trx_TerimaInsert
+					----- terimaidv = (Tanggal Sekarang : yyyyMMdd) / CN (00000 : ambil 5 digit dari kanan dari Database CariCNID)
+					----- TerimaID = terimaidv
+					----- Supl_ID = SuplID (grid kolom 11)
+					----- TanggalTerima = Tanggal (grid kolom 3)
+					----- TanggalGiro = Tanggal (grid kolom 3)
+					----- CairDiRK = 1
+					----- TanggalRK = Tanggal (grid kolom 3)
+					----- RekeningBankID = RBID00090
+					----- NoRefBank = CN
+					----- TypePenerimaanID = TRM01
+					----- Keterangan1 = CN Auto
+					----- Keterangan2 = CN Auto Faktur No (Nomor Faktur (grid kolom 0))
+					----- Amount = Amount (grid kolom 5)
+					----- CurrencyID = Currency (grid kolom 4)
+					----- Kurs = Kurs (grid kolom 6)
+					----- Amount1 = Amount1 (grid kolom 7)
+					----- Status = A
+					----- JenisCNID = CN008
+				---- Menyimpan semua data ke Database Service Trx_TerimaDetailInsert
+					----- TerimaID = terimaidv
+					----- Tanggal = Tanggal (grid kolom 3)
+					----- Supl_ID = SuplID (grid kolom 11)
+					----- NotaID = NotaID (grid kolom 12)
+					----- Pelunasan = Pelunasan (grid kolom 5)
+					----- Pelunasan1 = Pelunasan1 (grid kolom 7)
+				---- Menyimpan UserActivityLog
+					----- UserID = UserIDLog
+					----- Tanggal = Tanggal Sekarang
+					----- Menu = _9_13_Pelunasan_Invoice_Rp1_Form
+					----- LogID = Add
+					----- Description = TxtNomor
+					----- TableName = Trx_Terima
+					----- FlagAction = 0
 		-- MessageBox : "Data berhasil diinput !!!"
 		-- Memanggil AllData
 5. ProsesAllButton
 	- Jika baris dalam grid > 0
 		-- Lakukan pengulangan sampai (Baris - 1)
 			--- Memanggil Function Save_trx_terima_All
+				---- Jika data dalam grid > 0 baris
+					----- Menyimpan semua data ke Database Service Trx_TerimaInsert
+						------ terimaidv = (Tanggal Sekarang : yyyyMMdd) / CN (00000 : ambil 5 digit dari kanan dari Database CariCNID)
+						------ TerimaID = terimaidv
+						------ Supl_ID = SuplID (grid kolom 11)
+						------ TanggalTerima = Tanggal (grid kolom 3)
+						------ TanggalGiro = Tanggal (grid kolom 3)
+						------ CairDiRK = 1
+						------ TanggalRK = Tanggal (grid kolom 3)
+						------ RekeningBankID = RBID00090
+						------ NoRefBank = CN
+						------ TypePenerimaanID = TRM01
+						------ Keterangan1 = CN Auto
+						------ Keterangan2 = CN Auto Faktur No (Nomor Faktur (grid kolom 0))
+						------ Amount = Amount (grid kolom 5)
+						------ CurrencyID = Currency (grid kolom 4)
+						------ Kurs = Kurs (grid kolom 6)
+						------ Amount1 = Amount1 (grid kolom 7)
+						------ Status = A
+						------ JenisCNID = CN008
+					----- Menyimpan semua data ke Database Service Trx_TerimaDetailInsert
+						------ TerimaID = terimaidv
+						------ Tanggal = Tanggal (grid kolom 3)
+						------ Supl_ID = SuplID (grid kolom 11)
+						------ NotaID = NotaID (grid kolom 12)
+						------ Pelunasan = Pelunasan (grid kolom 5)
+						------ Pelunasan1 = Pelunasan1 (grid kolom 7)
+					----- Menyimpan UserActivityLog
+						------ UserID = UserIDLog
+						------ Tanggal = Tanggal Sekarang
+						------ Menu = _9_13_Pelunasan_Invoice_Rp1_Form
+						------ LogID = Add
+						------ Description = TxtNomor
+						------ TableName = Trx_Terima
+						------ FlagAction = 0
 		-- MessageBox : "Data berhasil diinput !!!"
 		-- Memanggil AllData
 6. CloseButton
