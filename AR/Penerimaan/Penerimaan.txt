@@ -329,5 +329,154 @@
 1. Load,
 	- StartUp()
 
-2. DataGridView1
+2. DataGridView1,
+	- Jika Tombol F8 dipencet,
+		-- Jika UserIDLog = "aichen" atau "tamara" atau "melinda"
+			--- rowindex = DataGridView1.CurrentCell.RowIndex
+                With DataGridView1
+                    If .RowCount > 0 Then
+                        Dim hasil As String
+                        Dim nData As String()
+                        nData = New String(1) {}
+
+                        nData(0) = CStr(DataGridView1.Item(0, rowindex).Value)
+                        nData(1) = CStr(DataGridView1.Item(4, rowindex).Value)
+
+                        Dim ni As String = CStr(DataGridView1.Item(0, rowindex).Value)
+                        Dim nParam As String() = Nothing
+                        nParam = New String(50) {}
+                        nParam(0) = "Trx_TerimaDetail"
+                        nParam(1) = "TerimaID = '" & ni & "' and NotaID = '" & CStr(DataGridView1.Item(4, rowindex).Value) & "' "
+                        nParam(2) = ""
+                        nParam(3) = ""
+                        nParam(4) = ""
+                        nParam(5) = ""
+                        nParam(6) = ""
+                        nParam(7) = ""
+                        nParam(8) = ""
+                        nParam(9) = ""
+                        nParam(10) = ""
+                        nParam(11) = "1"
+
+                        If IsInternetAvailable() = False Then
+                            MessageBox.Show("Jaringan Putus !!!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Exit Sub
+                        End If
+                        Try
+                            If ds.Tables.Count > 0 Then
+                                ds.Tables(0).Rows.Clear()
+                            End If
+
+                            hasil = AksesLinkCloud.Trx_TerimaDetailDelete(Kunci, nData)
+                            LogactivityRev(Me.Name, "DELETE", ni, "Trx_TerimaDetail", "0", nParam)
+
+                        Catch ex As Exception
+                            MessageBox.Show(ex.ToString, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        End Try
+                    End If
+                End With
+            --- memanggil AllData()
+		-- Selain itu,
+			--- MessageBox Error : "Anda tidak punya akses !!!"
+	
+3. Button CloseButton (hidden button)
+	- menutup Form
+
+============ DETAIL ============ 
+===== Form Penerimaan AR - DN =====
+
+1. Load,
+	- TxtSisa.Text = CStr((hasil3))
+	- TxtSisaIDR.Text = CStr((hasil3))
+	- TxtValas.Text = CStr((hasil3))
+
+2. Label label6,
+	- untuk menampilkan Nomor
+
+3. DateTimePicker1
+4. ComboBox CboIndex
+5. TextBox TxtJumlahPenerimaan
+	- Jika TxtJumlahPenerimaan.Text <> "", maka
+        -- TxtJumlahPenerimaan.Text = FilterAngka(TxtJumlahPenerimaan)
+        -- TxtJumlahPenerimaan.Select(TxtJumlahPenerimaan.Text.Length, 0)
+6. TextBox TxtJumlahPenerimaanIDR
+	- Jika TxtJumlahPenerimaanIDR.Text <> "", maka
+        -- TxtJumlahPenerimaanIDR.Text = FilterAngka(TxtJumlahPenerimaanIDR)
+        -- TxtJumlahPenerimaanIDR.Select(TxtJumlahPenerimaanIDR.Text.Length, 0)
+7. TextBox TxtSisa,
+	- Jika TxtSisa.Text <> "", maka
+        -- TxtSisa.Text = FilterAngka(TxtSisa)
+        -- TxtSisa.Select(TxtSisa.Text.Length, 0)
+8. TextBox TxtSisaIDR
+	- Jika TxtSisaIDR.Text <> "", maka
+        -- TxtSisaIDR.Text = FilterAngka(TxtSisaIDR)
+        -- TxtSisaIDR.Select(TxtSisaIDR.Text.Length, 0)
+9. TextBox TxtValas,
+	- Jika TxtValas.Text <> "" Then
+        -- TxtValas.Text = FilterAngka(TxtValas)
+        -- TxtValas.Select(TxtValas.Text.Length, 0)
+		-- Jika TxtKurs.Text <> "", maka
+			-- Jika TxtKurs.Text <> "", maka
+				--- Jika TxtKurs.Text = "1", maka
+					---- TxtRp.Text = TxtValas.Text
+				--- Selain itu,
+					---- hasil2 = CDbl(CSng(TxtValas.Text) * CSng(TxtKurs.Text))
+					---- TxtRp.Text = hasil2.ToString
+10. TextBox TxtMataUang
+11. TextBox TxtKurs
+12. TextBox TxtRp
+13. TextBox TxtKeterangan
+14. Button SaveButton,
+	- Jika TxtValas.Text = "", maka
+		-- MessageBox Error : "Jumlah yang Akan Dilunaskan harus Diisi !!!"
+		-- Cursor focus ke TxtValas
+	- Jika TxtKurs.Text = "", maka
+		-- MessageBox Error : "Kurs Harus Diisi !!!"
+		-- Cursor focus ke TxtKurs
+	- Jika TxtRp.Text = "", maka
+		-- MessageBox Error : "Jumlah yang Akan Dilunaskan harus Diisi !!!"
+		-- Cursor focus ke TxtRp
+	- Jika CDbl(TxtRp.Text) > CDbl(TxtSisaIDR), maka
+		-- MessageBox Error : "Jumlah yang Akan Dilunaskan Lebih Besar Dari Sisa Penerimaan !!!" 
+		-- Cursor focus ke TxtRp
+	- Dim hasil As String
+        Dim nData As String()
+        Dim TxtNomor As String
+        nData = New String(6) {}
+
+        nData(0) = Label6.Text
+        nData(1) = CStr(DateTimePicker1.Value)
+        nData(2) = "CST0002214"
+        nData(3) = TxtKeterangan.Text
+        nData(4) = TxtValas.Text
+        nData(5) = TxtRp.Text
+        nData(6) = CboIndex.Text
+
+        TxtNomor = Label6.Text & "-" & "DN"
+
+        Dim HasilLog As String
+        Dim nDataLog As String()
+        nDataLog = New String(6) {}
+        nDataLog(0) = UserIDLog
+        nDataLog(1) = Now.ToString("dd MMM yyyy HH:mm:ss")
+        nDataLog(2) = Me.Name
+        nDataLog(3) = "Add"
+        nDataLog(4) = TxtNomor
+        nDataLog(5) = "Trx_TerimaDetail"
+        nDataLog(6) = "0"
+        Try
+            If TestWebSerciveViaBiznet = True Then
+                hasil = AksesLinkCloud.Trx_TerimaDetailInsert(Kunci, nData)
+                HasilLog = AksesLinkCloud.UserActivityLog(Kunci, nDataLog)
+            Else
+                hasil = AksesLinkCloud.Trx_TerimaDetailInsert(Kunci, nData)
+                HasilLog = AksesLinkCloud.UserActivityLog(Kunci, nDataLog)
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+        Me.Close()
+15. Button CloseButton
+	- Menutup Form
+16. Button EditButton <<< TIDAK ADA FUNGSI!!!!
 
