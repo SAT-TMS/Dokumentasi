@@ -15,8 +15,29 @@ Nota Tagihan Wire Rod (Header)
 5. Key Press F2
 	- Function DataGridView1.DoubleClick
 		-- Memanggil FrmNota
-			--- 
+			--- NilaiUpdate = 2
+			--- NilaiPrintNota = PrintNota (grid kolom 12)
+			--- TxtNotaID = NotaTagihanID (grid kolom 0)
+			--- TxtNoNota NomorNota (grid kolom 1)
+			--- TxtNamaSupl = Supl_Name (grid kolom 2)
+			--- TxtUM = UMSumDPP (grid kolom 5)
+			--- NKontrak = KontrakID (grid kolom 11)
+			--- TxtNoKontrak = NomorKontrak (grid kolom 3)
+			--- DateTimePicker2 = TanggalNota (grid kolom 4)
+		-- Memanggil AllData
 6. Key Press F3
+	- Function VoidButton
+		-- Jika data dalam grid > 0
+			--- Menyimpan data dalam Database Service Trx_NotaUpdateVoid
+				---- NotaTagihanID = NotaTagihanID (grid kolom 0)
+				---- StatusNota = B
+			--- Menyimpan LogActivity
+				---- FrmNotaList
+				---- Status = Void
+				---- NotaTagihanID
+				---- Mengubah Database Trx_Nota
+				---- FlagAction = 0
+			--- Memanggil AllData
 7. Key Press F4
 8. Key Press F5
 	- Memanggil AllData
