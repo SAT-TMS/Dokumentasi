@@ -1,0 +1,29 @@
+Nota Tagihan Wire Rod (Header)
+1. Form Load
+	- Memanggil AllData
+		-- Memanggil data dari Datatabase Service MSNTHeaderList
+2. TxtNotaID
+	- Memanggil AllData
+3. DataGridView1
+4. Key Press F1
+	- Function AddButton
+		-- Memanggil FrmNota
+			--- TxtNotaID = MaxIDNota
+			--- NilaiUpdate = 1
+			--- TxtNoNota = " " (kosong)
+		-- Memanggil AllData
+5. Key Press F2
+	- Function DataGridView1.DoubleClick
+		-- Memanggil FrmNota
+			--- 
+6. Key Press F3
+7. Key Press F4
+8. Key Press F5
+	- Memanggil AllData
+9. Key Press F6
+	- Memanggil FrmNotaReport
+		-- Variabel report = notatagihan
+10. Key Press ESC
+	- Keluar dari FrmNotaList
+
+Nota Tagihan Wire Rod (Detail)
