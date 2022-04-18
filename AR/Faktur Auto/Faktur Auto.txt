@@ -1,0 +1,33 @@
+============ HEADER ============ 
+
+1. Load
+	- ComboBox1.SelectedIndex = 0
+	- ComboBox2.SelectedIndex = 0
+	- memanggil fungsi StartUp()
+	- Jika ComboBox1.SelectedIndex = 0  atau ComboBox1.SelectedIndex = 1, maka
+		-- DateTimePicker2.Enabled = False
+	- Selain itu,
+		-- DateTimePicker2.Enabled = True
+	
+	- ComboBox3.SelectedIndex = 1
+	
+	- Jika ComboBox1.SelectedIndex = 3, maka
+		-- TextBox1.Show()
+		-- TextBox2.Show()
+	- Selain itu,
+		-- TextBox1.Hide()
+		-- TextBox2.Hide()
+		
+2. ComboBox1
+3. ComboBox2
+4. Button3 
+5. DateTimePicker1
+6. DateTimePicker2
+7. DateTimePicker3
+8. ComboBox3
+9. RefreshButton
+10. Button1
+11. Button2
+12. DataGridView3
+13. TabControl1,
+	- 
