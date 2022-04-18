@@ -121,6 +121,7 @@ Nota Tagihan Wire Rod (Detail)
 	- ProductID
 9. TxtDPPRp
 10. TxtPPN
+	-
 11. TxtStatusPPN
 12. TxtPPH22
 13. TxtStatusPPH22
