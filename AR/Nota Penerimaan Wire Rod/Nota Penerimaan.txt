@@ -93,11 +93,11 @@ Nota Tagihan Wire Rod (Detail)
 1. Form Load
 	- Memanggil AllData
 		-- Memanggil data dari Database Service MSNTDeatilList
-2. TxtNotaID
+2. TxtNotaID, ID Nota
 3. DateTimePicker2
-4. TxtNoNota
-5. TxtNoKontrak
-6. TxtNamaSupl
+4. TxtNoNota, Nomor Nota
+5. TxtNoKontrak, Nomor Kontrak
+6. TxtNamaSupl, Nama Supplier
 7. TxtUM
 	- Jika TxtUM tidak kosong
 		-- Mengatur Format Penulisan TxtUM
@@ -119,20 +119,119 @@ Nota Tagihan Wire Rod (Detail)
 	- StatusPPH22
 	- StatusPPH23
 	- ProductID
-9. TxtDPPRp
-10. TxtPPN
-	-
-11. TxtStatusPPN
-12. TxtPPH22
-13. TxtStatusPPH22
-14. TxtPPH23
-15. TxtStatusPPH23
-16. TxtTotal
+9. TxtDPPRp, DPP dalam Rupiah
+10. TxtPPN, PPN
+11. TxtStatusPPN, Status PPN
+12. TxtPPH22, PPH22
+13. TxtStatusPPH22, Status PPH22
+14. TxtPPH23, PPH23
+15. TxtStatusPPH23, Status PPH23
+16. TxtTotal, Total
 17. Key Press F1
+	- Jika NilaiUpdate = 1
+		-- Memanggil Function SaveHeaderAndDetail
+			--- Jika data dalam grid > 0 baris
+				---- Jika ada data ([Object]) yang belum diisi
+					----- MessageBox : [Onject] harus diisi !!!"
+				---- notaid = Get NotaID dari Fungsi_Nota_Max
+				---- Get data dari Trx_NotaInsert
+					----- NotaTagihanID = notaid
+					----- NomorNota = TxtNoNota
+					----- KontrakID = NKontrak
+					----- TanggalNota = DateTimePicker2
+					----- UM = TxtUM
+					----- SumDPP = TxtDPPRp
+					----- SumPPN = TxtPPN
+					----- SumPPH22 = TxtPPH22
+					----- SumPPH23 = TxtPPH23
+					----- StatusNota = A
+					----- PrintNota = 0
+				---- Menyimpan ActivityLog
+					----- FrmNota
+					----- Status = Insert
+					----- NotaTagihanID
+					----- Mengubah Trx_Nota
+					----- FlagAction = 0
+				---- Jika NotaTagihanID != TxtNotaID
+					----- MessageBox : No yang akan disimpan berubah menjadi = (NotaTagihanID)
+				---- Get data dari Trx_NotaDetailInsert
+					----- NotaTagihanID = notaid
+					----- SuratJalanID = NoSJ (grid kolom 0)
+					----- ProductID = ProductID (grid kolom 15)
+					----- Qty1 = Qty1 (grid kolom 3)
+					----- Satuan1 = Satuan1 (grid kolom 4)
+					----- Qty2 = Qty2 (grid kolom 5)
+					----- Satuan2 = Satuan2 (grid kolom 6)
+					----- Harga = Harga (grid kolom 7)
+					----- NoMobil = NoMobil (grid kolom 1)
+					----- PPN = PPN (grid kolom 8)
+					----- PPNStatus = StatusPPN (grid kolom 12)
+					----- PPH22 = PPH22 (grid kolom 9)
+					----- PPH22Status = StatusPPH22 (grid kolom 13)
+					----- PPH23 = PPH23 (grid kolom 10)
+					----- PPH23Status = StatusPPH23 (grid kolom 14)
+				---- Menyimpan ActivityLog
+					----- FrmNota
+					----- Status = Insert
+					----- NotaTagihanID
+					----- Mengubah Trx_NotaDetail
+					----- FlagAction = 0
+			--- Jika data dalam grid = 0 baris
+				---- MessageBox : "Maaf tidak ada detail Surat Jalan !!!"
+				---- Keluar dari FrmNota
+	- Jika NilaiUpdate != 1
+		-- Memanggil Function SaveHeaderAndDetailEdit
+			--- Jika data dalam grid > 0 baris
+				---- Jika ada data ([Object]) yang belum diisi
+					----- MessageBox : [Onject] harus diisi !!!"
+				---- notaid = Get NotaID dari Fungsi_Nota_Max
+				---- Get data dari Sls_Trx_Nota
+					----- NotaTagihanID = notaid
+					----- NomorNota = TxtNoNota
+					----- KontrakID = NKontrak
+					----- TanggalNota = DateTimePicker2
+					----- UM = TxtUM
+					----- SumDPP = TxtDPPRp
+					----- SumPPN = TxtPPN
+					----- SumPPH22 = TxtPPH22
+					----- SumPPH23 = TxtPPH23
+					----- StatusNota = A
+					----- PrintNota = 0
+					----- Status = update
+				---- Menyimpan ActivityLog
+					----- FrmNota
+					----- Status = Edit
+					----- NotaTagihanID
+					----- Mengubah Trx_Nota
+					----- FlagAction = 0
+			--- Jika data dalam grid = 0 baris
+				---- MessageBox : "Maaf tidak ada detail Surat Jalan !!!"
+				---- Keluar dari FrmNota
 18. Key Press F2
+	- Tidak melakukan perintah apapun
 19. Key Press F3
+	- Tidak melakukan perintah apapun
 20. Key Press F4
+	- Tidak melakukan perintah apapun
 21. Key Press F5
+	- Tidak melakukan perintah apapun
 22. Key Press F6
+	- Memanggil SearchingForm Kontrak
 23. Key Press F7
+	- Memanggil SearchingForm SuratJalan
 24. Key Press Delete
+	- Function BtnDeleteDetail
+		-- Jika data dalam grid > 0
+			--- Jika NilaiUpdate = 1
+				---- Clear semua baris
+			--- Jika NilaiUpdate != 1
+				---- Memanggil data dari Database Service Trx_NotaDetailDelete
+					----- NotaTagihanID = TxtNotaID 
+					----- SuratJalanID = NoSJ (grid kolom 0)
+				---- Menyimpan LogActivity
+					----- FrmNota
+					----- Status = Delete
+					----- NotaTagihanID
+					----- Mengubah Database Trx_NotaDetail
+					----- FlagAction = 0
+				---- Memanggil AllData
