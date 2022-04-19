@@ -1,0 +1,64 @@
+LPM (Header)
+1. Form Load (A101LPMReportForm)
+	- Memanggil AllData
+		-- Jika LocationID = L10001
+			--- Get data dari Database Service Report_LPM_HO
+		-- Jika LocationID != L10001
+			--- Get data dari Database Service Report_LPM
+2. DateTimePicker1, Tanggal pembuatan LPM
+3. DateTimePicker2, Tanggal akhir LPM
+4. CboLokasi
+	- Jika LocationID = L10001
+		-- CboLokasi ditampilkan
+		-- CboLokasi = LAIN-LAIN
+	- Jika LocationID != L10001
+		-- Cbo tidak ditampilkan
+5. Tab Detail
+	- DataGridView1
+		-- LocationName
+		-- Ins
+		-- NoMobil
+		-- NomorPO
+		-- PickSlipID
+		-- CustomerCetak
+		-- SuratJalanID
+		-- Description
+		-- WPS
+		-- Quantity1
+		-- Satuan1
+		-- Quantity2
+		-- Satuan2
+		-- Tarra
+		-- Brutto
+		-- Natto
+		-- Delta
+		-- NamaFI
+		-- NoSJSupplier
+		-- NoTimbang
+		-- Mark
+		-- Ekspedisi
+		-- ProjectName
+6. Tab RangkumanPerLokasi
+	- DataGridView2
+		-- LocationName
+		-- Description
+		-- Quantity1
+		-- Quantity2
+		-- Netto
+		-- Sort
+7. RefreshButton
+	- Menyimpan LogActivity
+	- Jika LocationID = L10001
+		-- Jika CboLokasi = LAIN-LAIN
+			--- Memanggil AllData
+			--- Memanggil AllDataPerLokasi
+				---- Memanggil data dari Database Service Report_LPM_HO_Summary
+		-- Jika CboLokasi != LAIN-LAIN
+			--- Memanggil AllDataCbo
+				---- Memanggil data dari Database Service Report_LPM
+			--- Memanggil AllDataPerLokasiCbo
+				---- Memanggil data dari Database Service Report_LPM_Summary
+	- Jika LocationID != L10001
+		-- Memanggil AllData
+		-- Memanggil AllDataPerLokasi
+8. ExportToExcelButton
