@@ -62,3 +62,58 @@ LPM (Header)
 		-- Memanggil AllData
 		-- Memanggil AllDataPerLokasi
 8. ExportToExcelButton
+	- Function Save_To_MS_Excel_CustomeByRowSheet
+		-- Deklarasi KolomPertama = 2
+		-- Deklarasi BarisPertama = Mulai baris ke-6
+		-- rowTotal = DataGridView-1
+		-- ExcelWorkSheet
+			--- A1 width = 3
+			--- Cell 1,2 = Header_Nama_Perusahaan
+			--- Cell 2,2 = Header_Judul_Laporan
+			--- Range = B1 s/d B2
+			--- Range = Font Tulisan Bold
+			--- Cell 3,2 = Periode
+			--- Cell 4,2 = ExportDate
+			--- Range = B3 s/d B4
+			--- Range = Font Tulisan Italic
+			--- Lakukan pengulangan dari iC = 0 sampai colsTotal
+				---- Range ((BarisPertama) s/d (iC + 2)) = DataGridView kolom iC
+			--- Lakukan pengulangan dari I = 0
+				---- Lakukan pengulangan dari j = 0
+					----- Range ((I + (BarisPertama + 1)) s/d (j + KolomPertama)) = DataGridView kolom I, cell j
+			--- AutoFit semua kolom dalam cell
+			--- Range = (I + (BarisPertama + 1)) s/d (j + KolomPertama)
+		-- Ranges = ExcelWorkSheet.Range(A1 s/d KolomExcel(kolom dalam DataGridView + 1) & (baris dalam DataGridView + BarisPertama)
+            	-- Font = "Calibri"
+            	-- Font Size = 10
+            	-- Ranges = ExcelWorkSheet.Range(B1 s/d B2)
+            	-- Font Size = 11
+		-- Ranges = excelWorksheet.Range("A1", KolomExcel(CInt(nDgv.ColumnCount + 1)) & CStr(nDgv.RowCount + BarisPertama))
+            	-- Ranges.Font.Name = "Calibri"
+            	-- Ranges.Font.Size = 10
+            	-- Ranges = excelWorksheet.Range("B1", "B2")
+            	-- Ranges.Font.Size = 11
+            	-- Ranges = excelWorksheet.Range("B" & CStr(BarisPertama), KolomExcel(CInt(nDgv.ColumnCount + 1)) & CStr(BarisPertama))
+            	-- Ranges.Font.Bold = True
+
+            	-- Ranges = excelWorksheet.Range("B" & CStr(BarisPertama), KolomExcel(CInt(nDgv.ColumnCount + 1)) & CStr(BarisPertama))
+            	-- Ranges.Borders(Excel.XlBordersIndex.xlEdgeBottom).Color = 0
+            	-- Ranges.Borders(Excel.XlBordersIndex.xlEdgeBottom).LineStyle = Excel.XlLineStyle.xlDot
+            	-- Ranges.Borders(Excel.XlBordersIndex.xlEdgeBottom).Weight = 2
+
+            	-- Ranges = excelWorksheet.Range("B" & CStr(BarisPertama), KolomExcel(CInt(nDgv.ColumnCount + 1)) & CStr(nDgv.RowCount + (BarisPertama)))
+            	-- Ranges.Borders(Excel.XlBordersIndex.xlEdgeTop).Color = 0
+            	-- Ranges.Borders(Excel.XlBordersIndex.xlEdgeTop).LineStyle = Excel.XlLineStyle.xlDot
+            	-- Ranges.Borders(Excel.XlBordersIndex.xlEdgeTop).Weight = 2
+            	-- Ranges.Borders(Excel.XlBordersIndex.xlEdgeBottom).Color = 0
+            	-- Ranges.Borders(Excel.XlBordersIndex.xlEdgeBottom).LineStyle = Excel.XlLineStyle.xlDot
+            	-- Ranges.Borders(Excel.XlBordersIndex.xlEdgeBottom).Weight = 2
+            	-- Ranges.Borders(Excel.XlBordersIndex.xlEdgeRight).Color = 0
+            	-- Ranges.Borders(Excel.XlBordersIndex.xlEdgeRight).LineStyle = Excel.XlLineStyle.xlDot
+            	-- Ranges.Borders(Excel.XlBordersIndex.xlEdgeRight).Weight = 2
+            	-- Ranges.Borders(Excel.XlBordersIndex.xlEdgeLeft).Color = 0
+            	-- Ranges.Borders(Excel.XlBordersIndex.xlEdgeLeft).LineStyle = Excel.XlLineStyle.xlDot
+            	-- Ranges.Borders(Excel.XlBordersIndex.xlEdgeLeft).Weight = 2
+            	-- Ranges.Borders(Excel.XlBordersIndex.xlInsideVertical).Color = 0
+            	-- Ranges.Borders(Excel.XlBordersIndex.xlInsideVertical).LineStyle = Excel.XlLineStyle.xlDot
+            	-- Ranges.Borders(Excel.XlBordersIndex.xlInsideVertical).Weight = 2
