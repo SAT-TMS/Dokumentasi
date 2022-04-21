@@ -18,16 +18,442 @@
 		-- TextBox1.Hide()
 		-- TextBox2.Hide()
 		
-2. ComboBox1
+2. ComboBox1,
+	- Jika ComboBox1.SelectedIndex = 0 atau ComboBox1.SelectedIndex = 1
+		-- DateTimePicker2.Enabled = False
+		-- DateTimePicker1.Enabled = True
+		
+	- Jika ComboBox1.SelectedIndex = 2
+		-- DateTimePicker2.Enabled = True
+		-- DateTimePicker1.Enabled = False
+		
+	- Jika ComboBox1.SelectedIndex = 3
+		-- TextBox1.Show()
+		-- TextBox2.Show()
+		-- DateTimePicker2.Enabled = True
+		-- DateTimePicker1.Enabled = True
+		-- TextBox4.Hide()
+		-- TextBox3.Hide()
+		
+	- Jika ComboBox1.SelectedIndex = 4
+		-- Jika TabControl1.SelectedIndex = 0, maka
+			--- TextBox4.Hide()
+			--- TextBox3.Hide()
+			--- TextBox1.Hide()
+			--- TextBox2.Hide()
+	
+		-- Jika TabControl1.SelectedIndex = 1, maka
+			--- TextBox4.Show()
+			--- TextBox3.Show()
+			--- TextBox1.Hide()
+			--- TextBox2.Hide()
+			
+		-- DateTimePicker2.Enabled = True
+		-- DateTimePicker1.Enabled = True 
+	
+	- Jika ComboBox1.SelectedIndex = 6
+		-- TextBox5.Show()
+		-- TextBox6.Show()
+		-- TextBox1.Hide()
+		-- TextBox2.Hide()
+		-- TextBox4.Hide()
+		-- TextBox3.Hide()
+		-- DateTimePicker1.Enabled = True
+		-- DateTimePicker2.Enabled = True
+	- Selain itu,
+		-- TextBox5.Hide()
+		-- TextBox6.Hide()
+		
+	- Jika ComboBox1.SelectedIndex = 0 atau ComboBox1.SelectedIndex = 1 atau ComboBox1.SelectedIndex = 2
+		-- TextBox1.Hide()
+		-- TextBox2.Hide()
+		-- TextBox4.Hide()
+		-- TextBox3.Hide()
+	- Selain itu, Jika ComboBox3.SelectedIndex = 3
+		-- TextBox1.Show()
+		-- TextBox2.Show()
+		-- TextBox4.Hide()
+		-- TextBox3.Hide()
+	- Selain itu, 
+		-- TextBox1.Hide()
+		-- TextBox2.Hide()
+		
 3. ComboBox2
 4. Button3 
+	- membuka C003_Form
 5. DateTimePicker1
 6. DateTimePicker2
 7. DateTimePicker3
 8. ComboBox3
+	- AllData()
+    - AllData1()
+    - AllDataKontrak()
+    - AllDataNextNoNota()
 9. RefreshButton
-10. Button1
+	- AllData()
+    - AllData1()
+    - AllDataKontrak()
+    - AllDataNextNoNota()
+10. Button1,
+	- nData(0) = ComboBox1.TextBox1
+	- Jika ComboBox1.SelectedIndex = 3, maka
+		-- nData(0) = "Invoice Per Bulan Per PO"
+	- Jika ComboBox1.SelectedIndex = 4, maka
+		-- nData(0) = ComboBox1.Text 
+	- Jika ComboBox2.SelectedIndex = 0, maka
+		-- nData(1) = "%"
+	- Selain itu,
+		-- nData(1) = ComboBox2.Text
+	- nData(2) = DateTimePicker1.Value.ToString("dd MMM yyyy")
+    - nData(3) = DateTimePicker2.Value.ToString("dd MMM yyyy")
+	
+	- Jika Me.TextBox1.Text <> "", maka
+		-- nData(4) = "%" & Me.TextBox1.Text & "%"
+	- Selain itu,
+		-- nData(4) = "%"
+		
+	- Jika Me.TextBox2.Text <> "", maka
+		-- nData(5) = "%" & Me.TextBox2.Text & "%"
+	- Selain itu,
+		-- nData(5) = "%"
+	
+	============  FUNGSI SJ   ============
+	
+	- Jika ComboBox1.SelectedIndex = 0, maka
+		-- Try
+			--- Jika ds.Tables.Count > 0, maka
+				---- ds.Tables(0).Rows.Clear()
+			--- Jika Me.ComboBox3.SelectedIndex = 0, maka
+				---- ds = AksesLinkCloud.View_Report_Master_LPM_For_Faktur_Group_By_Invoice_Per_SJ(Kunci, nData)
+			--- Selain itu,
+				---- ds = AksesLinkCloud.View_Report_Master_LPM_For_Faktur_Group_By_Invoice_Per_SJ_Live(Kunci, nData)
+		
+		-- Jika ds.Tables.Count > 0, maka
+			--- Jika ds.Tables(0).Rows.Count > 0, maka
+				----  For i As Integer = 0 To ds.Tables(0).Rows.Count - 1
+                        nData_Insert(0) = "%"
+                        nData_Insert(1) = ds.Tables(0).Rows(i).Item(0).ToString
+                        nData_Insert(2) = CDate(ds.Tables(0).Rows(i).Item(1)).ToString("dd MMM yyyy")
+                        nData_Insert(3) = CDate(ds.Tables(0).Rows(i).Item(2)).ToString("dd MMM yyyy")
+                        nData_Insert(4) = UserIDLog
+                        nData_Insert(5) = Me.DateTimePicker3.Value.ToString("dd MMM yyyy")
+
+                        Try
+                            If Me.ComboBox3.SelectedIndex = 0 Then
+                                hasil = AksesLinkCloud.Insert_Faktur_Auto_By_Invoice_Per_SJ(Kunci, nData_Insert)
+                            Else
+                                hasil = AksesLinkCloud.Insert_Faktur_Auto_By_Invoice_Per_SJ_Live(Kunci, nData_Insert)
+                            End If
+
+                        Catch ex As Exception
+                            MessageBox.Show(ex.ToString, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        End Try
+                    Next
+                    MessageBox.Show("selesai")
+                    RefreshButton.PerformClick()
+					
+	============  FUNGSI PO   ============
+	
+	- Jika ComboBox1.SelectedIndex = 1, maka
+		-- Try
+			--- Jika ds.Tables.Count > 0, maka
+				---- ds.Tables(0).Rows.Clear()
+			--- Jika Me.ComboBox3.SelectedIndex = 0, maka
+				---- ds = AksesLinkCloud.View_Report_Master_LPM_For_Faktur_Group_By_Invoice_Per_PO(Kunci, nData)
+			--- Selain itu,
+				---- ds = AksesLinkCloud.View_Report_Master_LPM_For_Faktur_Group_By_Invoice_Per_PO_Live(Kunci, nData)
+				
+		-- Jika ds.Tables.Count > 0, maka
+			--- Jika ds.Tables(0).Rows.Count > 0, maka
+				----  For i As Integer = 0 To ds.Tables(0).Rows.Count - 1
+                        nData_Insert(0) = "%"
+                        nData_Insert(1) = ds.Tables(0).Rows(i).Item(0).ToString
+                        nData_Insert(2) = CDate(ds.Tables(0).Rows(i).Item(2)).ToString("dd MMM yyyy")
+                        nData_Insert(3) = CDate(ds.Tables(0).Rows(i).Item(3)).ToString("dd MMM yyyy")
+						nData_Insert(4) = "%" 'ds.Tables(0).Rows(i).Item(4).ToString'
+                        nData_Insert(5) = UserIDLog
+                        nData_Insert(6) = Me.DateTimePicker3.Value.ToString("dd MMM yyyy")
+
+                        Try
+                            If Me.ComboBox3.SelectedIndex = 0 Then
+                                hasil = AksesLinkCloud.Insert_Faktur_Auto_By_Invoice_Per_PO(Kunci, nData_Insert)
+                            Else
+                                hasil = AksesLinkCloud.Insert_Faktur_Auto_By_Invoice_Per_PO_Live(Kunci, nData_Insert)
+                            End If
+
+                        Catch ex As Exception
+                            MessageBox.Show(ex.ToString, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        End Try
+                    Next
+                    MessageBox.Show("selesai")
+                    RefreshButton.PerformClick()
+					
+	============  FUNGSI PO Per Bulan   ============
+	- Jika ComboBox1.SelectedIndex = 2, maka
+		-- Try
+			--- Jika ds.Tables.Count > 0, maka
+				---- ds.Tables(0).Rows.Clear()
+			--- Jika Me.ComboBox3.SelectedIndex = 0, maka
+				---- ds = AksesLinkCloud.View_Report_Master_LPM_For_Faktur_Group_By_Invoice_Per_PO_Per_Bulan(Kunci, nData)
+			--- Selain itu,
+				---- ds = AksesLinkCloud.View_Report_Master_LPM_For_Faktur_Group_By_Invoice_Per_PO_Per_Bulan_Live(Kunci, nData)
+		
+		-- Jika ds.Tables.Count > 0, maka
+			--- Jika ds.Tables(0).Rows.Count > 0, maka
+				----  For i As Integer = 0 To ds.Tables(0).Rows.Count - 1
+                        nData_Insert(0) = "%"
+                        nData_Insert(1) = ds.Tables(0).Rows(i).Item(0).ToString
+                        nData_Insert(2) = CDate(ds.Tables(0).Rows(i).Item(2)).ToString("dd MMM yyyy")
+                        nData_Insert(3) = CDate(ds.Tables(0).Rows(i).Item(3)).ToString("dd MMM yyyy")
+						nData_Insert(4) = "%" 'ds.Tables(0).Rows(i).Item(4).ToString'
+                        nData_Insert(5) = UserIDLog
+                        nData_Insert(6) = Me.DateTimePicker3.Value.ToString("dd MMM yyyy")
+
+                        Try
+                            If Me.ComboBox3.SelectedIndex = 0 Then
+                                hasil = AksesLinkCloud.Insert_Faktur_Auto_By_Invoice_Per_PO_Month(Kunci, nData_Insert)
+                            Else
+                                hasil = AksesLinkCloud.Insert_Faktur_Auto_By_Invoice_Per_PO_Month_Live(Kunci, nData_Insert)
+                            End If
+
+                        Catch ex As Exception
+                            MessageBox.Show(ex.ToString, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        End Try
+                    Next
+                    MessageBox.Show("selesai")
+                    RefreshButton.PerformClick()
+	
+	
+	============  FUNGSI PO Per Bulan By Request   ============
+	
+	- Jika ComboBox1.SelectedIndex = 3, maka
+		-- Try
+			--- Jika Me.TextBox1.Text <> "", maka
+				---- nData(4) = "%" & Me.TextBox1.Text & "%"
+			--- Selain itu,
+				---- nData(4) = "%"
+		
+			--- Jika Me.TextBox2.Text <> "", maka
+				---- nData(5) = "%" & Me.TextBox2.Text & "%"
+			--- Selain itu,
+				---- nData(5) = "%"
+				
+			--- Jika ds.Tables.Count > 0, maka
+				---- ds.Tables(0).Rows.Clear()
+				
+			--- Jika Me.ComboBox3.SelectedIndex = 0, maka
+				---- ds = AksesLinkCloud.View_Report_Master_LPM_For_Faktur_Group_By_Invoice_Per_PO_Per_Bulan_By_Request(Kunci, nData)
+			--- Selain itu,
+				---- ds = AksesLinkCloud.View_Report_Master_LPM_For_Faktur_Group_By_Invoice_Per_PO_Per_Bulan_By_Request_Live(Kunci, nData)
+		
+		
+		-- Jika ds.Tables.Count > 0, maka
+			--- Jika ds.Tables(0).Rows.Count > 0, maka
+				----  For i As Integer = 0 To ds.Tables(0).Rows.Count - 1
+                        nData_Insert(0) = "%"
+                        nData_Insert(1) = ds.Tables(0).Rows(i).Item(0).ToString
+                        nData_Insert(2) = CDate(ds.Tables(0).Rows(i).Item(2)).ToString("dd MMM yyyy")
+                        nData_Insert(3) = CDate(ds.Tables(0).Rows(i).Item(3)).ToString("dd MMM yyyy")
+						nData_Insert(4) = "%" 'ds.Tables(0).Rows(i).Item(4).ToString'
+                        nData_Insert(5) = UserIDLog
+                        nData_Insert(6) = Me.DateTimePicker3.Value.ToString("dd MMM yyyy")
+
+                        Try
+                            If Me.ComboBox3.SelectedIndex = 0 Then
+                                hasil = AksesLinkCloud.Insert_Faktur_Auto_By_Invoice_Per_PO_Month(Kunci, nData_Insert)
+                            Else
+                                hasil = AksesLinkCloud.Insert_Faktur_Auto_By_Invoice_Per_PO_Month_Live(Kunci, nData_Insert)
+                            End If
+
+                        Catch ex As Exception
+                            MessageBox.Show(ex.ToString, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        End Try
+                    Next
+                    MessageBox.Show("selesai")
+                    RefreshButton.PerformClick()
+					
+					
+	============  FUNGSI Per Project   ============
+	
+	- Jika ComboBox1.SelectedIndex = 4, maka
+		-- Try
+			--- Jika Me.TextBox1.Text <> "", maka
+				---- nData(4) = "%" & Me.TextBox1.Text & "%"
+			--- Selain itu,
+				---- nData(4) = "%"
+		
+			--- Jika Me.TextBox2.Text <> "", maka
+				---- nData(5) = "%" & Me.TextBox2.Text & "%"
+			--- Selain itu,
+				---- nData(5) = "%"
+				
+			--- Jika ds.Tables.Count > 0, maka
+				---- ds.Tables(0).Rows.Clear()
+				
+			--- Jika Me.ComboBox3.SelectedIndex = 0, maka
+				---- ds = AksesLinkCloud.View_Report_Master_LPM_For_Faktur_Group_By_Invoice_Per_Project(Kunci, nData)
+			--- Selain itu,
+				---- ds = AksesLinkCloud.View_Report_Master_LPM_For_Faktur_Group_By_Invoice_Per_Project_Live(Kunci, nData)
+				
+		-- Jika ds.Tables.Count > 0, maka
+			--- Jika ds.Tables(0).Rows.Count > 0, maka
+				----  For i As Integer = 0 To ds.Tables(0).Rows.Count - 1
+                        nData_Insert(0) = "%"
+                        nData_Insert(1) = ds.Tables(0).Rows(i).Item(0).ToString
+                        nData_Insert(2) = CDate(ds.Tables(0).Rows(i).Item(2)).ToString("dd MMM yyyy")
+                        nData_Insert(3) = CDate(ds.Tables(0).Rows(i).Item(3)).ToString("dd MMM yyyy")
+						nData_Insert(4) = "%" 'ds.Tables(0).Rows(i).Item(4).ToString'
+                        nData_Insert(5) = UserIDLog
+                        nData_Insert(6) = Me.DateTimePicker3.Value.ToString("dd MMM yyyy")
+
+                        Try
+                            If Me.ComboBox3.SelectedIndex = 0 Then
+                                hasil = AksesLinkCloud.Insert_Faktur_Auto_By_Invoice_Per_Project(Kunci, nData_Insert)
+                            Else
+                                hasil = AksesLinkCloud.Insert_Faktur_Auto_By_Invoice_Per_Project_Live(Kunci, nData_Insert)
+                            End If
+
+                        Catch ex As Exception
+                            MessageBox.Show(ex.ToString, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        End Try
+                    Next
+                    MessageBox.Show("selesai")
+                    RefreshButton.PerformClick()
+					
+	============  FUNGSI Per Kontrak   ============
+	
+	- Jika ComboBox1.SelectedIndex = 5 maka
+		-- Try
+			--- Jika Me.TextBox6.Text <> "", maka
+				---- nData(4) = "%" & Me.TextBox6.Text & "%"
+			--- Selain itu,
+				---- nData(4) = "%"
+		
+			--- Jika Me.TextBox2.Text <> "", maka
+				---- nData(5) = "%" & Me.TextBox5.Text & "%"
+			--- Selain itu,
+				---- nData(5) = "%"
+				
+			--- Jika ds.Tables.Count > 0, maka
+				---- ds.Tables(0).Rows.Clear()
+				
+			--- Jika Me.ComboBox3.SelectedIndex = 0, maka
+				---- ds = AksesLinkCloud.View_Report_Master_LPM_For_Faktur_Group_By_Invoice_Per_Kontrak(Kunci, nData)
+			--- Selain itu,
+				---- ds = AksesLinkCloud.View_Report_Master_LPM_For_Faktur_Group_By_Invoice_Per_Kontrak_Live(Kunci, nData)
+	
+		-- Jika ds.Tables.Count > 0, maka
+			--- Jika ds.Tables(0).Rows.Count > 0, maka
+				----  For i As Integer = 0 To ds.Tables(0).Rows.Count - 1
+                        nData_Insert(0) = "%"
+                        nData_Insert(1) = ds.Tables(0).Rows(i).Item(0).ToString
+                        nData_Insert(2) = CDate(ds.Tables(0).Rows(i).Item(2)).ToString("dd MMM yyyy")
+                        nData_Insert(3) = CDate(ds.Tables(0).Rows(i).Item(3)).ToString("dd MMM yyyy")
+						nData_Insert(4) = "%" 'ds.Tables(0).Rows(i).Item(4).ToString'
+                        nData_Insert(5) = UserIDLog
+                        nData_Insert(6) = Me.DateTimePicker3.Value.ToString("dd MMM yyyy")
+
+                        Try
+                            If Me.ComboBox3.SelectedIndex = 0 Then
+                                hasil = AksesLinkCloud.Insert_Faktur_Auto_By_Invoice_Per_Kontrak(Kunci, nData_Insert)
+                            Else
+                                hasil = AksesLinkCloud.Insert_Faktur_Auto_By_Invoice_Per_Kontrak_Live(Kunci, nData_Insert)
+                            End If
+
+                        Catch ex As Exception
+                            MessageBox.Show(ex.ToString, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        End Try
+                    Next
+                    MessageBox.Show("selesai")
+                    RefreshButton.PerformClick()
+					
+		============  FUNGSI Per Kontrak by Request   ============
+					
+	- Jika ComboBox1.SelectedIndex = 5 maka
+		-- Try
+			--- Jika Me.TextBox6.Text <> "", maka
+				---- nData(4) = "%" & Me.TextBox6.Text & "%"
+			--- Selain itu,
+				---- nData(4) = "%"
+		
+			--- Jika Me.TextBox2.Text <> "", maka
+				---- nData(5) = "%" & Me.TextBox5.Text & "%"
+			--- Selain itu,
+				---- nData(5) = "%"
+				
+			--- Jika ds.Tables.Count > 0, maka
+				---- ds.Tables(0).Rows.Clear()
+				
+			--- Jika Me.ComboBox3.SelectedIndex = 0, maka
+				---- ds = AksesLinkCloud.View_Report_Master_LPM_For_Faktur_Group_By_Invoice_Per_Kontrak(Kunci, nData)
+			--- Selain itu,
+				---- ds = AksesLinkCloud.View_Report_Master_LPM_For_Faktur_Group_By_Invoice_Per_Kontrak_Live(Kunci, nData)
+		
+		
+		-- Jika ds.Tables.Count > 0, maka
+			--- Jika ds.Tables(0).Rows.Count > 0, maka
+				----  For i As Integer = 0 To ds.Tables(0).Rows.Count - 1
+                        nData_Insert(0) = "%"
+                        nData_Insert(1) = ds.Tables(0).Rows(i).Item(0).ToString
+                        nData_Insert(2) = CDate(ds.Tables(0).Rows(i).Item(2)).ToString("dd MMM yyyy")
+                        nData_Insert(3) = CDate(ds.Tables(0).Rows(i).Item(3)).ToString("dd MMM yyyy")
+						nData_Insert(4) = "%" 'ds.Tables(0).Rows(i).Item(4).ToString'
+                        nData_Insert(5) = UserIDLog
+                        nData_Insert(6) = Me.DateTimePicker3.Value.ToString("dd MMM yyyy")
+
+                        Try
+                            If Me.ComboBox3.SelectedIndex = 0 Then
+                                hasil = AksesLinkCloud.Insert_Faktur_Auto_By_Invoice_Per_Kontrak(Kunci, nData_Insert)
+                            Else
+                                hasil = AksesLinkCloud.Insert_Faktur_Auto_By_Invoice_Per_Kontrak_Live(Kunci, nData_Insert)
+                            End If
+
+                        Catch ex As Exception
+                            MessageBox.Show(ex.ToString, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        End Try
+                    Next
+                    MessageBox.Show("selesai")
+                    RefreshButton.PerformClick()
 11. Button2
+	- menutup form
 12. DataGridView3
 13. TabControl1,
-	- 
+	- 0-3 By PO dan SJ
+		-- TextBox1
+		-- TextBox2
+		-- Label6
+		-- DataGridView1
+	- 4 By Project
+		-- TextBox4
+		-- TextBox3
+		-- Label9
+		-- DataGridView2
+	- 5-6 By Kontrak
+		-- TextBox6
+		-- TextBox5
+		-- DataGridView4
+		
+		
+	============  C003_Form   ============
+	
+1. Load 
+	- Me.DateTimePicker1.Value = New Date(2017, 6, 1)
+    - Me.DateTimePicker1.Enabled = True
+    - Me.CboBarang.SelectedIndex = 0
+	- memanggil StartUp()
+	- memanggil AllData()
+
+2. DateTimePicker1
+3. DateTimePicker2
+4. ComboBox CboBarang
+5. Button BtnExit
+	- menutup Form
+6. DataGridView1
+7. Right-Click / Klik Kanan, membuka ContextMenuStrip
+	- RefreshButton,
+		-- DataGridView1.Columns.Clear()
+        -- AllData()
+	- Export to Excel
+	- Exit,
+		-- menutup Form
+	
