@@ -68,35 +68,35 @@ LPM (Header)
 		-- rowTotal = DataGridView-1
 		-- ExcelWorkSheet Sheet Detail
 			--- Get data dari Report_LPM
-				---- LocationName
-				---- Ins, Tanggal Order Muat
-				---- Outs, Tanggal Surat Jalan
-				---- NoMobil
-				---- NomorPO
-				---- PickSlipID
-				---- CustomerCetak
-				---- SuratJalanID = NoSJ
-				---- Description
-				---- wps
-				---- Quantity1
-				---- Satuan1
-				---- Quantity2
-				---- Satuan2
-				---- Qty1
-				---- stn1
-			 	---- qty2
-				---- stn2
-				---- NoSJSupplier
-				---- TransID
-				---- vhcl_inw
-				---- vhcl_outw
-				---- NamaFI
-				---- Bersama
-				---- Expedisi
-				---- Penjual
-				---- ProjectName 
-				---- ProductID
-				---- OrderMuat
+				---- LocationName		: MS_Location
+				---- Ins, Tanggal Order Muat	: Prd_Trx_ProduksiProfilRB
+				---- Outs, Tanggal Surat Jalan	: Trx_SuratJalan
+				---- NoMobil			: Trx_SuratJalan
+				---- NomorPO 			: Prd_Trx_ProduksiProfilRB
+				---- PickSlipID 		: Prd_Trx_ProduksiProfilRB
+				---- Customer Cetak 		: Trx_SuratJalan
+				---- SuratJalanID = NoSJ 	: Trx_SuratJalan
+				---- Description		: Trx_SuratJalan
+				---- wps			: Trx_SuratJalan
+				---- Quantity 1 		: Trx_SuratJalanDetail
+				---- Satuan1 			: Trx_SuratJalanDetail
+				---- Quantity2 			: Trx_SuratJalanDetail
+				---- Satuan2 			: Trx_SuratJalanDetail
+				---- Qty1 			: Trx_SuratJalanDetail
+				---- stn1 			: Trx_SuratJalanDetail
+				---- qty2 			: Trx_SuratJalanDetail
+				---- stn2 			: Trx_SuratJalanDetail
+				---- NoSJSupplier 		: Prd_Trx_ProduksiProfilRB
+				---- TransID 			: trx_wb
+				---- vhcl_inw 			: trx_wb
+				---- vhcl_outw 			: trx_wb
+				---- NamaFI			: Trx_OrderMuat
+				---- Bersama			: Trx_WBExtPenjualanProfil
+				---- Expedisi			: Trx_PO
+				---- Penjual			: Trx_PO
+				---- ProjectName 		: Trx_Project
+				---- ProductID			: Trx_SuratJalanDetail
+				---- OrderMuatID		: Trx_SuratJalanDetail
 			--- Jika SatuanID != KG, SatuanID = Quantity	ELSE	Jika SatuanID = KG, Quantity2 = Quantity1
 			--- Jika SatuanID != KG, SatuanID = SatuanID	ELSE	Jika SatuanID = KG, Satuan2ID = Satuan1
 			--- Jika SatuanID = KG, SatuanID = Quantity	ELSE	Jika SatuanID != KG, Quantity2 = Quantity2
@@ -118,6 +118,8 @@ LPM (Header)
 				---- Status = Active
 				---- SupplierID bukan CST0001269, CST0001270, CST0001271, CST0001272, CST0001252
 			--- ProductID = Ambil ProductID 61
-			--- 
+			--- Bersama = d (Trx_SuratJalanDetail)
+			--- GROUP BY NoTimbang
+			--- TransID = NoTimbang
 		-- ExcelWorkSheet Sheet Rangkuman
 			--- Get data dari Report_LPM_Summary
