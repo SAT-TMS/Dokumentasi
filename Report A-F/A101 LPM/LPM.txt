@@ -121,5 +121,35 @@ LPM (Header)
 			--- Bersama = d (Trx_SuratJalanDetail)
 			--- GROUP BY NoTimbang
 			--- TransID = NoTimbang
+			--- Jika Mark = S, Mark = Netto 		ELSE	((Netto * porsi) / 100) = Netto 
+			--- Jika (per != 0 AND Netto > 0), Netto = per 	ELSE 	((Netto - Quantity2) / Quantity2) * 100) = Delta 
+			--- Jika (per != 0 AND Netto > 0), Netto = per 	ELSE 	((Netto - Quantity2) / Quantity2) * 100 = Delta 
+			--- Jika ((Jika Mark = S, Netto ELSE ((Netto * porsi) / 100)) - Quantity2) <= 0, Netto = 0 
+			    ELSE 
+			    (((Jika Mark = S, Mark = Netto ELSE ((Netto * porsi) / 100)) - Quantity2) / Quantity2) * 100 = Delta
+Jika Total > 0, (Quantity2 / Total) * 100
+ELSE
+Porsi = 0 
+Jika Total > 0, ((Netto * ((Quantity2 / Total * 100)) / 100)
+ELSE
+porsinetto = 0 
+Jika Total > 0, then (((Netto * ((Quantity2 / Total * 100)) / 100) - Quantity2) / 100 
+ELSE
+per = 0
+Jika wps = 1, wps = Quantity2
+ELSE
+(wps * Quantity1) = Quantity2, 
+Jika ProductID = 61, ProductID = Quantity2
+ELSE
+(Jika wps <= 1, wps = Quantity2 ELSE (wps*Quantity1)) = Quantity2
+Jika (Quantity1 = 0 AND qty2 > 0) AND (Satuan1 = stn2), Quantity1 = qty2
+ELSE
+Quantity1 = Quantity1 
+Jika Satuan2 != kg, Satuan2 = 0
+ELSE
+Quantity2 = Quantity2
+Bersama = d (Trx_SuratJalanDetail)
+GROUP BY NoTimbang
+
 		-- ExcelWorkSheet Sheet Rangkuman
 			--- Get data dari Report_LPM_Summary
