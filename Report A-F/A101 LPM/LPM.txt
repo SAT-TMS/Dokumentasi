@@ -68,88 +68,130 @@ LPM (Header)
 		-- rowTotal = DataGridView-1
 		-- ExcelWorkSheet Sheet Detail
 			--- Get data dari Report_LPM
-				---- LocationName		: MS_Location
-				---- Ins, Tanggal Order Muat	: Prd_Trx_ProduksiProfilRB
-				---- Outs, Tanggal Surat Jalan	: Trx_SuratJalan
-				---- NoMobil			: Trx_SuratJalan
-				---- NomorPO 			: Prd_Trx_ProduksiProfilRB
-				---- PickSlipID 		: Prd_Trx_ProduksiProfilRB
-				---- Customer Cetak 		: Trx_SuratJalan
-				---- SuratJalanID = NoSJ 	: Trx_SuratJalan
-				---- Description		: Trx_SuratJalan
-				---- wps			: Trx_SuratJalan
-				---- Quantity 1 		: Trx_SuratJalanDetail
-				---- Satuan1 			: Trx_SuratJalanDetail
-				---- Quantity2 			: Trx_SuratJalanDetail
-				---- Satuan2 			: Trx_SuratJalanDetail
-				---- Qty1 			: Trx_SuratJalanDetail
-				---- stn1 			: Trx_SuratJalanDetail
-				---- qty2 			: Trx_SuratJalanDetail
-				---- stn2 			: Trx_SuratJalanDetail
-				---- NoSJSupplier 		: Prd_Trx_ProduksiProfilRB
-				---- TransID 			: trx_wb
-				---- vhcl_inw 			: trx_wb
-				---- vhcl_outw 			: trx_wb
-				---- NamaFI			: Trx_OrderMuat
-				---- Bersama			: Trx_WBExtPenjualanProfil
-				---- Expedisi			: Trx_PO
-				---- Penjual			: Trx_PO
-				---- ProjectName 		: Trx_Project
-				---- ProductID			: Trx_SuratJalanDetail
-				---- OrderMuatID		: Trx_SuratJalanDetail
-			--- Jika SatuanID != KG, SatuanID = Quantity	ELSE	Jika SatuanID = KG, Quantity2 = Quantity1
-			--- Jika SatuanID != KG, SatuanID = SatuanID	ELSE	Jika SatuanID = KG, Satuan2ID = Satuan1
-			--- Jika SatuanID = KG, SatuanID = Quantity	ELSE	Jika SatuanID != KG, Quantity2 = Quantity2
-			--- Jika SatuanID = KG, SatuanID = SatuanID	ELSE	Jika SatuanID != KG, Satuan2ID = Satuan2
-			--- SuratJalanID = NoSJ
-			--- Set OrderMuatID
+				---- Get kolom
+					----- LocationName		: MS_Location
+					----- Ins,Tanggal Order Muat	: Prd_Trx_ProduksiProfilRB
+					----- Outs, Tanggal Surat Jalan	: Trx_SuratJalan
+					----- NoMobil			: Trx_SuratJalan
+					----- NomorPO 			: Prd_Trx_ProduksiProfilRB
+					----- PickSlipID 		: Prd_Trx_ProduksiProfilRB
+					----- Customer Cetak 		: Trx_SuratJalan
+					----- SuratJalanID = NoSJ 	: Trx_SuratJalan
+					----- Description		: Trx_SuratJalan
+					----- wps			: Trx_SuratJalan
+					----- Quantity 1 		: Trx_SuratJalanDetail
+					----- Satuan1 			: Trx_SuratJalanDetail
+					----- Quantity2 		: Trx_SuratJalanDetail
+					----- Satuan2 			: Trx_SuratJalanDetail
+					----- Qty1 			: Trx_SuratJalanDetail
+					----- stn1 			: Trx_SuratJalanDetail
+					----- qty2 			: Trx_SuratJalanDetail
+					----- stn2 			: Trx_SuratJalanDetail
+					----- NoSJSupplier 		: Prd_Trx_ProduksiProfilRB
+					----- TransID 			: trx_wb
+					----- vhcl_inw 			: trx_wb
+					----- vhcl_outw 		: trx_wb
+					----- NamaFI			: Trx_OrderMuat
+					----- Bersama			: Trx_WBExtPenjualanProfil
+					----- Expedisi			: Trx_PO
+					----- Penjual			: Trx_PO
+					----- ProjectName 		: Trx_Project
+					----- ProductID			: Trx_SuratJalanDetail
+					----- OrderMuatID		: Trx_SuratJalanDetail
+				---- Jika SatuanID (Trx_SuratJalanDetail) != KG, SatuanID (Trx_SuratJalanDetail) = Quantity	
+			    	     ELSE	
+			    	     Jika SatuanID (Trx_SuratJalanDetail) = KG, Quantity2 (Trx_SuratJalanDetail) = Quantity1 (Trx_SuratJalanDetail)
+				---- Jika SatuanID (Trx_SuratJalanDetail) != KG, SatuanID (Trx_SuratJalanDetail) = SatuanID (Trx_SuratJalanDetail)	
+			    	     ELSE	
+			             Jika SatuanID (Trx_SuratJalanDetail) = KG, Satuan2ID (Trx_SuratJalanDetail) = Satuan1 (Trx_SuratJalanDetail)
+				---- Jika SatuanID (Trx_SuratJalanDetail) = KG, SatuanID (Trx_SuratJalanDetail) = Quantity (Trx_SuratJalanDetail)	
+			    	     ELSE
+				     Jika SatuanID (Trx_SuratJalanDetail) != KG, Quantity2 (Trx_SuratJalanDetail) = Quantity2 (Trx_SuratJalanDetail)
+				---- Jika SatuanID (Trx_SuratJalanDetail) = KG, SatuanID (Trx_SuratJalanDetail) = SatuanID (Trx_SuratJalanDetail)
+			    	     ELSE	
+			    	     Jika SatuanID (Trx_SuratJalanDetail) != KG, Satuan2ID (Trx_SuratJalanDetail) = Satuan2
 				---- SuratJalanID = NoSJ
-				---- locationid = LocationID
-				---- Status = Active
-				---- SupplierID bukan CST0001269, CST0001270, CST0001271, CST0001272, CST0001252
-			--- Set ProductID
-				---- SuratJalanID = NoSJ
-				---- locationid = LocationID
-				---- Status = Active
-				---- SupplierID bukan CST0001269, CST0001270, CST0001271, CST0001272, CST0001252
-			--- Set TransID
-				---- SuratJalanID = NoSJ
-				---- locationid = LocationID
-				---- Status = Active
-				---- SupplierID bukan CST0001269, CST0001270, CST0001271, CST0001272, CST0001252
-			--- ProductID = Ambil ProductID 61
-			--- Bersama = d (Trx_SuratJalanDetail)
-			--- GROUP BY NoTimbang
-			--- TransID = NoTimbang
-			--- Jika Mark = S, Mark = Netto 		ELSE	((Netto * porsi) / 100) = Netto 
-			--- Jika (per != 0 AND Netto > 0), Netto = per 	ELSE 	((Netto - Quantity2) / Quantity2) * 100) = Delta 
-			--- Jika (per != 0 AND Netto > 0), Netto = per 	ELSE 	((Netto - Quantity2) / Quantity2) * 100 = Delta 
-			--- Jika ((Jika Mark = S, Netto ELSE ((Netto * porsi) / 100)) - Quantity2) <= 0, Netto = 0 
-			    ELSE 
-			    (((Jika Mark = S, Mark = Netto ELSE ((Netto * porsi) / 100)) - Quantity2) / Quantity2) * 100 = Delta
-Jika Total > 0, (Quantity2 / Total) * 100
-ELSE
-Porsi = 0 
-Jika Total > 0, ((Netto * ((Quantity2 / Total * 100)) / 100)
-ELSE
-porsinetto = 0 
-Jika Total > 0, then (((Netto * ((Quantity2 / Total * 100)) / 100) - Quantity2) / 100 
-ELSE
-per = 0
-Jika wps = 1, wps = Quantity2
-ELSE
-(wps * Quantity1) = Quantity2, 
-Jika ProductID = 61, ProductID = Quantity2
-ELSE
-(Jika wps <= 1, wps = Quantity2 ELSE (wps*Quantity1)) = Quantity2
-Jika (Quantity1 = 0 AND qty2 > 0) AND (Satuan1 = stn2), Quantity1 = qty2
-ELSE
-Quantity1 = Quantity1 
-Jika Satuan2 != kg, Satuan2 = 0
-ELSE
-Quantity2 = Quantity2
-Bersama = d (Trx_SuratJalanDetail)
-GROUP BY NoTimbang
-
+				---- Set OrderMuatID
+					----- SuratJalanID = NoSJ
+					----- locationid = LocationID
+					----- Status = Active
+					----- SupplierID bukan CST0001269, CST0001270, CST0001271, CST0001272, CST0001252
+				---- Set ProductID
+					----- SuratJalanID = NoSJ
+					----- locationid = LocationID
+					----- Status = Active
+					----- SupplierID bukan CST0001269, CST0001270, CST0001271, CST0001272, CST0001252
+				---- Set TransID
+					----- SuratJalanID = NoSJ
+					----- locationid = LocationID
+					----- Status = Active
+					----- SupplierID bukan CST0001269, CST0001270, CST0001271, CST0001272, CST0001252
+						------ CST0001269 : TMS1
+						------ CST0001270 : TMS2
+						------ CST0001271 : TMS3
+						------ CST0001272 : TMS4
+						------ CST0001252 : TMS-HO
+					----- GROUP BY OrderMuatID (Trx_Project)
+					----- OrderMuatID (Trx_SuratJalanDetail) = OrderMuatID (trx_wb)
+				---- Set Bersama = D
+					----- Status = Active
+					----- SupplierID bukan CST0001269, CST0001270, CST0001271, CST0001272, CST0001252
+						------- CST0001269 : TMS1
+						------- CST0001270 : TMS2
+						------- CST0001271 : TMS3
+						------- CST0001272 : TMS4
+						------- CST0001252 : TMS-HO
+					----- GROUP BY OrderMuatID (Trx_Project)
+					----- GROUP BY TransID > 1
+					----- TransID (trx_wb) = TransID (Trx_WBExtPenjualanProfil)
+					----- Set Quantity1 = QtyGudang, Satuan1 = Btg
+					----- OrderMuat(MS_Location) = OrderMuatID(MS_StockProduk)
+					----- ProductID (MS_Locations) = Ambil ProductID 61
+				---- Jika Mark = S, Mark = Netto 		ELSE	((Netto * porsi) / 100) = Netto 
+				---- Jika (per != 0 AND Netto > 0), Netto = per 	ELSE 	((Netto - Quantity2) / Quantity2) * 100) = Delta 
+				---- Jika (per != 0 AND Netto > 0), Netto = per 	ELSE 	((Netto - Quantity2) / Quantity2) * 100 = Delta 
+				---- Jika ((Jika Mark = S, Netto ELSE ((Netto * porsi) / 100)) - Quantity2) <= 0, Netto = 0 
+			    	     ELSE 
+			    	     (((Jika Mark = S, Mark = Netto ELSE ((Netto * porsi) / 100)) - Quantity2) / Quantity2) * 100 = Delta
+				---- Jika Total > 0, (Quantity2 / Total) * 100
+				     ELSE
+				     Porsi = 0 
+				---- Jika Total > 0, ((Netto * ((Quantity2 / Total * 100)) / 100)
+				     ELSE
+				     porsinetto = 0 
+				---- Jika Total > 0, then (((Netto * ((Quantity2 / Total * 100)) / 100) - Quantity2) / 100 
+				     ELSE
+				     per = 0
+				---- Jika wps = 1, wps = Quantity2
+				     ELSE
+				     (wps * Quantity1) = Quantity2, 
+				---- Jika ProductID = 61, ProductID = Quantity2
+				     ELSE
+				     (Jika wps <= 1, wps = Quantity2 ELSE (wps*Quantity1)) = Quantity2
+				---- Jika (Quantity1 = 0 AND qty2 > 0) AND (Satuan1 = stn2), Quantity1 = qty2
+				     ELSE
+				     Quantity1 = Quantity1 
+				---- Jika Satuan2 != kg, Satuan2 = 0
+				     ELSE
+				     Quantity2 = Quantity2
+				---- Bersama = d (Trx_SuratJalanDetail)
+				---- GROUP BY NoTimbang
+				---- TransID (trx_wb) = NoTimbang (Trx_PO)
+				---- Jika (Quantity1 = 0 AND qty2 > 0) AND (Satuan1 = stn2), Quantity1 = qty2
+				     ELSE
+				     Quantity1 = Quantity1 
+				---- Jika Satuan2 != kg, Satuan2 = 0
+				     ELSE
+				     Satuan2 = Quantity2
+				---- GROUP BY LocationName
+				---- Ambil data dimana Quantity2 != 0 AND Quantity2 <= 0
+				---- CustomerCetak != Supl_Name dari MS_Supplier yang berisi
+					----- CST0001269
+					----- CST0001270
+					----- CST0001271
+					----- CST0001272
+					----- CST0001252
+				---- AND SuratJalanID = 21/MS3/SJ00001216
+				---- ORDER BY LocationName, urut, SuratJalanID, NoTimbang, ins, Outs
 		-- ExcelWorkSheet Sheet Rangkuman
 			--- Get data dari Report_LPM_Summary
