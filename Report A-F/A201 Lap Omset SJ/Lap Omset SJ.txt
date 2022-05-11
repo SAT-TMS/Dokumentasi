@@ -1,0 +1,22 @@
+Laporan Omset SJ (Header)
+1. Form Load
+2. TxtCustomer
+3. TxtSales
+4. TxtProject
+5. TxtKontrak
+6. BtnClearCustomer
+7. BtnClearSales
+8. BtnClearProject
+9. BtnClearKontrak
+10. SearchButton Customer
+11. CustomerCheckBox
+12. SalesCheckBox
+13. ProjectCheckBox
+14. KontrakCheckBox
+15. CboLokasi
+16. txtDateFrom
+17. txtDateTo
+18. CboLaporan
+19. CboJenisBarang
+20. CboFormatExcel
+21. DataGridView1
