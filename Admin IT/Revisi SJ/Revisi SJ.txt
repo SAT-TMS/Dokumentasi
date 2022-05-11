@@ -1,0 +1,111 @@
+============ HEADER ============ 
+
+1. Load
+	- memanggil fungsi StartUp()
+	- SendMailButton.Hide
+
+2. TextBox NoKontrakTextBox
+	- Jika Return / BackSpace di pencet 
+		-- memanggil AllDataOrderMuat()
+		-- e.Handled = True
+	- Jika Enter di pencet 
+		-- memanggil AllDataOrderMuat()
+		-- e.Handled = True
+3. TextBox NoDoTextBox
+	- Jika Return / BackSpace di pencet 
+		-- memanggil AllDataOrderMuat()
+		-- e.Handled = True
+	- Jika Enter di pencet 
+		-- memanggil AllDataOrderMuat()
+		-- e.Handled = True
+4. TextBox NoPickSlipTextBox
+	- Jika Return / BackSpace di pencet 
+		-- memanggil AllDataOrderMuat()
+		-- e.Handled = True
+	- Jika Enter di pencet 
+		-- memanggil AllDataOrderMuat()
+		-- e.Handled = True
+5. TextBox NoOmTextBox
+	- Jika Return / BackSpace di pencet 
+		-- memanggil AllDataOrderMuat()
+		-- e.Handled = True
+	- Jika Enter di pencet 
+		-- memanggil AllDataOrderMuat()
+		-- e.Handled = True
+6. TextBox NoSjTextBox
+	- Jika Return / BackSpace di pencet 
+		-- memanggil AllDataOrderMuat()
+		-- e.Handled = True
+	- Jika Enter di pencet 
+		-- memanggil AllDataOrderMuat()
+		-- e.Handled = True
+7. DataGridView1,
+8. Button RevisiButton
+9. Button VoidOrActiveButton1
+	- With DataGridView1
+            If .Rows.Count > 0 Then
+                Dim a As New Revisi_Qty_Sj_Form
+                a.void = True
+                If .Item(10, .CurrentCell.RowIndex).Value.ToString.ToLower = "a" Then
+                    a.BtnSetVoid.Show()
+                    a.BtnSetActive.Hide()
+                Else
+                    a.BtnSetVoid.Hide()
+                    a.BtnSetActive.Show()
+                End If
+                a.ShowDialog()
+	
+	-  If a.Void_Update = True Then
+                        If IsInternetAvailable() = False Then
+                            MessageBox.Show("Jaringan Putus !!!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Exit Sub
+                        End If
+	- melakukan fungsi Void
+		-- 
+	- melakukan fungsi Active 
+		--		
+11. Button GantiTanggalButton1
+	- Jika .Rows.Count > 0, maka
+		-- membuka Form Revisi Ganti Tanggal
+		-- nNoSj toString
+		-- before toString
+		-- ShowDialog
+		-- memanggil AllDataOrderMuat
+12. Button GantiNoDOButton1
+	- Jika .Rows.Count > 0, maka
+		-- membuka Revisi_Ganti_NO_DO_Form
+		-- seluruh item pada Row cell yang dipilih, dikirim ke form tersebut
+		-- ShowDialog()
+		
+		-- memanggil AllDataOrderMuat
+13. Button ExitButton
+	- Menutup Form
+14. Button SendMailButton
+	- SendMail("bejo@timezone.co.id", "d", "c")
+    - MessageBox.Show("Done")
+	
+
+============ DETAIL Revisi Tanggal SJ ============ 
+
+1. GroupBox1,
+	- Label1 : nNoSj
+	- DateTimePicker1
+	- Button1,
+		-- menyimpan tanggal yang telah diganti, dari DateTimePicker1
+	- Button2 : menutup Form
+	
+
+============ DETAIL Revisi Ganti No DO ============ 
+
+1. NoKontrakTextBox
+2. NoDoTextBox
+3. NoPickSlipTextBox
+4. NoOmTextBox
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ untuk mencari data DO pada gridview
+
+5. DataGridView1
+6. Button1,
+	- Jika .Rows.Count 
+7. Button2
+8. Label lain-lain, menampilkan tulisan pada Data GridView, yang nantinya akan berubah ke DO yang baru

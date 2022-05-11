@@ -1,0 +1,79 @@
+============ HEADER ============ 
+1. Load
+	- 
+2. Button RefreshButton,
+	- memanggil AllDataOrderMuat()
+3. Button ReprintButton,
+	- Jika DataGridView1.RowCount > 0, maka
+		-- NoPOCustomer = "/ "  & DataGridView1.Item(5, DataGridView1.CurrentCell.RowIndex).Value.ToString
+		-- Expedisi = " / " & DataGridView1.Item(7, DataGridView1.CurrentCell.RowIndex).Value.ToString
+	- selain itu,
+		-- NoPOCustomer = ""
+		-- Expedisi = ""
+4. Button ExitButton
+	- menutup form
+5. Button ReprintSatuan2Button
+	- Jika DataGridView1.RowCount > 0, maka
+		-- NoPOCustomer = "/ "  & DataGridView1.Item(5, DataGridView1.CurrentCell.RowIndex).Value.ToString
+		-- Expedisi = " / " & DataGridView1.Item(7, DataGridView1.CurrentCell.RowIndex).Value.ToString
+	- selain itu,
+		-- NoPOCustomer = ""
+		-- Expedisi = ""
+	- memanggil PrinSatuan2()
+6. Button Button1,
+	- memanggil fungsi PrintQR()
+7. Button BtnGantiOM,
+	- Jika DataGridView1.RowCount > 0, maka
+		-- OTP_Generate(Me.Text, 7, "SJ. " & DataGridView1.Item(0, DataGridView1.CurrentCell.RowIndex).Value.ToString)
+        -- Dim otp_tampil As New FrmOTPTest
+        -- otp_tampil.ShowDialog()
+		
+		-- Jika otp_tampil.Void = True, maka
+			--- MessageBox Question = "Void Yes or No?"
+				--- Jika No, Exit Sub. Jika Yes, lanjut ke IsInternetAvailable()
+			--- Jika IsInternetAvailable = False
+				---- MessageBox Error "Jaringan Putus !!!"
+			
+			--- Dim ndatav As String() = Nothing
+            --- ndatav = New String(5) {}
+            --- ndatav(0) = DataGridView1.Item(6, DataGridView1.CurrentCell.RowIndex).Value.ToString
+            --- ndatav(1) = DataGridView1.Item(0, DataGridView1.CurrentCell.RowIndex).Value.ToString
+
+            --- Logactivity(Me.Name, ndatav(1), ndatav(1), "Trx_SuratJalan", "Void")
+
+            --- Try
+                ---- AksesLinkCloud.SuratJalanVoid(Kunci, ndatav)
+                  
+            --- Catch ex As Exception
+                ---- MessageBox.Show(ex.ToString)
+            --- End Try
+			
+			--- memanggil fungsi AllDataOrderMuat()
+8. Button VoidButton,
+	- Jika DataGridView1.RowCount > 0, maka
+		-- Jika UserIDLog = "wen" atau "rizkia" atau "husain" atau "yan", maka melanjutkan ke perintah berikutnya setelah Else
+		-- Selain itu ,
+			--- Jika waktu melewati batas dari 15 menit
+				---- MessageBox Error : "Batas Waktu Void telah habis (15 Menit) !!!"
+		-- Jika otp_tampi.Void = True, maka
+			--- MessageBox Question : "Void Yes or No ?"
+			--- Apabila No, maka >>> Exit Sub
+		-- Jika IsInternetAvailable() = False, maka
+			--- MessageBox : "Jaringan Putus !!!"
+		-- melakukan Void
+9. TextBox NoSjFilterTextBox,
+	- Jika Len(NoSjFilterTextBox.Text) > 2, maka
+		-- memanggil AllDataOrderMuat()
+	- Apabila Jika Len(NoSjFilterTextBox.Text) > 0, maka
+		-- memanggil AllDataOrderMuat()
+10. TextBox DOCariTextBox
+	- Jika Len(DOCariTextBox.Text) > 2, maka
+		-- memanggil AllDataOrderMuat()
+	- Apabila Jika Len(DOCariTextBox.Text) > 0, maka
+		-- memanggil AllDataOrderMuat()
+11. TextBox MemoCariTextBox
+	- Jika Len(MemoCariTextBox.Text) > 2, maka
+		-- memanggil AllDataOrderMuat()
+	- Apabila Jika Len(MemoCariTextBox.Text) > 0, maka
+		-- memanggil AllDataOrderMuat()
+12. DataGridView1,
