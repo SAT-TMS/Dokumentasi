@@ -1,22 +1,71 @@
 Laporan Omset SJ (Header)
 1. Form Load
-2. TxtCustomer
-3. TxtSales
-4. TxtProject
-5. TxtKontrak
+	- LokasiDs = Get data dari LocationList
+2. TxtCustomer, Customer
+3. TxtSales, Sales
+4. TxtProject, Project
+5. TxtKontrak, Kontrak
 6. BtnClearCustomer
+	- TxtCustomer = " " (kosong)
 7. BtnClearSales
+	- TxtSales = " " (kosong)
 8. BtnClearProject
+	- TxtProject = " " (kosong)
 9. BtnClearKontrak
+	- TxtKontrak = " " (kosong)
 10. SearchButton Customer
 11. CustomerCheckBox
+	- Jika CustomerCheckBox dicek
+		-- TxtCustomer.Text = %
+        - Jika CustomerCheckBox tidak dicek
+		-- TxtCustomer.Text = " " (kosong)
 12. SalesCheckBox
+	- Jika SalesCheckBox dicek
+		-- TxtSales.Text = %
+        - Jika SalesCheckBox tidak dicek
+		-- TxtSales.Text = " " (kosong)
 13. ProjectCheckBox
+	- Jika ProjectCheckBox dicek
+		-- TxtProject.Text = %
+        - Jika ProjectCheckBox tidak dicek
+		-- TxtProject.Text = " " (kosong)
 14. KontrakCheckBox
+	- Jika KontrakCheckBox dicek
+		-- TxtKontrak.Text = %
+        - Jika KontrakCheckBox tidak dicek
+		-- TxtKontrak.Text = " " (kosong)
 15. CboLokasi
 16. txtDateFrom
 17. txtDateTo
 18. CboLaporan
+	- A201 Omset Surat Jalan
 19. CboJenisBarang
+	- All
+	- 50 Billet
+	- 51 Besi Beton
+	- 52 Wire Rod
+	- 53 Wire Mesh
+	- 54 Kanal
+	- 55 PC Wire
+	- 56 Wire Mesh Kg
+	- 57 PC Strand
+	- 58 Lain-lain
+	- 59 BBS
+	- 60 MLO
+	- 61 Rebar
+	- 62 BIC
+	- 63 CLO
+	- 64 Kloss
+	- 65 Drawn Wire
+	- 66 Millscale
+	- 67 Scrap
+	- 68 PIC
+	- 69 Spool
 20. CboFormatExcel
+	- Format Font
+	- Minimalis
 21. DataGridView1
+22. MenuClick
+	- MnuRefresh
+	- MnuExport
+	- MnuExit
