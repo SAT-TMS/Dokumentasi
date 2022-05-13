@@ -14,6 +14,7 @@ Laporan Omset SJ (Header)
 9. BtnClearKontrak
 	- TxtKontrak = " " (kosong)
 10. SearchButton Customer
+	- Membuka Searching Form
 11. CustomerCheckBox
 	- Jika CustomerCheckBox dicek
 		-- TxtCustomer.Text = %
@@ -35,6 +36,7 @@ Laporan Omset SJ (Header)
         - Jika KontrakCheckBox tidak dicek
 		-- TxtKontrak.Text = " " (kosong)
 15. CboLokasi
+	- CboLokasi = sesuai LocationID dan LocationName
 16. txtDateFrom
 17. txtDateTo
 18. CboLaporan
@@ -69,3 +71,4 @@ Laporan Omset SJ (Header)
 	- MnuRefresh
 	- MnuExport
 	- MnuExit
+		-- Keluar dari Form
