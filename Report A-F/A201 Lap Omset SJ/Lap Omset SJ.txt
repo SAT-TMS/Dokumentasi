@@ -15,6 +15,10 @@ Laporan Omset SJ (Header)
 	- TxtKontrak = " " (kosong)
 10. SearchButton Customer
 	- Membuka Searching Form
+		-- Grid Customer, Sales, Project dan Kontrak
+		-- TextBox Input : Customer, Sales, Project, dan Kontrak
+		-- Memilih data dari grid
+	- Input data yang dipilih ke dalam TxtCustomer, TxtSales, TxtProject, TxtKontrak
 11. CustomerCheckBox
 	- Jika CustomerCheckBox dicek
 		-- TxtCustomer.Text = %
@@ -37,8 +41,8 @@ Laporan Omset SJ (Header)
 		-- TxtKontrak.Text = " " (kosong)
 15. CboLokasi
 	- CboLokasi = sesuai LocationID dan LocationName
-16. txtDateFrom
-17. txtDateTo
+16. txtDateFrom, Tanggal Laporan Omset SJ
+17. txtDateTo, Tanggal Selesai Laporan Omset SJ
 18. CboLaporan
 	- A201 Omset Surat Jalan
 19. CboJenisBarang
@@ -69,6 +73,7 @@ Laporan Omset SJ (Header)
 21. DataGridView1
 22. MenuClick
 	- MnuRefresh
+		-- Memanggil Function DataSheet
 	- MnuExport
 	- MnuExit
-		-- Keluar dari Form
+		-- Keluar dari A201FrmRptOmset
