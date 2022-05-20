@@ -19,7 +19,7 @@ Laporan Omset SJ (Header)
 		-- Grid Customer, Sales, Project dan Kontrak
 		-- TextBox Input : Customer, Sales, Project, dan Kontrak
 		-- Memilih data dari grid
-	- Input data yang dipilih ke dalam TxtCustomer, TxtSales, TxtProject, TxtKontrak
+	- Input data yang dipilih dimasukkan ke dalam TxtCustomer, TxtSales, TxtProject, TxtKontrak
 11. CustomerCheckBox
 	- Jika CustomerCheckBox dicek
 		-- TxtCustomer.Text = %
