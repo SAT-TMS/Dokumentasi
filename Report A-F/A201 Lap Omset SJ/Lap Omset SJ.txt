@@ -1,7 +1,19 @@
 Laporan Omset SJ (Header)
 1. Form Load
+	- Jika LocationIDLog = L10001
+		-- LocationName = " "
+	- Jika LocationIDLog != L10001
+		-- LocationName = LocationIDLog
+	- Jika jumlah baris tabel LokasiDs > 0
+		-- Clear semua baris
 	- LokasiDs = Get data dari LocationList
-	- DataGridView = Database Service Report_A201_Omset_Surat_Jalan
+	- CboLokasi
+		-- Source = LokasiDs
+		-- Value Input = LocationID
+		-- Text Display = LocationName
+	- Set default CboLaporan = A201-Omset Surat Jalan (pilihan paling atas)
+	- Set default CboBarang = All (pilihan paling atas)
+	- Set default CboFormatExcel = Format Font (pilihan paling atas)
 2. TxtCustomer, Customer
 3. TxtSales, Sales
 4. TxtProject, Project
@@ -45,8 +57,8 @@ Laporan Omset SJ (Header)
 16. txtDateFrom, Tanggal Laporan Omset SJ
 17. txtDateTo, Tanggal Selesai Laporan Omset SJ
 18. CboLaporan
-	- A201 Omset Surat Jalan
-19. CboJenisBarang
+	- A201-Omset Surat Jalan
+19. CboBarang
 	- All
 	- 50 Billet
 	- 51 Besi Beton
@@ -118,6 +130,54 @@ Laporan Omset SJ (Header)
 22. MenuClick
 	- MnuRefresh
 		-- Memanggil Function DataSheet
+			--- Jika CboBarang tidak dipilih 
+            			---- Keluar dari A201FrmRptOmset
+        		--- Jika CboLaporan.Text = " " (kosong)
+            			---- Keluar dari A201FrmRptOmset
+        		--- Jika CboLaporan != " " (kosong)
+            			---- LblLaporan = CboLaporan
+            			---- Jika CboLaporan = "A201-Omset Surat Jalan"
+                			----- Jika TxtCustomer != " "
+                    				------ Supl_Name = TxtCustomer
+                			----- Jika TxtCustomer = " "
+                    				------ Supl_Name = "%"
+                			----- Jika TxtSales != " "
+                    				------ Sales = TxtSales
+                			----- Jika TxtSales = " "
+                    				------ Sales = "%"
+                			----- Jika CboLokasi = "LAIN LAIN"
+                    				------ LocationName = "%"
+                			----- Jika CboLokasi != "LAIN-LAIN"
+                    				------ LocationName = CboLokasi
+                			----- Jika TxtProject != " "
+                    				------ Project = TxtProject
+                			----- Jika TxtProject = " "
+                    				------ Project = "%"
+                			----- Jika TxtKontrak != " "
+                    				------ NomorKontrak = TxtKontrak
+                			----- Jika TxtKontrak = " "
+                    				------ NomorKontrak = "%"
+                			----- DateFrom = txtDateFrom
+                			----- DateTo = txtDateTo
+                			----- Jika CboBarang = "All"
+                    				------ Jenis = "%"
+                			----- Jika CboBarang != "All"
+                    				------ Jenis = CboBarang
+				---- Jika jumlah baris dalam table > 0
+					----- Clear semua baris
+				---- Jika CboLaporan = "A201-Omset Surat Jalan"
+					----- data = Database Service Report_A201_Omset_Surat_Jalan
+				---- Jika jumlah baris dalam table = 0
+					----- MessageBox = "Data Tidak Ada !!!"
+				---- Jika jumlah baris dalam table > 0
+					----- DataGridView = data
+					----- Format tanggal = dd MM yyyy
+						------ d = Tanggal
+						------ M = Bulan
+						------ y = Tahun
+					----- TotalBarisLabel6 = jumlah baris
+				---- Jika jumlah baris dalam table = 0
+					----- TotalBarisLabel6 = 0
 	- MnuExport
 	- MnuExit
 		-- Keluar dari A201FrmRptOmset
