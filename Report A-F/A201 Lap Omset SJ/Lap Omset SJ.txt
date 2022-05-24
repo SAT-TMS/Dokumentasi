@@ -186,7 +186,7 @@ Laporan Omset SJ (Header)
 				---- Memanggil MnuRefresh
 			--- Jika CboFormatExcel = FormatFont
 				---- Dari DataGridView1 = Report_A201_Omset_Surat_Jalan
-					----- Memanggil Table
+					----- Memanggil Tabel
 						------ Supl_Name
 						------ Sales
 						------ LocationName
@@ -225,7 +225,7 @@ Laporan Omset SJ (Header)
 						------ NamaCustomer	= Supl_Name 
 						------ ProjectName	= ProjectName 
 						------ locationname	= LocationName
-						------ cast(convert(varchar,cast(Outs as datetime),106)as datetime) between @DateFrom and @DateTo
+						------ cast(convert(varchar, cast(Outs as datetime),106) as datetime) between DateFrom and DateTo
 						------ JenisBarang	= jenis
 						------ ProjectName = %NGEPOK%' AND NomorPO = '%N%' AND HargaBasic = 0
 						------ NomorPO = '%TL%' OR HargaBasic = 500
@@ -237,11 +237,57 @@ Laporan Omset SJ (Header)
 						------ POID (Trx_PickSlip) = POID (Trx_PO) 
 						------ on SupplierID (Trx_PO) = Supl_ID (MS_Supplier) 
 						------ GROUP BY PickSlipID (Trx_PickSlip) , JenisPerusahaan (MS_Supplier)
-						------ ON t.PickSlipID = r.PickSlipID 
+						------ ON PickSlipID (_Report_A201_Omset_Surat_Jalan_Result) = PickSlipID (Trx_PickSlip) 
 						------ SuratJalanID = '18/MS3/SJ00018613'
 						------ NomorPO = '%TL%' OR NomorPO = '%N%' OR HargaRp=500 OR ProjectName = '%NGEPOK%'
 						------ ORDER BY ids
 			--- Jika CboFormatExcel = Minimalis
+				---- Get data dari Report_A201_Omset_Surat_Jalan_Summary
+					----- Memanggil Tabel
+						------ Supl_Name
+						------ Sales
+						------ LocationName
+						------ ProjectName
+						------ NomorKontrak
+						------ DateFrom
+						------ DateTo
+						------ jenis
+					----- Kondisi Tabel
+						------ Supl_Name = '%%'--'PT. WIJAYA KARYA (PERSERO), TBK'
+						------ Sales = '%'
+						------ LocationName = '%'
+						------ ProjectName = '%'--'LRT JAKARTA KORIDOR 1 (PHASE 1) KELAPAGADING-VELODROME'
+						------ NomorKontrak = '%'--'TP.01.03/A.PS.3524/2017..'
+						------ DateFrom = '9-jun-2017'
+						------ DateTo = '9-jun-2017'
+						------ jenis = '51 Besi Beton'
+					----- Jika SatuanSJ != 'kg' 
+						------ FORMAT(SUM(QuantitySJ),'N0') + ' ' + SatuanSJ
+					----- Jika SatuanSJ = 'kg'
+						------ FORMAT(SUM(BeratNettoStd),'N0') + ' ' + SatuanSJ
+					----- Jika (max(jenisbarang) IN ('52 Wire Rod') AND max(wps) <= 1)
+						------ SUM(Netto)
+					----- Jika (max(jenisbarang) NOT IN ('52 Wire Rod') AND max(wps) !<= 1)
+						------ SUM(Quantity2)
+					----- Jika SatuanSJ != 'kg'
+						------ SUM(QuantitySJ)
+					----- Jika SatuanSJ = 'kg'
+						------ SUM(BeratNettoStd)
+					----- DPP = SUM(Total)
+					----- PPNR = SUM(ppn)
+					----- JumlahR = SUM(Total) + SUM(ppn) 
+					----- JumlahR = SUM(jumlah)
+					----- FROM Report@_Master_LPM
+						------ NomorKontrak 	= NomorKontrak 
+						------ Penjual 		= Sales 
+						------ NamaCustomer 	= Supl_Name 
+						------ ProjectName 	= ProjectName 
+						------ locationname 	= '%' + LocationName + '%' 
+						------ cast(convert(varchar, cast(Outs as datetime), 106) as datetime) between DateFrom AND DateTo 
+						------ JenisBarang 	= jenis 
+						------ ProjectName != '%NGEPOK%' AND NomorPO != '%N%' AND HargaBasic != 0
+						------ NomorPO != '%TL%' OR HargaBasic != 500)
+						------ GROUP BY ProductID, NamaBarang, HargaBasic, SatuanSJ 
 	- MnuExit
 		-- Keluar dari A201FrmRptOmset
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
