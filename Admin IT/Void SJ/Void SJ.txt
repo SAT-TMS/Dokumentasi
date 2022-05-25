@@ -77,3 +77,4 @@
 	- Apabila Jika Len(MemoCariTextBox.Text) > 0, maka
 		-- memanggil AllDataOrderMuat()
 12. DataGridView1,
+ 
