@@ -16,8 +16,8 @@ Void SJ Kembali (Header)
 		-- Jika tidak ada koneksi internet (internet putus)
 			--- MessageBox : "Jaringan Putus !!!"
 		-- Menyimpan LogActivity
-			--- Menu Khusus
-			--- Delete Penerimaan SJ
+			--- "Menu Khusus"
+			--- "Delete Penerimaan SJ"
 			--- SuratJalanID
 			--- Mengubah Database Trx_SuratJalanTerima
 		-- Memanggil AllData
