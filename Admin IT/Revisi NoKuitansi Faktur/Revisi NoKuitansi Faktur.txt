@@ -1,0 +1,52 @@
+Revisi NoKuitansi Faktur
+1. Form Load
+	- Memanggil AllData
+		-- NoNota = TxtNoNota
+		-- NoFaktur = TxtNoFaktur
+		-- NamaCustomer = TxtCustomer
+		-- DateFrom = txtDateFrom
+		-- DateTo = txtDateTo
+		-- DataGridView1 = Get data dari Database Service FakturList
+2. TabControl1
+	- Tab Calendar
+		-- Calendar
+	- Tab Range
+		-- txtDateFrom
+		-- txtDateTo
+		-- BtnDate
+		-- BtnWeek
+		-- BtnYear
+		-- BtnAnnual
+3. DataGridView1
+	- Nomor Nota
+	- Tgl Nota
+	- Nomor Faktur
+	- No Kontrak
+	- Jenis Faktur
+	- Nama Customer (Faktur)
+	- F/L
+	- Jumlah
+	- Jenis Faktur Index
+	- Kuitansi
+4. TxtNoNota
+	- Jika input > 2 karakter
+		-- Memanggil AllData
+	- Jika input = 0 karakter
+		-- Memanggil AllData
+5. TxtNoFaktur
+	- Jika input > 2 karakter
+		-- Memanggil AllData
+	- Jika input = 0 karakter
+		-- Memanggil AllData
+6. TxtCustomer
+	- Jika input > 2 karakter
+		-- Memanggil AllData
+	- Jika input = 0 karakter
+		-- Memanggil AllData
+7. mnuClick
+	- RevisiNoKuitansiToolStripMenuItem
+	- DeleteToolStripMenuItem
+	- MnuRefresh
+		-- Memanggil AllData
+	- MnuExit
+		-- Keluar dari FakturRevisiForm
