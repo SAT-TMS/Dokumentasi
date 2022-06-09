@@ -1,0 +1,25 @@
+Pengeluaran Barang (Header)
+1. Form Load
+2. TxtCustomers
+3. TxtSales
+4. TxtProject
+5. TxtKontrak
+6. BtnClearCustomers
+7. BtnClearSales
+8. BtnClearProject
+9. BtnClearKontrak
+10. Search Button Customer
+11. CustomerCheckBox
+12. SalesCheckBox
+13. ProjectCheckBox
+14. KontrakCheckBox
+15. CboLokasi
+16. txtDateFrom
+17. txtDateTo
+18. CboLaporan
+19. DataGridView1
+20. MnuClick
+	- MnuRefresh
+	- MnuExport
+	- MnuExit
+		-- Keluar dari A102FrmRptPengeluaranBarang
