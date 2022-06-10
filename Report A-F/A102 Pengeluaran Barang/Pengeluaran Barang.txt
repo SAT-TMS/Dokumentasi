@@ -1,23 +1,71 @@
 Pengeluaran Barang (Header)
 1. Form Load
+	- ds = DataGridView1 = Get data dari Report_Pengeluaran_Barang
+	- dsSummary = Get data dari Report_A102_Pengeluaran_Barang_Summary
 2. TxtCustomers
 3. TxtSales
 4. TxtProject
 5. TxtKontrak
 6. BtnClearCustomers
+	- Clear data dalam TxtCustomers
 7. BtnClearSales
+	- Clear data dalam TxtSales
 8. BtnClearProject
+	- Clear data dalam TxtProject
 9. BtnClearKontrak
+	- Clear data dlam TxtKontrak
 10. Search Button Customer
 11. CustomerCheckBox
+	- Jika CustomerCheckBox dicek
+		-- TxtCustomers = %
+	- Jika CustomerCheckBox tidak dicek
+		-- TxtCustomers = " " (kosong)
 12. SalesCheckBox
+	- Jika SalesCheckBox dicek
+		-- TxtSales = %
+	- Jika SalesCheckBox tidak dicek
+		-- TxtSales = " " (kosong)
 13. ProjectCheckBox
+	- Jika ProjectCheckBox dicek
+		-- TxtProject = %
+	- Jika ProjectCheckBox tidak dicek
+		-- TxtProject = " " (kosong)
 14. KontrakCheckBox
+	- Jika KontrakCheckBox dicek
+		-- TxtKontrak = %
+	- Jika KontrakCheckBox tidak dicek
+		-- TxtKontrak = " " (kosong)
 15. CboLokasi
+	- CboLokasi = sesuai LocationID dan LocationName ketika Login
 16. txtDateFrom
 17. txtDateTo
 18. CboLaporan
+	- A102 - Pengeluaran Barang
 19. DataGridView1
+	- TanggalPO
+	- NomorPO
+	- PickSlipID
+	- NomorPOCust
+	- ProjectName
+	- ProductID
+	- KodeMarketting
+	- QuantityPO
+	- SatuanPO
+	- TanggalSJ
+	- SuratJalanID
+	- Memo
+	- NoMobil
+	- QuanitySJ
+	- SatuanSJ
+	- WPS
+	- BeratNettoStd
+	- Tara
+	- Brutto
+	- Netto
+	- Sisa
+	- Index
+	- Header
+	- NoKontrak
 20. MnuClick
 	- MnuRefresh
 	- MnuExport
