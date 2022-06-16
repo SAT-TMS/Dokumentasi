@@ -20,6 +20,15 @@ Pengeluaran Barang (Header)
 9. BtnClearKontrak
 	- Clear data dlam TxtKontrak
 10. Search Button Customer
+	- Membuka Searching Form
+		-- Grid
+			--- Customer
+			--- Sales
+			--- Project
+			--- Kontrak
+		-- TextBox Customer, Sales, Project, Kontrak
+		-- DoubleClick ke salah satu baris untuk memilih Customer, Sales, Project dan Kontrak
+		-- Masukkan data yang dipilih ke dalam TxtCustomers, TxtSales, TxtProject, TxtKontrak
 11. CustomerCheckBox
 	- Jika CustomerCheckBox dicek
 		-- TxtCustomers = %
