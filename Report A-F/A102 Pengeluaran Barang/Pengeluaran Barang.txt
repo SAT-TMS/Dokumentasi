@@ -4,13 +4,12 @@ Pengeluaran Barang (Header)
 		-- LocationName = " " (kosong)
 	- Jika LocationID != L0001
 		-- LocationName = LocationIDLog
-	- Function DataSet
-		-- ds = DataGridView1 = Get data dari Report_Pengeluaran_Barang
-		-- dsSummary = Get data dari Report_A102_Pengeluaran_Barang_Summary
-2. TxtCustomers
-3. TxtSales
-4. TxtProject
-5. TxtKontrak
+	- ds = DataGridView1 = Get data dari Report_Pengeluaran_Barang
+	- dsSummary = Get data dari Report_A102_Pengeluaran_Barang_Summary
+2. TxtCustomers, Nama Customer
+3. TxtSales, Sales
+4. TxtProject, Project
+5. TxtKontrak, Nomor Kontrak
 6. BtnClearCustomers
 	- Clear data dalam TxtCustomers
 7. BtnClearSales
@@ -83,6 +82,55 @@ Pengeluaran Barang (Header)
 20. MnuClick
 	- MnuRefresh
 		-- Memanggil Function DataSet
+			--- Jika CboLaporan != " " (kosong)
+            			---- LblLaporan = CboLaporan
+            			---- Jika CboLaporan = "A102 - Pengeluaran Barang"
+                			----- Jika TxtCustomers != " "
+                    				------ Supl_Name = TxtCustomer
+                			----- Jika TxtCustomers = " "
+                    				------ Supl_Name = "%"
+                			----- Jika TxtSales != " "
+                    				------ Sales = TxtSales
+                			----- Jika TxtSales = " "
+                    				------ Sales = "%"
+                			----- Jika CboLokasi = "LAIN LAIN"
+                    				------ LocationName = "%"
+                			----- Jika CboLokasi != "LAIN-LAIN"
+                    				------ LocationName = CboLokasi
+                			----- Jika TxtProject != " "
+                    				------ Project = TxtProject
+                			----- Jika TxtProject = " "
+                    				------ Project = "%"
+                			----- Jika TxtKontrak != " "
+                    				------ NomorKontrak = TxtKontrak
+                			----- Jika TxtKontrak = " "
+                    				------ NomorKontrak = "%"
+                			----- DateFrom = txtDateFrom
+                			----- DateTo = txtDateTo
+				---- Jika jumlah baris dalam table > 0
+					----- Clear semua baris
+				---- Jika CboLaporan = "A102 - Pengeluaran Barang"
+					----- ds = Database Service Report_Pengeluaran_Barang
+					----- dsSummary = Database Service Report_A102_Pengeluaran_Barang_Summary
+				---- Jika jumlah baris dalam table = 0
+					----- MessageBox = "Data Tidak Ada !!!"
+				---- Jika jumlah baris dalam table > 0
+					----- DataGridView = ds
+					----- Format tanggal = dd MM yyyy
+						------ d = Tanggal
+						------ M = Bulan
+						------ y = Tahun
+					----- TotalBarisLabel6 = jumlah baris
+				---- Jika jumlah baris dalam table = 0
+					----- TotalBarisLabel6 = 0
 	- MnuExport
+		-- Jika CboLaporan = " " (kosong)
+            		--- Keluar dari A102FrmRptPengeluaranBarang
+        	-- Jika CboLaporan != " " (kosong)
+            		--- If LblLaporan != CboLaporan
+                		---- MnuRefresh
+            		--- If CboLaporan = "A102 - Pengeluaran Barang"
+                		---- Function PengeluaranBarang
+					----- Get data dari Report_Pengeluaran_Barang
 	- MnuExit
 		-- Keluar dari A102FrmRptPengeluaranBarang
