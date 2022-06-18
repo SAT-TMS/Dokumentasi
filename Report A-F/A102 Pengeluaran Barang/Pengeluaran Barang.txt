@@ -130,7 +130,42 @@ Pengeluaran Barang (Header)
             		--- If LblLaporan != CboLaporan
                 		---- MnuRefresh
             		--- If CboLaporan = "A102 - Pengeluaran Barang"
-                		---- Function PengeluaranBarang
-					----- Get data dari Report_Pengeluaran_Barang
+				---- Get data dari Report_Pengeluaran_Barang
+					----- Get table
+						------ Gudang
+						------ TanggalDari
+						------ TanggalSampai
+						------ NomorPO
+					----- Jika RR = 1
+						------ RR = SuratJalanID
+					----- Jika RR = ''
+						------ RR = SuratJalanID 
+					----- Jika RR = 1
+						------ RR = PickSlipID
+					----- Jika RR = ''
+						------ RR = PickSlipID 
+					----- Jika RR = 1
+						------ RR = NomorPO 
+					----- Jika RR = ''
+						------ RR = NomorPO 
+					----- Jika RR = 1
+						------ RR = Supl_Name
+					----- Jika RR = ''
+						------ RR = Supl_Name
+					----- Jika ProductID (Trx_SuratJalanDetail)(dilihat dari kiri 2 digit) = '51' AND SatuanID (Trx_SuratJalanDetail) = 'kg'
+						------ SatuanID = Quantity2 (Trx_SuratJalanDetail)
+					----- Jika ProductID (Trx_SuratJalanDetail)(dilihat dari kiri 2 digit) != '51' AND SatuanID (Trx_SuratJalanDetail) != 'kg'
+						------ SatuanID = Quantity (Trx_SuratJalanDetail)
+					----- Jika ProductID (Trx_SuratJalanDetail)(dilihat dari kiri 2 digit) = '51' AND SatuanID (Trx_SuratJalanDetail) = 'kg'
+						------ SatuanID = Satuan2ID (Trx_SuratJalanDetail)
+					----- Jika ProductID (Trx_SuratJalanDetail)(dilihat dari kiri 2 digit) != '51' AND SatuanID (Trx_SuratJalanDetail) != 'kg'
+						------ SatuanID = SatuanID (Trx_SuratJalanDetail)
+					----- Persen = STR((BeratTimbangan (Trx_WBExtPenjualanProfil) - BeratStandard (Trx_WBExtPenjualanProfil)) / NULLIF (BeratTimbangan (Trx_WBExtPenjualanProfil), 0) * 100))
+					----- FROM Trx_SuratJalanDetail
+						----- Status (Trx_SuratJalan) = 'A' 
+						----- AND Factory (MS_Locations) LIKE @Gudang 
+						----- AND TanggalSJ (Trx_SuratJalan) >= @TanggalDari 
+						----- AND TanggalSJ (Trx_SuratJalan) <= @TanggalSampai
+						----- ORDER BY TanggalSJ (Trx_SuratJalan), SuratJalanID (Trx_SuratJalan)
 	- MnuExit
 		-- Keluar dari A102FrmRptPengeluaranBarang
