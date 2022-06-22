@@ -1,0 +1,55 @@
+Laporan Retur (Header)
+1. Form Load
+	- Jika LocationID = L0001
+		-- LocationName = " " (kosong)
+	- Jika LocationID != L0001
+		-- LocationName = LocationIDLog
+	- Get data Location dari LocationList
+	- ds = DataGridView1 = Get data dari Report_A301_Retur_Surat_Jalan
+2. txtDateFrom
+3. txtDateTo
+4. CboLaporan
+	- A301-Laporan Retur
+5. CboLokasi
+	- CboLokasi = sesuai LocationID dan LocationName ketika Login
+6. DataGridView1
+	- ReturSJID
+	- SJID
+	- OrderMuatID	
+	- ProductID	
+	- Qty1	
+	- Satuan1	
+	- Qty2	
+	- Satuan2	
+	- POID	
+	- PickSlipID	
+	- Status	
+	- Tanggal	
+	- TransID
+7. MnuClick
+	- MnuRefresh
+		-- Memanggil Function DataSheet
+If CboLaporan.Text = "" Then
+            Exit Sub
+        Else
+            LblLaporan.Text = CboLaporan.Text
+            If CboLaporan.Text = "A301 - Retur Surat Jalan" Then
+                nData(0) = txtDateFrom.Text
+                nData(1) = txtDateTo.Text
+                nData(2) = LocationIDLog
+If ds.Tables.Count > 0 Then
+                    ds.Tables(0).Rows.Clear()
+                End If
+                If CboLaporan.Text = "A301 - Retur Surat Jalan" Then
+                    ds = AksesLinkCloud.ReturSuratJalan(Kunci, nData)
+If ds.Tables(0).Rows.Count = 0 Then
+                MsgBox("Data Tidak Ada", MsgBoxStyle.Information)
+                Exit Sub
+		-- Jika data dalam grid > 0
+			--- Set tanggal dengan format : dd-MMM-yyyy
+				---- dd		: tanggal 
+				---- MMM	: bulan (huruf 3 digit pertama)
+				---- yyyy	: tahun
+	- MnuExport
+	- MnuExit
+		-- Keluar dari A301FrmRptRetur
