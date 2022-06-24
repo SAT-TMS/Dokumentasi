@@ -29,27 +29,33 @@ Laporan Retur (Header)
 7. MnuClick
 	- MnuRefresh
 		-- Memanggil Function DataSheet
-If CboLaporan.Text = "" Then
-            Exit Sub
-        Else
-            LblLaporan.Text = CboLaporan.Text
-            If CboLaporan.Text = "A301 - Retur Surat Jalan" Then
-                nData(0) = txtDateFrom.Text
-                nData(1) = txtDateTo.Text
-                nData(2) = LocationIDLog
-If ds.Tables.Count > 0 Then
-                    ds.Tables(0).Rows.Clear()
-                End If
-                If CboLaporan.Text = "A301 - Retur Surat Jalan" Then
-                    ds = AksesLinkCloud.ReturSuratJalan(Kunci, nData)
-If ds.Tables(0).Rows.Count = 0 Then
-                MsgBox("Data Tidak Ada", MsgBoxStyle.Information)
-                Exit Sub
+			--- Jika CboLaporan = ""
+            			---- Keluar dari A301FrmRptRetur
+        		--- Jika CboLaporan != ""
+            			---- LblLaporan = CboLaporan
+            			---- Jika CboLaporan = "A301-Retur Surat Jalan"
+                			----- DateFrom = txtDateFrom
+                			----- DateTo = txtDateTo
+                			----- LocationName = LocationIDLog
+				---- Jika terdiri dari > 0 tabel dalam database
+                    			----- Clear semua baris dalam table
+                		---- If CboLaporan = "A301 - Retur Surat Jalan"
+                    			----- ds = Get Database dari Report_A301_Retur_Surat_Jalan
+				---- If ds.Tables(0).Rows.Count = 0
+                			----- MessageBox : "Data Tidak Ada"
+					----- Keluar dari A301FrmRptRetur
 		-- Jika data dalam grid > 0
 			--- Set tanggal dengan format : dd-MMM-yyyy
 				---- dd		: tanggal 
 				---- MMM	: bulan (huruf 3 digit pertama)
 				---- yyyy	: tahun
 	- MnuExport
+		-- Jika CboLaporan = ""
+            		--- Keluar dari A301FrmRptRetur
+        	-- Jika CboLaporan != ""
+            		--- Jika LblLaporan != CboLaporan
+                		---- MnuRefresh
+            		--- Jika CboLaporan = A301-Retur Surat Jalan
+                		---- Function ReturSuratJalan
 	- MnuExit
 		-- Keluar dari A301FrmRptRetur
