@@ -56,6 +56,53 @@ Laporan Retur (Header)
             		--- Jika LblLaporan != CboLaporan
                 		---- MnuRefresh
             		--- Jika CboLaporan = A301-Retur Surat Jalan
-                		---- Function ReturSuratJalan
+                		---- Get data dari Report_A301_Retur_Surat_Jalan
+					----- Get Table
+						------ DateFrom
+						------ DateTo
+						------ Location
+					----- DateFrom	= 24 may 2021
+					----- DateTo	= 31 may 2021
+					----- Location	= L10001
+					----- ReturSJID LIKE '%ms4%wr%'
+					----- Jika LocationID = L10001
+						------ Jika RR = 1, RR = NomorPOCust 	ELSE 	NomorPOCustomer = ' '
+						------ Jika RR = 1, RR = NomorPO 	ELSE	NomorPO = ' ' 
+						------ Jika RR = 1, RR = PickSlipID 	ELSE	PickSlipID = ' ' 
+						------ Jika RR = 1, RR = Supl_Name 	ELSE 	Customer = ' '
+						------ Jika RR = 1, RR = NoSJ 		ELSE 	NoSJ = ' '
+						------ DPP = (Quantity*WPS)*HargaBasic 
+						------ PPN = ((Quantity*WPS)*HargaBasic)*0.1
+						------ Jumlah = (((Quantity*WPS)*HargaBasic)+(((Quantity*WPS)*HargaBasic)*0.1))
+						------ Jika po.SatuanID = SJR.Satuan1, SatuanID = (SJR.Qty1)	ELSE	Quantity = (SJR.Qty2)
+						------ Jika po.SatuanID = SJR.Satuan1, SatuanID = SJR.Satuan1	ELSE	Satuan = SJR.Satuan2
+						------ Jika po.SatuanID = SJR.Satuan1, Satuan = FORMAT(SJR.Qty1,'N0') + ' ' + SJR.Satuan1 
+							ELSE	Satuan = FORMAT(SJR.Qty2,'N0') + ' ' + SJR.Satuan2
+						------ Jika SJR.Satuan1 = 'Kg', Berat = SJR.Qty1	ELSE 	Berat = SJR.Qty1 * P.WPS 
+						------ Jika SJR.Satuan1 = 'Kg', Berat = SJR.Qty1 
+							ELSE
+							Jika P.Wps_R = 1.123, (Jika sjr.Satuan1 = 'kg', Berat = sjr.Qty1 ELSE Berat = sjr.Qty2) 
+							ELSE	Berat = SJR.Qty1 * P.Wps_R
+						------ Jika
+							(po.StatusPPn = 'I' AND po.StatusPPH22EI = '-'), HargaBasic = ROUND((po.HargaRp/1.1),2)
+							(po.StatusPPn = 'I' AND po.StatusPPH22EI = 'I'), HargaBasic = ROUND((po.HargaRp/1.103),2)
+							(po.StatusPPn = 'I' AND po.StatusPPH22EI = 'E'), HargaBasic = ROUND((po.HargaRp/1.1),2)
+							ELSE 	HargaBasic = po.HargaRp
+						------ h.POId=d.POID
+						------ SJR.POID = PO.POId
+						------ sjr.ProductID=po.ProductID
+						------ FROM Trx_WB INNER JOIN Trx_WBExtPenjualanProfil
+							------- W.TransID = WP.TransID
+							------- GROUP BY WP.OrderMuatID, WP.ProductID, WP.BeratTimbangan, W.Status
+							------- HAVING (W.Status = 'A')
+						------ SJD.OrderMuatID= W.OrderMuatID
+						------ SJR.ProductID=W.ProductID
+						------ SJR.Status = 'A'
+					----- Jika LocationID != L10001
+						------ Jika RR = 1, NomorPOCustomer = NomorPOCust	ELSE	NomorPOCustomer = ' '
+						------ Jika RR = 1, NomorPO = NomorPO 			ELSE	NomorPO = ' '
+						------ Jika RR = 1, PickSlipID = PickSlipID 		ELSE	PickSlipID = ' '
+						------ Jika RR = 1, Customer = Supl_Name 		ELSE	Customer = ' '
+						------ Jika RR = 1, NoSJ = NoSJ 			ELSE	NoSJ = ' '
 	- MnuExit
 		-- Keluar dari A301FrmRptRetur
