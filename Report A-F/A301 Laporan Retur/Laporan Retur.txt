@@ -71,38 +71,64 @@ Laporan Retur (Header)
 						------ Jika RR = 1, RR = PickSlipID 	ELSE	PickSlipID = ' ' 
 						------ Jika RR = 1, RR = Supl_Name 	ELSE 	Customer = ' '
 						------ Jika RR = 1, RR = NoSJ 		ELSE 	NoSJ = ' '
-						------ DPP = (Quantity*WPS)*HargaBasic 
-						------ PPN = ((Quantity*WPS)*HargaBasic)*0.1
-						------ Jumlah = (((Quantity*WPS)*HargaBasic)+(((Quantity*WPS)*HargaBasic)*0.1))
-						------ Jika po.SatuanID = SJR.Satuan1, SatuanID = (SJR.Qty1)	ELSE	Quantity = (SJR.Qty2)
-						------ Jika po.SatuanID = SJR.Satuan1, SatuanID = SJR.Satuan1	ELSE	Satuan = SJR.Satuan2
-						------ Jika po.SatuanID = SJR.Satuan1, Satuan = FORMAT(SJR.Qty1,'N0') + ' ' + SJR.Satuan1 
-							ELSE	Satuan = FORMAT(SJR.Qty2,'N0') + ' ' + SJR.Satuan2
-						------ Jika SJR.Satuan1 = 'Kg', Berat = SJR.Qty1	ELSE 	Berat = SJR.Qty1 * P.WPS 
-						------ Jika SJR.Satuan1 = 'Kg', Berat = SJR.Qty1 
+						------ DPP = (Quantity * WPS) * HargaBasic 
+						------ PPN = ((Quantity * WPS) * HargaBasic) * 0.1
+						------ Jumlah = (((Quantity * WPS) * HargaBasic) + (((Quantity * WPS) * HargaBasic) * 0.1))
+						------ Jika SatuanID(Trx_PO) = Satuan1(Trx_SuratJalanRetur), SatuanID = (Qty1(Trx_SuratJalanRetur)	ELSE	Quantity = (Qty2(Trx_SuratJalanRetur))
+						------ Jika SatuanID(Trx_PO) = Satuan1(Trx_SuratJalanRetur), SatuanID = Satuan1(Trx_SuratJalanRetur)	ELSE	Satuan = Satuan2 (Trx_SuratJalanRetur)
+						------ Jika SatuanID(Trx_PO) = Satuan1(Trx_SuratJalanRetur), Satuan = FORMAT(Qty1(Trx_SuratJalanRetur),'N0') + ' ' + Satuan1(Trx_SuratJalanRetur) 
+							ELSE	Satuan = FORMAT(Qty2(Trx_SuratJalanRetur),'N0') + ' ' + Satuan2(Trx_SuratJalanRetur)
+						------ Jika Satuan1(Trx_SuratJalanRetur) = 'Kg', Berat = Qty1(Trx_SuratJalanRetur)	ELSE 	Berat = Qty1(Trx_SuratJalanRetur) * WPS(WPS_Product) 
+						------ Jika Satuan1(Trx_SuratJalanRetur) = 'Kg', Berat = Qty1(Trx_SuratJalanRetur) 
 							ELSE
-							Jika P.Wps_R = 1.123, (Jika sjr.Satuan1 = 'kg', Berat = sjr.Qty1 ELSE Berat = sjr.Qty2) 
-							ELSE	Berat = SJR.Qty1 * P.Wps_R
+							Jika Wps_R(WPS_Product) = 1.123, (Jika Satuan1(Trx_SuratJalanRetur) = 'kg', Berat = Qty1(Trx_SuratJalanRetur) ELSE Berat = Qty2(Trx_SuratJalanRetur) 
+							ELSE	Berat = Qty1(Trx_SuratJalanRetur) * Wps_R(WPS_Product)
 						------ Jika
-							(po.StatusPPn = 'I' AND po.StatusPPH22EI = '-'), HargaBasic = ROUND((po.HargaRp/1.1),2)
-							(po.StatusPPn = 'I' AND po.StatusPPH22EI = 'I'), HargaBasic = ROUND((po.HargaRp/1.103),2)
-							(po.StatusPPn = 'I' AND po.StatusPPH22EI = 'E'), HargaBasic = ROUND((po.HargaRp/1.1),2)
-							ELSE 	HargaBasic = po.HargaRp
-						------ h.POId=d.POID
-						------ SJR.POID = PO.POId
-						------ sjr.ProductID=po.ProductID
+							(StatusPPn(Trx_PO) = 'I' AND StatusPPH22EI(Trx_PO) = '-'), HargaBasic = ROUND((HargaRp(Trx_PO) / 1.1),2)
+							(StatusPPn(Trx_PO) = 'I' AND StatusPPH22EI(Trx_PO) = 'I'), HargaBasic = ROUND((HargaRp(Trx_PO) / 1.103),2)
+							(StatusPPn(Trx_PO) = 'I' AND StatusPPH22EI(Trx_PO) = 'E'), HargaBasic = ROUND((HargaRp(Trx_PO) / 1.1),2)
+							ELSE 	HargaBasic = HargaRp (Trx_PO)
+						------ POId(Trx_PO) = POID(Trx_PODetail)
+						------ POID(Trx_SuratJalanRetur) = POId(Trx_PO)
+						------ ProductID(Trx_SuratJalanRetur) = ProductID(Trx_PO)
 						------ FROM Trx_WB INNER JOIN Trx_WBExtPenjualanProfil
-							------- W.TransID = WP.TransID
-							------- GROUP BY WP.OrderMuatID, WP.ProductID, WP.BeratTimbangan, W.Status
-							------- HAVING (W.Status = 'A')
-						------ SJD.OrderMuatID= W.OrderMuatID
-						------ SJR.ProductID=W.ProductID
-						------ SJR.Status = 'A'
+							------- TransID(Trx_WB) = TransID(Trx_WBExtPenjualanProfil)
+							------- GROUP BY OrderMuatID(Trx_WBExtPenjualanProfil), ProductID(Trx_WBExtPenjualanProfil), BeratTimbangan(Trx_WBExtPenjualanProfil), Status(Trx_WB)
+							------- HAVING (Status(Trx_WB) = 'A')
+						------ OrderMuatID (Trx_SuratJalanDetail)= OrderMuatID(Trx_WB)
+						------ ProductID(Trx_SuratJalanRetur) = ProductID(Trx_WB)
+						------ Status(Trx_SuratJalanRetur) = 'A'
 					----- Jika LocationID != L10001
 						------ Jika RR = 1, NomorPOCustomer = NomorPOCust	ELSE	NomorPOCustomer = ' '
 						------ Jika RR = 1, NomorPO = NomorPO 			ELSE	NomorPO = ' '
 						------ Jika RR = 1, PickSlipID = PickSlipID 		ELSE	PickSlipID = ' '
 						------ Jika RR = 1, Customer = Supl_Name 		ELSE	Customer = ' '
 						------ Jika RR = 1, NoSJ = NoSJ 			ELSE	NoSJ = ' '
+						------ DPP = (Quantity * WPS) * HargaBasic 
+						------ PPN = ((Quantity * WPS) * HargaBasic) * 0.1
+						------ Jumlah = (((Quantity * WPS) * HargaBasic) + (((Quantity * WPS) * HargaBasic) * 0.1))
+						------ Jika LEFT(ProductID(Trx_SuratJalanRetur),2) = '52', Satuan = Qty1(Trx_SuratJalanRetur)
+							ELSE (
+								Jika SatuanID(Trx_PO) = Satuan1(Trx_SuratJalanRetur), Quantity = (Qty1(Trx_SuratJalanRetur)	ELSE	Quantity = Qty2(Trx_SuratJalanRetur)
+								Jika LEFT(ProductID(Trx_SuratJalanRetur),2) = '52', Satuan = Satuan1(Trx_SuratJalanRetur) 
+								ELSE (
+									Jika SatuanID(Trx_PO) = Satuan1(Trx_SuratJalanRetur), Satuan = Satuan1(Trx_SuratJalanRetur)	ELSE	Satuan = Satuan2(Trx_SuratJalanRetur)
+						------ Jika SatuanID(Trx_PO) = Satuan1(Trx_SuratJalanRetur), Satuan = FORMAT(Qty1(Trx_SuratJalanRetur),'N0') + ' ' + Satuan1(Trx_SuratJalanRetur) 
+							ELSE Satuan = FORMAT(Qty2(Trx_SuratJalanRetur),'N0') + ' ' + Satuan2(Trx_SuratJalanRetur)
+						------ Jika
+							(StatusPPn(Trx_PO) = 'I' AND StatusPPH22EI(Trx_PO) = '-'), HargaBasic = ROUND((HargaRp(Trx_PO) / 1.1),2)
+							(StatusPPn(Trx_PO) = 'I' AND StatusPPH22EI(Trx_PO) = 'I'), HargaBasic = ROUND((HargaRp(Trx_PO) / 1.103),2)
+							(StatusPPn(Trx_PO) = 'I' AND StatusPPH22EI(Trx_PO) = 'E'), HargaBasic = ROUND((HargaRp(Trx_PO) / 1.1),2)
+							ELSE 	HargaBasic = HargaRp (Trx_PO)
+						------ POId(Trx_PO) = POID(Trx_PODetail)
+						------ POID(Trx_SuratJalanRetur) = POId(Trx_PO)
+						------ ProductIDTrx_SuratJalanRetur) = ProductID(Trx_PO)
+						------ FROM Trx_WB INNER JOIN Trx_WBExtPenjualanProfil
+							------- TransID(Trx_WB) = TransID(Trx_WBExtPenjualanProfil)
+							------- GROUP BY OrderMuatID(Trx_WBExtPenjualanProfil), ProductID(Trx_WBExtPenjualanProfil), BeratTimbangan(Trx_WBExtPenjualanProfil), Status(Trx_WB)
+							------- HAVING (Status(Trx_WB) = 'A')
+						------ OrderMuatID (Trx_SuratJalanDetail)= OrderMuatID(Trx_WB)
+						------ ProductID(Trx_SuratJalanRetur) = ProductID(Trx_WB)
+						------ Status(Trx_SuratJalanRetur) = 'A'
 	- MnuExit
 		-- Keluar dari A301FrmRptRetur
