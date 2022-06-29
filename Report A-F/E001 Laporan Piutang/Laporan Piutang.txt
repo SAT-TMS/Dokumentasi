@@ -1,0 +1,350 @@
+Laporan Piutang (Header)
+1. Form Load
+	- Jika LocationIDLog = "L50001"
+		-- TxtSalesID = "Budi"
+            	-- TxtSalesID = ReadOnly
+            	-- SearchButtonSales = tidak ditampilkan
+            	-- RefreshAllButton = tidak ditampilkan
+            	-- Function StartUp
+			--- DataGridView1 = Memanggil AllData
+				---- Get data dari Database Service Report_AR_Piutang_2
+			--- DataGridView2 = Memanggil AllDataSummary
+				---- Get data dari Database Service Report_AR_Piutang_Summary
+        - Jika LocationIDLog != "L50001"
+            	-- GOButton = Hide
+            	-- Function StartUp
+			--- DataGridView1 = Memanggil AllData
+				---- Get data dari Database Service Report_AR_Piutang_2
+			--- DataGridView2 = Memanggil AllDataSummary
+				---- Get data dari Database Service Report_AR_Piutang_Summary
+        - DateTimePicker1 = Tanggal Sekarang
+        - CboJatem = select pilihan paling atas
+2. NamaKonsumenTextBox, Customer
+3. SearchButtonCustomer
+	- Membuka SearchingForm Customer
+		-- Data Input
+			--- CustomerID
+			--- CustomerName
+		-- Grid
+			--- Customer
+			--- Supl_Name
+			--- Addr1
+			--- Addr2
+			--- Kota
+			--- Provinsi
+			--- ProvinsiID
+			--- CountryID
+			--- SupplierGroupID
+			--- SupplierGroup
+			--- KabupatenID
+			--- Description
+			--- PPh22Status
+		-- Memasukkan data (Customer dan Supl_Name) ke Data Input yang dipilih dari Grid dengan DoubleClick pada baris dalam Grid
+		-- NamaKonsumenTextBox : masukkan CustomerName (dari Data Input) ke dalam TextBox
+4. TxtProject, Project
+5. SearchButtonProject
+	- Membuka SearchingForm Customer
+		-- Data Input
+			--- ProjectID
+			--- ProjectName
+		-- Grid
+			--- ProjectID
+			--- ProjectName
+			--- Address1
+			--- Kota
+			--- Provinsi
+			--- Owner
+			--- NamaPM
+			--- Description
+			--- ProjectCategory
+			--- ProjectCategoryName
+			--- MaxPriceTrailer
+			--- MaxPriceTronton
+			--- MaxPriceOthers
+		-- Memasukkan data (ProjectID dan ProjectName) ke Data Input yang dipilih dari Grid dengan DoubleClick pada baris dalam Grid
+		-- TxtProject : masukkan ProjectName (dari Data Input) ke dalam TextBox
+6. DateTimePicker1
+7. TxtSalesID, Nama Sales
+8. SearchButtonSales
+9. CboJatem
+	- ALL
+	- Reminder
+	- Lewat JT Sampai 30 Hari
+	- Lewat JT Sampai 90 Hari
+	- Lewat JT Diatas 90 Hari
+10. RefreshAllButton
+	- Memanggil AllData
+11. ExportToExcelButton
+	- Jika data dalam DataGridView1 > 0
+		-- Simpan data ke dalam Excel
+		-- Get data dari DataGridView1
+			--- Get tabel
+				---- [Supl_ID]
+				---- [Supl_Name]
+				---- [NotaID]
+				---- [NomorPO]
+				---- [NomorKontrak]
+				---- [ProjectName]
+				---- [Penjual]
+				---- [TanggalNota]
+				---- [TanggalJatuhTempo]
+				---- [DiffDate]
+				---- [NomorNota]
+				---- [Kurs]
+				---- Jumlah_Faktur
+				---- UangMUka
+				---- [DPPRp]
+				---- [PPN]
+				---- [PPH22]
+				---- [PPH22BUMN]
+				---- [Potongan]
+				---- [Premi]
+				---- [Total]
+				---- [Pelunasan]
+				---- [CN]
+				---- [Sisa]
+				---- [Mark]
+				---- [TglTerima]
+				---- [JPembayaran]
+				---- [Proses]
+				---- [Berat]
+				---- [NomorFaktur]
+				---- [JenisPerusahaan]
+				---- [StatusFaktur]
+				---- [JenisFaktur]
+				---- [WAPU]
+				---- NomorPOCust
+			--- case when v.NomorPO is not null, NomorPO = v.NomorPO 
+			    	 when (v.NomorPO is null and f.JenisFakturID = 1), NomorPO = 'Uang Muka' 
+			    	 when (v.NomorPO is null and f.JenisFakturID = 8), NomorPO = 'Lain Lain'  
+			    else NomorPO = 'DB Lama'
+			--- case when v.NomorKontrak is not null then NomorKontrak = v.NomorKontrak 
+			    	 when (v.NomorKontrak is null and f.JenisFakturID=1), NomorKontrak = 'Uang Muka' 
+			    	 when (v.NomorKontrak is null and f.JenisFakturID=8), NomorKontrak = 'Lain Lain' 
+			    else NomorKontrak = 'DB Lama'
+			--- case when (v.ProjectName is null and f.JenisFakturID = 1), ProjectName = 'Uang Muka' 
+			    	 when v.ProjectName is not null, ProjectName = v.ProjectName 
+			    	 when (v.ProjectName is null and f.JenisFakturID = 8), ProjectName = 'Lain Lain' 
+			    else ProjectName = 'DB Lama'
+			--- case when v.Penjual is not null, Penjual = v.Penjual 
+			    	 when (v.Penjual is null and f.JenisFakturID = 1), Penjual = 'Uang Muka' 
+			    	 when (v.Penjual is null and f.JenisFakturID = 8), Penjual = 'Lain Lain' 
+			    else Penjual = 'DB Lama'
+			--- Sisa = (Total - (isnull(c.CN,0)) - isnull(t.Pelunasan,0))
+			--- CASE when ft.TandaTerima is null, TglTerima = ''
+				 when ft.TandaTerima = 0 and ft.TandaTerimaPlant = 0, TglTerima = ''
+				 when ft.TandaTerima = 0 and ft.TandaTerimaPlant = 1, TglTerima = isnull(convert(varchar,ft.TglTerimaPlant,106),'')
+				 when ft.TandaTerima = 1 and ft.TandaTerimaPlant = 1, TglTerima = isnull(convert(varchar,ft.TglTerima,106),'')
+			    else TglTerima = ''
+			--- case when v.JBayar is not null, JPembayaran = v.JBayar 
+				 when (v.JBayar is null and f.JenisFakturID = 8), JPembayaran = 'Cash' 
+			    else JPembayaran = 'DB Lama'
+			--- case when (v.JBayar in ('SKBDN','SCF') and y.NotaID is not null and y.Status_Accept_Bank = 1), Proses = '6 Aksep'
+				 when (v.JBayar in ('SKBDN','SCF') and y.NotaID is not null and y.Status_Terima_Bank = 1), Proses = '5 Nego'
+				 when (v.JBayar in ('SKBDN','SCF') and y.NotaID is not null and y.Status_Balik = 1), Proses = '4 Kembali'
+				 when (v.JBayar in ('SKBDN','SCF') and y.NotaID is not null and y.Status_Kirim_BAP = 1), Proses = '3 Kirim'
+				 when (v.JBayar in ('SKBDN','SCF') and y.NotaID is not null and y.Status_Kirim_BAP = 0 and y.Status_Balik = 0 and y.Status_Terima_Bank = 0 and y.Status_Accept_Bank = 0), Proses = '2 BAP'
+				 when (v.JBayar in ('SKBDN','SCF') and y.NotaID is null), Proses = '1 Belum BAP'
+				 when (v.JBayar in ('TANDA TERIMA')) 
+					THEN (CASE when ft.TandaTerima is null then ''
+						   when ft.TandaTerima = 0 and ft.TandaTerimaPlant = 0, Proses = 'Belum'
+						   when ft.TandaTerima = 0 and ft.TandaTerimaPlant = 1, Proses = 'Belum'
+						   when ft.TandaTerima = 1 and ft.TandaTerimaPlant = 1, Proses = 'Balik'
+						   WHEN ft.TandaTerima = 1, Proses = 'BALIK'
+					      ELSE Proses = 'BELUM')
+			    else Proses = ''
+			--- case when (cast(f.TanggalNota as date) >= '19 jan 2021' and f.StatusFaktur like '07%'), Total = ((f.DPPRp - f.AmountPPh22BUMN) + f.Premi) - ((isnull(r.DPPRp,0) - isnull(r.AmountPPh22BUMN,0)) + isnull(r.Premi,0))
+			    else (CASE WHEN f.PPh22 = 1, Total = (((f.DPPRp + f.PPN + f.AmountPPh22 - f.AmountPPh23)) + f.Premi) - (((isnull(r.DPPRp,0) + isnull(r.PPN,0) + isnull(r.AmountPPh22,0) - isnull(r.AmountPPh23,0))) + isnull(r.Premi,0))
+				       WHEN f.PPh22BUMN = 1, Total = ((f.DPPRp - f.AmountPPh22BUMN) + f.Premi) - ((isnull(r.DPPRp,0) - isnull(r.AmountPPh22BUMN,0)) + isnull(r.Premi,0))
+				  ELSE Total = (((f.DPPRp + f.PPN + f.AmountPPh22 - f.AmountPPh23)) + f.Premi)-(((isnull(r.DPPRp,0) + isnull(r.PPN,0) + isnull(r.AmountPPh22,0) - isnull(r.AmountPPh23,0))) + isnull(r.Premi,0))
+			--- CASE WHEN PPh22 = 1, Total = ((DPPRp + PPN + AmountPPh22 )) + Premi 
+				 WHEN PPh22BUMN = 1, Total = (DPPRp - AmountPPh22BUMN) + Premi 
+			    ELSE Total = ((DPPRp + PPN + AmountPPh22)) + Premi
+			--- case when f.JenisFakturID = 1, JenisFaktur = 'Uang Muka' 
+				 when f.JenisFakturID = 2, JenisFaktur = 'Barang' 
+				 when f.JenisFakturID = 3, JenisFaktur = 'Ongkos Angkut' 
+			    else JenisFaktur = 'Lain Lain'
+			--- Jumlah = f.Jumlah - isnull(r.Jumlah,0)
+			--- from Trx_Faktur f
+				---- f.Supl_ID = s.Supl_ID 
+				---- f.NotaID = r.NotaID 
+				---- f.NotaID = u.NotaID 
+				---- f.Status = 'A'
+				     and (ISNULL(f.NomorNota, '-') <> '-') 
+				     and f.TanggalNota <= @Start_date
+				---- t.Total > 0
+				---- t.DPPRp > 0
+			--- from Trx_Terima h
+				---- h.TerimaID = d.TerimaID 
+				---- where h.TerimaID not like '%cn%' 
+				     and h.Status = 'A'
+				     and d.NotaID in (select f.NotaID from Trx_Faktur f)
+				---- group by d.NotaID
+				---- f.NotaID = t.NotaID
+			--- from ViewFakturReferensi r
+				---- where f.Status = 'A'
+				     and (ISNULL(f.NomorNota, '-') <> '-')    
+				     and f.TanggalNota <= @Start_date
+				---- on r.NotaID = n.NotaID 
+				---- where r.NotaID in (select f.NotaID from Trx_Faktur f)
+				     where f.Status = 'A'	
+				     and (ISNULL(f.NomorNota, '-') <> '-')    
+				     and f.TanggalNota <= @Start_date
+				---- group by r.NotaID
+				---- f.NotaID = v.NotaID
+			--- from Trx_BAP_N h
+				---- h.BAP_ID = d.BAP_ID
+				---- where f.Status = 'A'
+				     and (ISNULL(f.NomorNota, '-') <> '-') 
+				     and f.TanggalNota <= @Start_date
+				---- d.NotaID = n.NotaID 
+				---- group by d.NotaID
+				---- f.NotaID = y.NotaID
+			--- from Trx_FakturTT h
+				---- h.NoTT = d.NoTT 
+				---- where f.Status = 'A'
+				     and (ISNULL(f.NomorNota, '-') <> '-') 
+				     and f.TanggalNota <= @Start_date
+				---- d.NotaID = n.NotaID 
+				---- group by d.NotaID
+				---- f.NotaID = ft.NotaID 
+			--- from Trx_Faktur h
+				---- h.NotaID = d.NotaID 
+				---- where f.Status = 'A'
+				     and (ISNULL(f.NomorNota, '-') <> '-') 
+				---- h.NotaID = n.NotaID 
+				---- where h.Status = 'A'
+				     and h.JenisFakturID = 2
+				---- group by NotaID 
+				---- f.NotaID = br.NotaID
+			--- Jika jatem = %
+				---- case when datediff(day, cast(TanggalJatuhTempo as date), cast(@Start_date as date)) between -7 and 0, Reminder = Sisa
+				     else Reminder = 0
+				---- case when (k.DiffDate > 0 and k.DiffDate <= 30), Lewat_JT_30 = k.Sisa 
+				     else Lewat_JT_30 = 0
+				---- case when (k.DiffDate > 0 and k.DiffDate between 31 and 90), Lewat_JT_90 = k.Sisa 
+				     else Lewat_JT_90 = 0
+				---- case when (k.DiffDate > 0 and k.DiffDate > 90), Lewat_JT_90_Keatas = k.Sisa 
+				     else Lewat_JT_90_Keatas = 0
+				---- k.Supl_Name != 'Belum Diketahui'
+				     and k.Penjual LIKE @Penjual 
+				     and k.ProjectName LIKE @Project
+				     and k.Supl_ID in (select Supl_ID from MS_Supplier where Supl_Name like @Supplier)
+				     and Sisa > 0
+				---- group by t.Supl_Name
+				---- where Sisa > 0.1  
+				---- order by Supl_Name, mark, convert(datetime,TanggalNota), ProjectName
+			--- Jika jatem = Reminder
+				---- case when datediff(day, cast(TanggalJatuhTempo as date), cast(@Start_date as date)) between -7 and 0, Reminder = Sisa
+				     else Reminder = 0
+				---- case when (k.DiffDate > 0 and k.DiffDate <= 30), Lewat_JT_30 = k.Sisa 
+				     else Lewat_JT_30 = 0
+				---- case when (k.DiffDate > 0 and k.DiffDate between 31 and 90), Lewat_JT_90 = k.Sisa 
+				     else Lewat_JT_90 = 0
+				---- case when (k.DiffDate > 0 and k.DiffDate > 90), Lewat_JT_90_Keatas = k.Sisa 
+				     else Lewat_JT_90_Keatas = 0
+				---- where  k.Supl_Name != 'Belum Diketahui'
+				     and k.Penjual LIKE @Penjual 
+				     and k.ProjectName LIKE @Project
+				     and k.Supl_ID in (select Supl_ID from MS_Supplier where Supl_Name like @Supplier)
+				     and Sisa > 0 
+				---- where Reminder > 0
+				---- group by t.Supl_Name
+				---- where Sisa > 0.1  
+				---- order by Supl_Name, mark, convert(datetime,TanggalNota), ProjectName
+			--- Jika jatem = Lewat JT sd 30 Hari
+				---- case when datediff(day, cast(TanggalJatuhTempo as date), cast(@Start_date as date)) between -7 and 0, Reminder = Sisa
+				     else Reminder = 0
+				---- case when (k.DiffDate > 0 and k.DiffDate <= 30), Lewat_JT_30 = k.Sisa 
+				     else Lewat_JT_30 = 0
+				---- case when (k.DiffDate > 0 and k.DiffDate between 31 and 90), Lewat_JT_90 = k.Sisa 
+				     else Lewat_JT_90 = 0
+				---- case when (k.DiffDate > 0 and k.DiffDate > 90), Lewat_JT_90_Keatas = k.Sisa 
+				     else Lewat_JT_90_Keatas = 0
+				---- where  k.Supl_Name != 'Belum Diketahui'
+				     and k.Penjual LIKE @Penjual
+				     and k.ProjectName LIKE @Project
+				     and k.Supl_ID in (select Supl_ID from MS_Supplier where Supl_Name like @Supplier)
+				     and Sisa > 0
+				---- where Lewat_JT_30 > 0
+				---- group by t.Supl_Name
+				---- where Sisa > 0.1  
+				---- order by Supl_Name, mark, convert(datetime,TanggalNota), ProjectName
+			--- Jika jatem = Lewat JT sd 90 Hari
+				---- case when datediff(day, cast(TanggalJatuhTempo as date), cast(@Start_date as date)) between -7 and 0, Reminder = Sisa
+				     else Reminder = 0
+				---- case when (k.DiffDate > 0 and k.DiffDate <= 30), Lewat_JT_30 = k.Sisa 
+				     else Lewat_JT_30 = 0
+				---- case when (k.DiffDate > 0 and k.DiffDate between 31 and 90), Lewat_JT_90 = k.Sisa 
+				     else Lewat_JT_90 = 0
+				---- case when (k.DiffDate > 0 and k.DiffDate > 90), Lewat_JT_90_Keatas = k.Sisa 
+				     else Lewat_JT_90_Keatas = 0
+				---- where  k.Supl_Name != 'Belum Diketahui'
+				     and k.Penjual LIKE @Penjual 
+				     and k.ProjectName LIKE @Project
+				     and k.Supl_ID in (select Supl_ID from MS_Supplier where Supl_Name like @Supplier)
+				     and Sisa > 0 
+				---- where Lewat_JT_90 > 0
+				---- group by t.Supl_Name
+				---- where Sisa > 0.1  
+				---- order by Supl_Name, mark, convert(datetime,TanggalNota), ProjectName
+			--- Jika jatem = Lewat JT Diatas 90 Hari
+				---- case when datediff(day, cast(TanggalJatuhTempo as date), cast(@Start_date as date)) between -7 and 0, Reminder = Sisa
+				     else Reminder = 0
+				---- case when (k.DiffDate > 0 and k.DiffDate <= 30), Lewat_JT_30 = k.Sisa 
+				     else Lewat_JT_30 = 0
+				---- case when (k.DiffDate > 0 and k.DiffDate between 31 and 90), Lewat_JT_90 = k.Sisa 
+				     else Lewat_JT_90 = 0
+				---- case when (k.DiffDate > 0 and k.DiffDate > 90), Lewat_JT_90_Keatas = k.Sisa 
+				     else Lewat_JT_90_Keatas = 0
+				---- where  k.Supl_Name != 'Belum Diketahui'
+				     and k.Penjual LIKE @Penjual 
+				     and k.ProjectName LIKE @Project
+				     and k.Supl_ID in (select Supl_ID from MS_Supplier where Supl_Name like @Supplier)
+				     and Sisa > 0
+				---- where Lewat_JT_90_Keatas > 0
+				---- group by t.Supl_Name
+				---- where Sisa > 0.1  
+				---- order by Supl_Name, mark, convert(datetime,TanggalNota), ProjectName
+12. GOButton
+	- Memanggil AllData
+13. TabControl1
+	- DataGridView1 (Piutang Detail)
+		-- NamaCust	
+		-- NomorPO	
+		-- NomorKontrak	
+		-- ProjectName	
+		-- Penjual	
+		-- TanggalNota	
+		-- JPembayaran	
+		-- Proses	
+		-- TglTerima	
+		-- TanggalJatuhTempo	
+		-- NomorNota	
+		-- NomorFaktur	
+		-- Kurs	
+		-- Jumlah_Faktur	
+		-- UangMuka	
+		-- DPPRp	
+		-- PPN	
+		-- PPH22	
+		-- PPH22BUMN	
+		-- Potongan	
+		-- Premi	
+		-- Total	
+		-- Pelunasan	
+		-- CN	
+		-- Sisa	
+		-- Berat	
+		-- Reminder	
+		-- Lewat JT sd 30 Hari	
+		-- Lewat JT sd 90 Hari	
+		-- Lewat JT > 90 Hari	
+		-- Lewat JT	
+		-- NotaID	
+		-- Jenis	
+		-- StatusFaktur	
+		-- JenisFaktur	
+		-- WAPU	
+		-- NomorPOCust
+	- DataGridView2 (Piutang Summary) = tidak ditampilkan
