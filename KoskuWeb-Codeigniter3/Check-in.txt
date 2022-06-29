@@ -1,0 +1,80 @@
+Pada saat menu Check-in di buka, akan menampilkan Tampilan utama Check-in
+
+Tombol : 
+1. Kembali = memanggil base_url " "(url dasarnya / home)
+2. Nomor Kamar = memanggil base_url "index.php/Cekin/pilih
+
+Fungsi Detail Kamar
+lokasi url = index.php/Cekin/detail_transaksi + id_transaksi
+
+ var id_transaksi = $("#id_transaksi_modal").val();
+        $.ajax({
+            url : "<?php echo base_url();?>index.php/Cekin/detail_transaksi/"+id_transaksi,
+            type : "GET",
+            dataType : "JSON",
+            success : function(data) {
+                $("#isi_detail").html(data);
+                $(".modal-title").text("Data Detail");
+                $("#modal_detail").modal("show");
+                $("#modal_kamar").modal("hide");
+            }
+        });
+
+
+Fungsi pindah_kamar ,
+	- membaca id_transaksi = $("id_transaksi_modal").val();
+		-- kemudian window.location akan membuka lokasi dari pindah_kamar, > index.php/Cekin/pindah/ dari id_transaksi bersangkutan
+		
+var id_transaksi = $("#id_transaksi_modal").val();
+        window.location = "<?php echo base_url();?>index.php/Cekin/pindah/"+id_transaksi;		
+		
+		
+Fungsi print invoice
+lokasi url = index.php/Cekin/print_invoice/ + id_transaksi
+
+fungsi option_kamar(id_kamar) {
+        var id_kamar = $("#id_kamar_opsi_"+id_kamar).val();
+        var nomor_kamar = $("#nomor_kamar_opsi_"+id_kamar).val();
+        var id_transaksi = $("#id_transaksi_opsi_"+id_kamar).val();
+
+        $("#id_kamar_modal").val(id_kamar);
+        $("#nomor_kamar_modal").val(nomor_kamar);
+        $("#id_transaksi_modal").val(id_transaksi);
+
+        $(".modal-title").text("Option Kamar");
+        $("#modal_kamar").modal("show");
+		
+
+fungsi  check_out() {
+        var nomor_kamar = $("#nomor_kamar_modal").val();
+        var id_kamar = $("#id_kamar_modal").val();
+        var id_transaksi = $("#id_transaksi_modal").val();
+
+        Swal.fire({title:"Check Out",text:"Anda Akan Melakukan check_out dari "+nomor_kamar+"...?",type:"warning",
+            showCancelButton:!0,
+            confirmButtonColor:"#34c38f",
+            cancelButtonColor:"#f46a6a",confirmButtonText:"Ya, Check_Out sekarang!",cancelButtonText:"Batal!"}).then(function(t){t.value&&checkoutConfirm(id_kamar, id_transaksi)
+        });
+		
+fungsi checkoutConfirm(id, id_transaksi) {
+        $.ajax({
+            url : "<?php echo base_url();?>index.php/Cekin/proses_checkout",
+            type : "POST",
+            dataType : "JSON",
+            data : {id:id, id_transaksi:id_transaksi},
+            success : function(data) {
+                Swal.fire({title:"Check Out Berhasil",text:"Data Check Out Berhasil Disimpan",type:"success",showCancelButton:0,confirmButtonColor:"#3eb7ba",cancelButtonColor:"#f46a6a"});
+
+                window.location = "<?php echo base_url();?>index.php/Cekin";
+            }		
+
+
+
+=============================================
+
+Setelah memilih kamar, user akan ditampilkan, menu "input data tamu"
+
+1. tombol "Lihat KTP" akan menampilkan foto KTP dari pengunjung
+2. tombol "Cek In Sekarang" baru dapat di tekan, ketika semua data telah diisi dengan benar
+3. ketika "Cek In Sekarang" di klik, akan muncul messagebox, "Data tersimpan"
+

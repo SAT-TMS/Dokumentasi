@@ -1,0 +1,49 @@
+Pada saat menu Check-in di buka, akan menampilkan Tampilan utama Check-in
+
+Tombol : 
+1. Kembali = memanggil base_url " "(url dasarnya / home)
+2. Nomor Kamar = memanggil base_url "index.php/Cekin/pilih
+
+Fungsi Detail Kamar
+lokasi url = index.php/Cekin/detail_transaksi + id_transaksi
+
+ var id_transaksi = $("#id_transaksi_modal").val();
+        $.ajax({
+            url : "<?php echo base_url();?>index.php/Cekin/detail_transaksi/"+id_transaksi,
+            type : "GET",
+            dataType : "JSON",
+            success : function(data) {
+                $("#isi_detail").html(data);
+                $(".modal-title").text("Data Detail");
+                $("#modal_detail").modal("show");
+                $("#modal_kamar").modal("hide");
+            }
+        });
+
+
+Fungsi pindah_kamar ,
+	- membaca id_transaksi = $("id_transaksi_modal").val();
+		-- kemudian window.location akan membuka lokasi dari pindah_kamar, > index.php/Cekin/pindah/ dari id_transaksi bersangkutan
+		
+var id_transaksi = $("#id_transaksi_modal").val();
+        window.location = "<?php echo base_url();?>index.php/Cekin/pindah/"+id_transaksi;		
+		
+		
+Fungsi print invoice
+lokasi url = index.php/Cekin/print_invoice/ + id_transaksi
+
+untuk option_kamar berdasarkan id_kamar
+	variable nya = - id_kamar
+				   - nomor_kamar
+				   - id_transaksi
+
+
+
+=============================================
+
+Setelah memilih kamar, user akan ditampilkan, menu "input data tamu"
+
+1. tombol "Lihat KTP" akan menampilkan foto KTP dari pengunjung
+2. tombol "Cek In Sekarang" baru dapat di tekan, ketika semua data telah diisi dengan benar
+3. ketika "Cek In Sekarang" di klik, akan muncul messagebox, "Data tersimpan"
+

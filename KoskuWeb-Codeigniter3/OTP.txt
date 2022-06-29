@@ -1,0 +1,151 @@
+berikut adalah fungsi OTP message : 
+
+Terletak pada libraries/myp100ject/OTP.php
+
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+require_once(APPPATH.'third_party/vendor/autoload.php');
+
+use Ramsey\Uuid\Uuid;
+
+class OTP {
+    public function __construct()
+	{
+        $this->_CI = & get_instance();        
+	}
+
+    public function get(string $check_in_id)
+	{
+        return $this->db_get($check_in_id);
+    }
+
+    public function validation(string $check_in_id, string $value)
+	{
+        $data = $this->db_get($check_in_id, $value);
+
+        if ($data)
+        {
+            $this->db_change_check_in($data->cek_in_id);
+            $this->db_delete($data->cek_in_id);
+
+            return true;
+        }
+        
+        return false;
+    }
+
+    public function delete(string $check_in_id)
+	{
+        return $this->db_delete($check_in_id);
+	}
+
+    public function create(string $check_in_id)
+	{
+        $this->_CI->load->library('myp100ject/WhatsApp');
+        
+        $id = Uuid::uuid4()->toString();
+        $expire_in_minutes = 10;
+        $expire_date = date('Y-m-d H:i:s', strtotime('+'.$expire_in_minutes.' min'));
+
+        $this->db_disable($check_in_id);
+        $this->db_create($id, $check_in_id, $expire_date);
+                
+        $data = $this->db_get_detail($id);
+        $message =
+            'User : '.$data->user.'%0a'.
+            'Cabang : '.$data->branch.'%0a'.
+            'Tipe Kamar : '.$data->room_type.'%0a'.
+            'No Kamar : '.$data->room_number.'%0a'.
+            'Harga Kamar : Rp. '.number_format($data->room_price).'%0a'.
+            'Diskon : '.$data->discount.'%'.'%0a'.
+            'Menjadi : Rp. '.number_format($data->total).'%0a'.
+            'Berlaku sampai : '.date('d M y', strtotime($expire_date)).'%0a%0a'.
+            'Kode OTP anda '. $data->otp .' akan kadaluarsa dalam waktu 10 menit.';
+        $this->_CI->whatsapp->send(['081363306006', '0818999082'], $message);
+
+        return true;
+	}
+
+    private function db_get(string $check_in_id, string $value = null)
+	{
+        $query = $this->_CI->db
+            ->where(array('cek_in_id' => $check_in_id, 'isValid' => true, 'expire >=' => date('Y-m-d H:i:s')));
+
+        if ($value)
+            $query = $query
+                ->where('value', $value);
+                        
+        return $query
+            ->get('cek_in_otp')
+            ->row();
+	}
+
+    private function db_get_detail(string $id)
+	{
+        return $this->_CI->db
+            ->select(array(
+                'master_pelanggan.nama AS user',
+                'master_cabang.cabang_kos AS branch',
+                'cek_in.room_type AS room_type',
+                'master_kamar.nomor_kamar AS room_number',
+                'cek_in.total AS room_price',
+                'cek_in.discount_persen AS discount',
+                'cek_in.grand_total AS total',
+                'cek_in_otp.value AS otp'
+            ))
+            ->from('cek_in_otp')
+            ->join('cek_in', ' cek_in_otp.cek_in_id = cek_in.id', 'left')
+            ->join('master_pelanggan', 'cek_in.id_customer = master_pelanggan.id', 'left')
+            ->join('master_cabang', 'cek_in.id_cabang = master_cabang.id', 'left')
+            ->join('master_kamar', 'cek_in.id_kamar = master_kamar.id', 'left')
+            ->where('cek_in_otp.id', $id)
+            ->where('cek_in_otp.isValid', true)
+            ->get()
+            ->row();
+	}   
+
+    private function db_create(string $id, string $check_in_id, string $expire_date)
+	{
+        return $this->_CI->db
+            ->insert(
+                'cek_in_otp',
+                array(
+                    'id' => $id,
+                    'cek_in_id' => $check_in_id,
+                    'value' => rand(100000, 999999),
+                    'isValid' => true,
+                    'expire' => $expire_date
+                )
+            );
+	}
+
+    private function db_change_check_in(string $id)
+	{
+        return $this->_CI->db
+            ->where('id', $id)
+            ->update(
+                'cek_in',
+                array('payment_status' => 'pending')
+            );
+	}
+
+    private function db_disable(string $check_in_id)
+	{
+		return $this->_CI->db
+            ->where('cek_in_id', $check_in_id)
+            ->update(
+                'cek_in_otp',
+                array('isValid' => false)
+            );
+	}
+
+    private function db_delete(string $check_in_id)
+	{
+        return $this->_CI->db
+            ->delete(
+                'cek_in_otp',
+                array('cek_in_id' => $check_in_id)
+            );
+	}
+}

@@ -1,0 +1,5 @@
+Pada saat menu Transfer di buka, akan menampilkan Tampilan utama Transfer
+
+Tombol : 
+1. Kembali = memanggil base_url " "(url dasarnya / home)
+2. Nomor Kamar = memanggil base_url "index.php/Cekin/pindah

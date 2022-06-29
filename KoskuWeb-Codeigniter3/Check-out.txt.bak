@@ -1,0 +1,157 @@
+Pada saat menu Check-out di buka, akan menampilkan Tampilan utama Check-in
+
+Tombol : 
+1. Kembali = memanggil base_url " "(url dasarnya / home)
+2. Nomor Kamar = memanggil javascript:void(0); yang akan menampilkan pop-up, untuk checkout
+
+
+Fungsi ubah_kondisi(a)  {
+        var nomor_status = $("#nomor_status_"+a).val();
+        if(nomor_status == 1) {
+            $("#nomor_status_"+a).val("0");
+        }
+        else {
+            $("#nomor_status_"+a).val("1");
+        }
+
+        var new_status = $("#nomor_status_"+a).val();
+
+        if(new_status == 0) {
+            $("#keterangan_"+a).removeAttr("disabled");
+            $("#denda_"+a).removeAttr("disabled");
+            $("#denda_"+a).attr("required", true);
+
+        } 
+        else {
+            $("#keterangan_"+a).attr("disabled", true);
+            $("#denda_"+a).attr("disabled", true);
+            $("#keterangan_"+a).val("");
+            $("#denda_"+a).val("");
+        }
+		
+		
+Fungsi detail() {
+        var id_transaksi = $("#id_transaksi_modal").val();
+        $.ajax({
+            url : "<?php echo base_url();?>index.php/Cekin/detail_transaksi/"+id_transaksi,
+            type : "GET",
+            dataType : "JSON",
+            success : function(data) {
+                $("#isi_detail").html(data);
+                $(".modal-title").text("Data Detail");
+                $("#modal_detail").modal("show");
+                $("#modal_kamar").modal("hide");
+            }
+        });
+    }
+	
+Fungsi pindah_kamar() {
+        var id_transaksi = $("#id_transaksi_modal").val();
+        window.location = "<?php echo base_url();?>index.php/Cekin/pindah/"+id_transaksi;
+    }
+	
+	
+Fungsi cek_pembayaran(id_kamar, id_transaksi) {
+        $.ajax({
+            url : "<?php echo base_url();?>index.php/Cekin/cekpembayaran",
+            type : "POST",
+            dataType : "JSON",
+            data : {id:id_transaksi},
+            success : function(data) {
+                if(data == 'pending') {
+                    Swal.fire({title:"Checkout Failed",text:"Pembayaran Belum Dilakukan...!",type:"warning",showCancelButton:0,confirmButtonColor:"#3eb7ba",cancelButtonColor:"#f46a6a"});
+                }else if (data == 'success'){
+                    cek_fasilitas(id_kamar, id_transaksi);
+                }
+            }
+        })
+		
+Fungsi cek_fasilitas(id_kamar, id_transaksi) {
+
+        var nomor_kamar = $("#nomor_kamar_text_"+id_kamar).text();
+        $("#id_transaksi_fasilitas").val(id_transaksi);
+        $("#id_kamar_fasilitas").val(id_kamar);
+        $.ajax({
+            url : "<?php echo base_url();?>index.php/Cekin/cek_fasilitas/"+id_kamar,
+            type : "GET",
+            dataType : "JSON",
+            success : function(data) {
+                console.log("data", data);
+                var HTML;
+                HTML = '';
+                HTML += '<table class="table table-bordered table-striped">';
+                HTML += '<tr><th>Nama Fasilitas</th><th>Nomor Kamar</th><th>Kondisi</th><th>Keterangan</th><th>Denda (Rp)</th></tr>';
+                
+
+                for(var i=0; i<data.length; i++) {
+                    var a = 3+i;
+                    HTML += '<tr><td><input type="hidden" name="id_fasilitas[]" value="'+data[i].id_fasilitas+'"><input type="hidden" name="id_kamar_detail[]" value="'+data[i].id_detail_kamar+'">'+data[i].nama_fasilitas+'</td><td>'+nomor_kamar+'</td><td> <input type="checkbox" checked value="'+data[i].id_detail_kamar+'" id="switch'+a+'" name="kondisi_fasilitas[]" switch="bool" onchange="ubah_kondisi('+a+')" class="form-control" /><label for="switch'+a+'" data-on-label="Baik" data-off-label="Rusak"></label><input type="hidden" id="nomor_status_'+a+'" value="1"></td><td><textarea class="form-control" disabled name="keterangan[]" id="keterangan_'+a+'"></textarea></td><td><input type="number" disabled name="denda[]" id="denda_'+a+'" onkeyup="ribuan('+a+')" class="form-control"><br><small>Rp. <span id="display_angka_'+a+'">0</span</small></td></tr>';
+
+
+                }
+
+                HTML += '</table>';
+
+                $("#isi_fasilitas").html(HTML);
+                $("#fasilitas_length").val(data.length);
+
+                $(".modal-title").text("Cek Fasilitas "+nomor_kamar);
+                $("#modal_fasilitas").modal("show");
+            }
+        })
+
+Fungsi ribuan(a) {
+        var angka = $("#denda_"+a).val();
+        var angka_format = format_angka(angka);
+        $("#display_angka_"+a).text(angka_format);
+		
+Fungsi check_out(id_kamar, id_transaksi, maintenance_status) {
+       
+        var nomor_kamar = $("#nomor_kamar_text_"+id_kamar).text();
+
+        Swal.fire({title:"Check Out",text:"Anda Akan Melakukan check_out dari "+nomor_kamar+"...?",type:"warning",
+            showCancelButton:!0,
+            confirmButtonColor:"#34c38f",
+            cancelButtonColor:"#f46a6a",confirmButtonText:"Ya, Check_Out sekarang!",cancelButtonText:"Batal!"}).then(function(t){t.value&&checkoutConfirm(id_kamar, id_transaksi, maintenance_status)
+        });
+		
+Fungsi checkoutConfirm(id, id_transaksi, maintenance_status) {
+        $.ajax({
+            url : "<?php echo base_url();?>index.php/Cekin/proses_checkout",
+            type : "POST",
+            dataType : "JSON",
+            data : {id:id, id_transaksi:id_transaksi, maintenance_status:maintenance_status},
+            success : function(data) {
+                Swal.fire({title:"Check Out Berhasil",text:"Data Check Out Berhasil Disimpan",type:"success",showCancelButton:0,confirmButtonColor:"#3eb7ba",cancelButtonColor:"#f46a6a"});
+
+                window.location = "<?php echo base_url();?>index.php/Cekin/cekout";
+            }
+        });
+		
+Fungsi format_angka(angka){
+       if(angka==null || angka == 0){
+          return 0;
+       }else{
+           var reverse = angka.toString().split('').reverse().join(''),
+           ribuan = reverse.match(/\d{1,3}/g);
+           ribuan = ribuan.join('.').split('').reverse().join('');
+           return ribuan;
+       }
+	   
+Fungsi bataltransaksi(id) {
+        Swal.fire({title:"Batal Transaksi",text:"Anda Akan Membatalkan Transaksi "+id+"...?",type:"warning",
+            showCancelButton:!0,
+            confirmButtonColor:"#34c38f",
+            cancelButtonColor:"#f46a6a",confirmButtonText:"Ya, Batalkan Sekarang!",cancelButtonText:"Tidak!"}).then(function(t){t.value&&bataltransConfirm(id)
+        });
+		
+Fungsi bataltransConfirm(id){
+        $.ajax({
+            url : "<?php echo base_url();?>index.php/Cekin/bataltransaksi",
+            type : "POST",
+            dataType : "JSON",
+            data : {id:id},
+            success : function(data) {
+                window.location = "<?php echo base_url();?>index.php/Cekin/cekout";
+            }
+        })

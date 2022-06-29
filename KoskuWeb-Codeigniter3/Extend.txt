@@ -1,0 +1,96 @@
+Pada saat menu Extend di buka, akan menampilkan Tampilan utama Extend
+
+Tombol : 
+1. Kembali = memanggil base_url " "(url dasarnya / home)
+2. Nomor Kamar = memanggil base_url "index.php/Cekin/extend
+
+Fungsi Detail Kamar
+lokasi url = index.php/Cekin/detail_transaksi + id_transaksi
+
+	function detail() {
+        var id_transaksi = $("#id_transaksi_modal").val();
+        $.ajax({
+            url : "<?php echo base_url();?>index.php/Cekin/detail_transaksi/"+id_transaksi,
+            type : "GET",
+            dataType : "JSON",
+            success : function(data) {
+                $("#isi_detail").html(data);
+                $(".modal-title").text("Data Detail");
+                $("#modal_detail").modal("show");
+                $("#modal_kamar").modal("hide");
+            }
+        });
+
+
+Fungsi pindah_kamar ,
+	- membaca id_transaksi = $("id_transaksi_modal").val();
+		-- kemudian window.location akan membuka lokasi dari pindah_kamar, > index.php/Cekin/pindah/ dari id_transaksi bersangkutan
+		
+	function pindah_kamar() {
+        var id_transaksi = $("#id_transaksi_modal").val();
+        window.location = "<?php echo base_url();?>index.php/Cekin/pindah/"+id_transaksi;
+    }
+		
+Fungsi cek_fasilitas (id_kamar, id_transaksi)
+	-  url : "<?php echo base_url();?>index.php/Cekin/cek_fasilitas/"+id_kamar,
+	
+	function cek_fasilitas(id_kamar, id_transaksi) {
+        var nomor_kamar = $("#nomor_kamar_text_"+id_kamar).text();
+        $("#id_transaksi_fasilitas").val(id_transaksi);
+        $("#id_kamar_fasilitas").val(id_kamar);
+        $.ajax({
+            url : "<?php echo base_url();?>index.php/Cekin/cek_fasilitas/"+id_kamar,
+            type : "GET",
+            dataType : "JSON",
+            success : function(data) {
+                console.log("data", data);
+                var HTML;
+                HTML = '';
+                HTML += '<table class="table table-bordered table-striped">';
+                HTML += '<tr><th>Nama Fasilitas</th><th>Nomor Kamar</th><th>Kondisi</th></tr>';
+                
+
+                for(var i=0; i<data.length; i++) {
+                    var a = 3+i;
+                    HTML += '<tr><td><input type="hidden" name="id_fasilitas[]" value="'+data[i].id_fasilitas+'"><input type="hidden" name="id_kamar_detail[]" value="'+data[i].id_detail_kamar+'">'+data[i].nama_fasilitas+'</td><td>'+nomor_kamar+'</td><td> <input type="checkbox"  value="'+data[i].id_detail_kamar+'" id="switch'+a+'" name="kondisi_fasilitas[]" switch="bool" class="form-control" /><label for="switch'+a+'" data-on-label="Baik" data-off-label="Rusak"></label></td></tr>';
+
+
+                }
+
+                HTML += '</table>';
+
+                $("#isi_fasilitas").html(HTML);
+
+                $(".modal-title").text("Cek Fasilitas "+nomor_kamar);
+                $("#modal_fasilitas").modal("show");
+            }
+        })
+	
+Fungsi check_out(id_kamar, id_transaksi)
+	- mengambil variable nomor_kamar = ($"#nomor_kamar_text_"+id_kamar).text();
+		-- memunculkan opsi pop-up confirmation 
+				Swal.fire({title:"Check Out",text:"Anda Akan Melakukan check_out dari "+nomor_kamar+"...?",type:"warning",
+            showCancelButton:!0,
+            confirmButtonColor:"#34c38f", << untuk warna
+            cancelButtonColor:"#f46a6a",confirmButtonText:"Ya, Check_Out sekarang!",cancelButtonText:"Batal!"}).then(function(t){t.value&&checkoutConfirm(id_kamar, id_transaksi)
+								^^^ untuk warna
+								
+		});
+		
+	function check_out(id_kamar, id_transaksi) {
+       
+        var nomor_kamar = $("#nomor_kamar_text_"+id_kamar).text();
+
+        Swal.fire({title:"Check Out",text:"Anda Akan Melakukan check_out dari "+nomor_kamar+"...?",type:"warning",
+            showCancelButton:!0,
+            confirmButtonColor:"#34c38f",
+            cancelButtonColor:"#f46a6a",confirmButtonText:"Ya, Check_Out sekarang!",cancelButtonText:"Batal!"}).then(function(t){t.value&&checkoutConfirm(id_kamar, id_transaksi)
+        });
+		
+Fungsi print invoice
+lokasi url = index.php/Cekin/print_invoice/ + id_transaksi
+
+untuk option_kamar berdasarkan id_kamar
+	variable nya = - id_kamar
+				   - nomor_kamar
+				   - id_transaksi
