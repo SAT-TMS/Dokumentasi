@@ -1,0 +1,43 @@
+Query Pelunasan
+1. Form Load
+	- Memanggil AllData
+		-- Customer	= TxtCustomer 
+		-- NoNota	= TxtNoNota
+		-- NoKontrak	= TxtNoKontrak
+		-- DataGridView1 = Get data dari Database Service PelunasanCari
+		-- Jika ada data dalam grid
+			--- Clear semua data dalam grid
+2. TxtNoNota
+	- Memanggil AllData
+3. TxtNoKontrak
+	- Memanggil AllData
+4. TxtCustomer
+	- Memanggil AllData
+5. DataGridView1
+	- Nomor Nota
+	- Nomor Kontrak
+	- Nama Customer
+	- Tgl Nota
+	- Currency
+	- Jumlah
+	- Pelunasan
+	- Retur
+	- Sisa
+	- Sales
+6. DataGridView.DoubleClick
+	- Jika data dalam grid > 0
+		-- data = ambil dari DataGridView1
+		-- terimaid = NoNota (data grid kolom 0)
+		-- Jika data dalam grid > 0 baris
+			--- Clear semua baris
+		-- RptARPelunasan = Form RptARPelunasan
+			--- Set DataSource = Get data dari Database Service PelunasanCari
+			--- Memanggil Report Definition
+		-- RptARPelunasan
+			--- Jika terdiri dari > 0 tabel
+				---- Jika dalam tabel terdapat > 0 baris
+					----- Set Parameter = NoNota (grid kolom 0, item ke-1)
+		-- FrmViewReport
+			--- Set DataSource = RptARPelunasan
+			--- Refresh data dalam FrmViewReport
+			--- Text = "AR Pelunasan"

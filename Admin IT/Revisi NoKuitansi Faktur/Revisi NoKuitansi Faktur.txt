@@ -1,0 +1,85 @@
+Revisi NoKuitansi Faktur
+1. Form Load
+	- Memanggil AllData
+		-- NoNota = TxtNoNota
+		-- NoFaktur = TxtNoFaktur
+		-- NamaCustomer = TxtCustomer
+		-- DateFrom = txtDateFrom
+		-- DateTo = txtDateTo
+		-- DataGridView1 = Get data dari Database Service FakturList
+2. TabControl1
+	- Tab Calendar
+		-- Calendar
+	- Tab Range
+		-- txtDateFrom
+		-- txtDateTo
+		-- BtnDate
+		-- BtnWeek
+		-- BtnYear
+		-- BtnAnnual
+3. DataGridView1
+	- Nomor Nota
+	- Tgl Nota
+	- Nomor Faktur
+	- No Kontrak
+	- Jenis Faktur
+	- Nama Customer (Faktur)
+	- F/L
+	- Jumlah
+	- Jenis Faktur Index
+	- Kuitansi
+4. TxtNoNota
+	- Jika input > 2 karakter
+		-- Memanggil AllData
+	- Jika input = 0 karakter
+		-- Memanggil AllData
+5. TxtNoFaktur
+	- Jika input > 2 karakter
+		-- Memanggil AllData
+	- Jika input = 0 karakter
+		-- Memanggil AllData
+6. TxtCustomer
+	- Jika input > 2 karakter
+		-- Memanggil AllData
+	- Jika input = 0 karakter
+		-- Memanggil AllData
+7. mnuClick
+	- RevisiNoKuitansiToolStripMenuItem
+		-- Jika dalam DataGridView1 terdiri dari > 0 baris
+			--- Memanggil Revisi_Qty_Sj_Form
+				---- nNotaId = NotaID (grid kolom 0)
+                		---- nNomorEdit = NomorNota (grid kolom 1)
+                		---- NoKwitansiTextBox2.Text = Sisa (grid kolom 14)
+                		---- NoKwitansi = True
+                		---- Memanggil AllData
+	- DeleteToolStripMenuItem
+		-- Jika dalam DataGridView1 terdiri dari > 0 baris
+			--- MessageBox : Delete Invoice (NotaID (grid kolom 0)) ?
+			--- MessageBos : Konfirmasi ?
+			--- MessageBox Button : Yes dan No
+			--- Jika pilih Yes
+                    		---- otp_tampil = Memanggil OTPWAForm
+                    			----- otp_tampil.NOTRANSAKSI = NotaID (grid kolom 0)
+                    			----- If otp_tampil.Void = True Then
+                        			------ NoSJ = NotaID
+                        			------ NoOM = ""
+                        			------ ProductID = NomorPO
+                        			------ ndata(3) = "param1"
+                        			------ ndata(4) = "param2"
+                        			------ ndata(5) = "param3"
+                        			------ ndata(6) = "param4"
+                        			------ ndata(7) = "param5"
+                        			------ ndata(8) = "NotaDelete"
+                        			------ ndata(9) = "0"
+                        			------ ndata(10) = "0"
+                            			------ dtsetUpdate = Get data dari Database Service Sls_SuratJalan_Revisi_Update_PO
+                            			------ Memanggil Logactivity
+							------- "Menu Khusus"
+							------- "Delete Invoice"
+							------- NomorNota
+							------- Mengubah Database Txt_Faktur
+                        			------ Memanggil AllData()
+	- MnuRefresh
+		-- Memanggil AllData
+	- MnuExit
+		-- Keluar dari FakturRevisiForm

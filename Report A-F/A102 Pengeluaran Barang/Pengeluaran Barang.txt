@@ -1,0 +1,171 @@
+Pengeluaran Barang (Header)
+1. Form Load
+	- Jika LocationID = L0001
+		-- LocationName = " " (kosong)
+	- Jika LocationID != L0001
+		-- LocationName = LocationIDLog
+	- ds = DataGridView1 = Get data dari Report_Pengeluaran_Barang
+	- dsSummary = Get data dari Report_A102_Pengeluaran_Barang_Summary
+2. TxtCustomers, Nama Customer
+3. TxtSales, Sales
+4. TxtProject, Project
+5. TxtKontrak, Nomor Kontrak
+6. BtnClearCustomers
+	- Clear data dalam TxtCustomers
+7. BtnClearSales
+	- Clear data dalam TxtSales
+8. BtnClearProject
+	- Clear data dalam TxtProject
+9. BtnClearKontrak
+	- Clear data dlam TxtKontrak
+10. Search Button Customer
+	- Membuka Searching Form
+		-- Grid
+			--- Customer
+			--- Sales
+			--- Project
+			--- Kontrak
+		-- TextBox Customer, Sales, Project, Kontrak
+		-- DoubleClick ke salah satu baris untuk memilih Customer, Sales, Project dan Kontrak
+		-- Masukkan data yang dipilih ke dalam TxtCustomers, TxtSales, TxtProject, TxtKontrak
+11. CustomerCheckBox
+	- Jika CustomerCheckBox dicek
+		-- TxtCustomers = %
+	- Jika CustomerCheckBox tidak dicek
+		-- TxtCustomers = " " (kosong)
+12. SalesCheckBox
+	- Jika SalesCheckBox dicek
+		-- TxtSales = %
+	- Jika SalesCheckBox tidak dicek
+		-- TxtSales = " " (kosong)
+13. ProjectCheckBox
+	- Jika ProjectCheckBox dicek
+		-- TxtProject = %
+	- Jika ProjectCheckBox tidak dicek
+		-- TxtProject = " " (kosong)
+14. KontrakCheckBox
+	- Jika KontrakCheckBox dicek
+		-- TxtKontrak = %
+	- Jika KontrakCheckBox tidak dicek
+		-- TxtKontrak = " " (kosong)
+15. CboLokasi
+	- CboLokasi = sesuai LocationID dan LocationName ketika Login
+16. txtDateFrom
+17. txtDateTo
+18. CboLaporan
+	- A102 - Pengeluaran Barang
+19. DataGridView1
+	- TanggalPO
+	- NomorPO
+	- PickSlipID
+	- NomorPOCust
+	- ProjectName
+	- ProductID
+	- KodeMarketting
+	- QuantityPO
+	- SatuanPO
+	- TanggalSJ
+	- SuratJalanID
+	- Memo
+	- NoMobil
+	- QuanitySJ
+	- SatuanSJ
+	- WPS
+	- BeratNettoStd
+	- Tara
+	- Brutto
+	- Netto
+	- Sisa
+	- Index
+	- Header
+	- NoKontrak
+20. MnuClick
+	- MnuRefresh
+		-- Memanggil Function DataSet
+			--- Jika CboLaporan != " " (kosong)
+            			---- LblLaporan = CboLaporan
+            			---- Jika CboLaporan = "A102 - Pengeluaran Barang"
+                			----- Jika TxtCustomers != " "
+                    				------ Supl_Name = TxtCustomer
+                			----- Jika TxtCustomers = " "
+                    				------ Supl_Name = "%"
+                			----- Jika TxtSales != " "
+                    				------ Sales = TxtSales
+                			----- Jika TxtSales = " "
+                    				------ Sales = "%"
+                			----- Jika CboLokasi = "LAIN LAIN"
+                    				------ LocationName = "%"
+                			----- Jika CboLokasi != "LAIN-LAIN"
+                    				------ LocationName = CboLokasi
+                			----- Jika TxtProject != " "
+                    				------ Project = TxtProject
+                			----- Jika TxtProject = " "
+                    				------ Project = "%"
+                			----- Jika TxtKontrak != " "
+                    				------ NomorKontrak = TxtKontrak
+                			----- Jika TxtKontrak = " "
+                    				------ NomorKontrak = "%"
+                			----- DateFrom = txtDateFrom
+                			----- DateTo = txtDateTo
+				---- Jika jumlah baris dalam table > 0
+					----- Clear semua baris
+				---- Jika CboLaporan = "A102 - Pengeluaran Barang"
+					----- ds = Database Service Report_Pengeluaran_Barang
+					----- dsSummary = Database Service Report_A102_Pengeluaran_Barang_Summary
+				---- Jika jumlah baris dalam table = 0
+					----- MessageBox = "Data Tidak Ada !!!"
+				---- Jika jumlah baris dalam table > 0
+					----- DataGridView = ds
+					----- Format tanggal = dd MM yyyy
+						------ d = Tanggal
+						------ M = Bulan
+						------ y = Tahun
+					----- TotalBarisLabel6 = jumlah baris
+				---- Jika jumlah baris dalam table = 0
+					----- TotalBarisLabel6 = 0
+	- MnuExport
+		-- Jika CboLaporan = " " (kosong)
+            		--- Keluar dari A102FrmRptPengeluaranBarang
+        	-- Jika CboLaporan != " " (kosong)
+            		--- If LblLaporan != CboLaporan
+                		---- MnuRefresh
+            		--- If CboLaporan = "A102 - Pengeluaran Barang"
+				---- Get data dari Report_Pengeluaran_Barang
+					----- Get table
+						------ Gudang
+						------ TanggalDari
+						------ TanggalSampai
+						------ NomorPO
+					----- Jika RR = 1
+						------ RR = SuratJalanID
+					----- Jika RR = ''
+						------ RR = SuratJalanID 
+					----- Jika RR = 1
+						------ RR = PickSlipID
+					----- Jika RR = ''
+						------ RR = PickSlipID 
+					----- Jika RR = 1
+						------ RR = NomorPO 
+					----- Jika RR = ''
+						------ RR = NomorPO 
+					----- Jika RR = 1
+						------ RR = Supl_Name
+					----- Jika RR = ''
+						------ RR = Supl_Name
+					----- Jika ProductID (Trx_SuratJalanDetail)(dilihat dari kiri 2 digit) = '51' AND SatuanID (Trx_SuratJalanDetail) = 'kg'
+						------ SatuanID = Quantity2 (Trx_SuratJalanDetail)
+					----- Jika ProductID (Trx_SuratJalanDetail)(dilihat dari kiri 2 digit) != '51' AND SatuanID (Trx_SuratJalanDetail) != 'kg'
+						------ SatuanID = Quantity (Trx_SuratJalanDetail)
+					----- Jika ProductID (Trx_SuratJalanDetail)(dilihat dari kiri 2 digit) = '51' AND SatuanID (Trx_SuratJalanDetail) = 'kg'
+						------ SatuanID = Satuan2ID (Trx_SuratJalanDetail)
+					----- Jika ProductID (Trx_SuratJalanDetail)(dilihat dari kiri 2 digit) != '51' AND SatuanID (Trx_SuratJalanDetail) != 'kg'
+						------ SatuanID = SatuanID (Trx_SuratJalanDetail)
+					----- Persen = STR((BeratTimbangan (Trx_WBExtPenjualanProfil) - BeratStandard (Trx_WBExtPenjualanProfil)) / NULLIF (BeratTimbangan (Trx_WBExtPenjualanProfil), 0) * 100))
+					----- FROM Trx_SuratJalanDetail
+						----- Status (Trx_SuratJalan) = 'A' 
+						----- AND Factory (MS_Locations) LIKE @Gudang 
+						----- AND TanggalSJ (Trx_SuratJalan) >= @TanggalDari 
+						----- AND TanggalSJ (Trx_SuratJalan) <= @TanggalSampai
+						----- ORDER BY TanggalSJ (Trx_SuratJalan), SuratJalanID (Trx_SuratJalan)
+	- MnuExit
+		-- Keluar dari A102FrmRptPengeluaranBarang

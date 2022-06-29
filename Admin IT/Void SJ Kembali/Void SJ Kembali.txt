@@ -1,0 +1,25 @@
+Void SJ Kembali (Header)
+1. Form Load
+	- Memanggil AllData
+		-- Get DataGridView dari Database Service Sls_PenerimaanSJ_List
+2. TxtNoSJ
+	- Jika input > 3 karakter
+		-- Memanggil AllData
+3. DataGridView1
+	- NoSJ
+	- Tgl_Terima
+	- Ekspedisi
+4. BtnDeleteDetail
+	- Jika DataGridView terdiri dari > 0 baris
+		-- dss = Get dari Database Service Sls_PenerimaanSJ_Void
+		-- SuratJalanID = NoSJ (grid kolom 0)
+		-- Jika tidak ada koneksi internet (internet putus)
+			--- MessageBox : "Jaringan Putus !!!"
+		-- Menyimpan LogActivity
+			--- "Menu Khusus"
+			--- "Delete Penerimaan SJ"
+			--- SuratJalanID
+			--- Mengubah Database Trx_SuratJalanTerima
+		-- Memanggil AllData
+5. CloseButton
+	- Menutup FrmPenerimaanSJ_List
