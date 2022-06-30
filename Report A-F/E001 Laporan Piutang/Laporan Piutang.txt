@@ -114,13 +114,34 @@ Laporan Piutang (Header)
 				---- [JenisFaktur]
 				---- [WAPU]
 				---- NomorPOCust
+			--- Tabel Database yang digunakan
+				---- v	= ViewFakturReferensi
+				---- f	= Trx_Faktur
+				---- c	= Trx_Terima
+				---- t	= Trx_Faktur
+				---- ft	= Trx_FakturTT
+				---- y	= Trx_BAP_N
+				---- r	= ViewFakturReferensi
+				---- h	= Trx_Terima
+				---- h	= Trx_BAP_N
+				---- h	= Trx_FakturTT
+				---- h	= Trx_Faktur
+				---- d	= Trx_FakturDetail
+				---- r	= Trx_FakturRetur
+				---- n	= Trx_Terima
+				---- n	= Trx_BAP_N
+				---- n	= Trx_FakturTT
+				---- n	= Trx_Faktur
+				---- k	= @tbl
+				---- br	= Trx_Faktur
+				---- u	= Trx_FakturUangMuka
 			--- case when v.NomorPO is not null, NomorPO = v.NomorPO 
 			    	 when (v.NomorPO is null and f.JenisFakturID = 1), NomorPO = 'Uang Muka' 
 			    	 when (v.NomorPO is null and f.JenisFakturID = 8), NomorPO = 'Lain Lain'  
 			    else NomorPO = 'DB Lama'
 			--- case when v.NomorKontrak is not null then NomorKontrak = v.NomorKontrak 
-			    	 when (v.NomorKontrak is null and f.JenisFakturID=1), NomorKontrak = 'Uang Muka' 
-			    	 when (v.NomorKontrak is null and f.JenisFakturID=8), NomorKontrak = 'Lain Lain' 
+			    	 when (v.NomorKontrak is null and f.JenisFakturID = 1), NomorKontrak = 'Uang Muka' 
+			    	 when (v.NomorKontrak is null and f.JenisFakturID = 8), NomorKontrak = 'Lain Lain' 
 			    else NomorKontrak = 'DB Lama'
 			--- case when (v.ProjectName is null and f.JenisFakturID = 1), ProjectName = 'Uang Muka' 
 			    	 when v.ProjectName is not null, ProjectName = v.ProjectName 
@@ -165,7 +186,7 @@ Laporan Piutang (Header)
 				 when f.JenisFakturID = 3, JenisFaktur = 'Ongkos Angkut' 
 			    else JenisFaktur = 'Lain Lain'
 			--- Jumlah = f.Jumlah - isnull(r.Jumlah,0)
-			--- from Trx_Faktur f
+			--- from Trx_Faktur
 				---- f.Supl_ID = s.Supl_ID 
 				---- f.NotaID = r.NotaID 
 				---- f.NotaID = u.NotaID 
@@ -174,14 +195,14 @@ Laporan Piutang (Header)
 				     and f.TanggalNota <= @Start_date
 				---- t.Total > 0
 				---- t.DPPRp > 0
-			--- from Trx_Terima h
+			--- from Trx_Terima
 				---- h.TerimaID = d.TerimaID 
 				---- where h.TerimaID not like '%cn%' 
 				     and h.Status = 'A'
 				     and d.NotaID in (select f.NotaID from Trx_Faktur f)
 				---- group by d.NotaID
 				---- f.NotaID = t.NotaID
-			--- from ViewFakturReferensi r
+			--- from ViewFakturReferensi
 				---- where f.Status = 'A'
 				     and (ISNULL(f.NomorNota, '-') <> '-')    
 				     and f.TanggalNota <= @Start_date
@@ -192,7 +213,7 @@ Laporan Piutang (Header)
 				     and f.TanggalNota <= @Start_date
 				---- group by r.NotaID
 				---- f.NotaID = v.NotaID
-			--- from Trx_BAP_N h
+			--- from Trx_BAP_N
 				---- h.BAP_ID = d.BAP_ID
 				---- where f.Status = 'A'
 				     and (ISNULL(f.NomorNota, '-') <> '-') 
@@ -200,7 +221,7 @@ Laporan Piutang (Header)
 				---- d.NotaID = n.NotaID 
 				---- group by d.NotaID
 				---- f.NotaID = y.NotaID
-			--- from Trx_FakturTT h
+			--- from Trx_FakturTT
 				---- h.NoTT = d.NoTT 
 				---- where f.Status = 'A'
 				     and (ISNULL(f.NomorNota, '-') <> '-') 
@@ -208,7 +229,7 @@ Laporan Piutang (Header)
 				---- d.NotaID = n.NotaID 
 				---- group by d.NotaID
 				---- f.NotaID = ft.NotaID 
-			--- from Trx_Faktur h
+			--- from Trx_Faktur
 				---- h.NotaID = d.NotaID 
 				---- where f.Status = 'A'
 				     and (ISNULL(f.NomorNota, '-') <> '-') 
