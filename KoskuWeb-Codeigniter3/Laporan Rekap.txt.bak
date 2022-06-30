@@ -95,3 +95,132 @@ Fungsi print_now() {
             }
 
         })
+		
+
+Fungsi xls_now()
+    {
+        var cabang = $("#pilihan_cabang").val();
+        var kamar = $("#pilihan_kamar").val();
+        var periode = $("#pilihan_periode").val();
+        var tahun = $("#pilihan_tahun").val();
+
+        var id_cabang;
+        var id_kamar;
+
+        if(cabang=='') {
+            id_cabang = '0';
+        }
+        else {
+            id_cabang = cabang;
+        }
+
+        if(kamar == '') {
+            id_kamar = '0';
+        } 
+        else {
+            id_kamar = kamar;
+        }
+
+        $.ajax({
+            url : "<?php echo base_url();?>index.php/Report/export_laporan_rekap/"+id_cabang+"/"+id_kamar+"/"+periode+"/"+tahun,
+            type : "GET",
+            success : function(data) {
+                var viewUrl="<?php echo base_url();?>index.php/Report/export_laporan_rekap/"+id_cabang+"/"+id_kamar+"/"+periode+"/"+tahun;
+                window.open(viewUrl);      
+            }
+
+        })
+		
+Fungsi print_data() {
+        $(".modal-title").text("Print Report");
+        $("#modal_print").modal("show");
+		
+Fungsi tampilkan_data() {
+        $("#loadingProgress").show();
+        $("#table-data").DataTable().destroy();
+        $("#table-data-total").DataTable().destroy();
+        list_table();
+        $("#loadingProgress").hide();
+		
+Fungsi list_kamar_percabang(id_cabang) {
+        $.ajax({
+            url : "<?php echo base_url();?>index.php/Report/kamar_per_cabang",
+            type : "POST",
+            dataType : "JSON",
+            data : {id:id_cabang},
+            success : function(data) {
+                $("#pilihan_kamar").html(data);
+            }
+        });
+		
+Fungsi list_table() {
+
+        var cabang = $("#pilihan_cabang").val();
+        var kamar = $("#pilihan_kamar").val();
+        var periode = $("#pilihan_periode").val();
+        var tahun = $("#pilihan_tahun").val();
+
+    
+        $("#table-data").DataTable({
+            "processing":true,
+            "serverSide":true,
+            "oLanguage": {
+                "sZeroRecords": "<center>Data tidak ditemukan</center>",
+                "sLengthMenu": "Tampilkan _MENU_ data",
+                "sSearch": "Cari No Kamar:",
+                "sInfo": "Menampilkan: _START_ - _END_ dari total: _TOTAL_ data",                                   
+                "oPaginate": {
+                    sFirst: "Awal", "sPrevious": "Sebelumnya",
+                    sNext: "Selanjutnya", "sLast": "Akhir"
+                },
+            },
+            "order":[],
+            "ajax":{
+                url: "<?php echo base_url();?>index.php/Report/fetch_laporan_rekap",
+                type:"POST",
+                data : {cabang:cabang, kamar:kamar,periode:periode, tahun:tahun},
+                
+            },
+            "columnDefs":[
+                {
+                    "targets":[0],
+                    "orderable":false,
+                }
+            ]
+        });
+
+        $("#table-data-total").DataTable({
+            "processing":true,
+            "serverSide":true,
+            "bPaginate": false,
+            "bInfo": false,
+            "bFilter": false,
+            "oLanguage": {
+                "sZeroRecords": "<center>Data tidak ditemukan</center>",
+                "sLengthMenu": "Tampilkan _MENU_ data",
+                "sSearch": "Cari Bulan:",
+                "sInfo": "Menampilkan: _START_ - _END_ dari total: _TOTAL_ data",                                   
+                "oPaginate": {
+                    sFirst: "Awal", "sPrevious": "Sebelumnya",
+                    sNext: "Selanjutnya", "sLast": "Akhir"
+                },
+            },
+            "order":[],
+            "ajax":{
+                url: "<?php echo base_url();?>index.php/Report/fetch_laporan_rekap_total",
+                type:"POST",
+                data : {cabang:cabang, kamar:kamar,periode:periode, tahun:tahun},
+                
+            },
+            "columnDefs":[
+                {
+                    "targets":[0],
+                    "orderable":false,
+                }
+            ]
+        });
+		
+Fungsi reloadTable() {
+        $("#table-data").DataTable().ajax.reload(null,false);   
+        $("#table-data-total").DataTable().ajax.reload(null,false);    
+    }

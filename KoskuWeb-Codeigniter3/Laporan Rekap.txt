@@ -1,5 +1,8 @@
 Menampilkan Laporan Rekapitulasi Pendapatan
 
+
+Tanggal dan Bulan, diambil dari libraries/myp100ject/Holidays.php
+
 Terdapat combo box :
 	- Lokasi : memilih Lokasi
 		>>   <?php 
@@ -224,3 +227,76 @@ Fungsi reloadTable() {
         $("#table-data").DataTable().ajax.reload(null,false);   
         $("#table-data-total").DataTable().ajax.reload(null,false);    
     }
+
+
+Holidays.php
+>>
+
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Holidays {
+    public function get_work_day(string $date)
+    {
+        while (!$this->check($date)['work_day']) {
+            $date = date('Ymd', strtotime('+1 days', strtotime($date)));
+        }
+
+        return date('Y-m-d', strtotime($date));
+    }
+
+    public function check(string $date)
+    {
+        $holidayFromDate = array_filter(
+            $this->get_holiday($date),
+            function ($data) use ($date) {
+                return $data->holiday_date == date('Y-m-j', strtotime($date));
+            }
+        );
+        $isSaturday = date('N', strtotime($date)) == 6;
+        $isSunday = date('N', strtotime($date)) == 7;
+        $isHoliday = count($holidayFromDate) > 0;
+        $isWorkDay = !$isSaturday && !$isSunday && !$isHoliday;
+        $event = array();
+
+        if ($isSaturday)
+            $event[] = 'Saturday';
+
+        if ($isSunday)
+            $event[] = 'Sunday';
+        
+        if ($isHoliday)
+            $event = array_merge($event, array_column($holidayFromDate, 'holiday_name'));
+    
+        return [
+            'date' => date('l, d F Y', strtotime($date)),
+            'event' => $event,
+            'work_day' => $isWorkDay
+        ];
+    }
+
+    public function get_holiday(string $date)
+    {
+        $curlHandle = curl_init();
+
+        curl_setopt($curlHandle, CURLOPT_URL, 'https://api-harilibur.vercel.app/api?month='.date('m', strtotime($date)).'&year='.date('Y', strtotime($date)));
+        curl_setopt($curlHandle, CURLOPT_HEADER, 0);
+        curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curlHandle, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($curlHandle, CURLOPT_TIMEOUT, 30);
+
+        $response = curl_exec($curlHandle);
+
+        curl_close($curlHandle);
+
+        $response = array_filter(
+            json_decode($response),
+            function ($data) {
+                return $data->is_national_holiday == true;
+            }
+        );
+
+        return $response;
+    }
+}
