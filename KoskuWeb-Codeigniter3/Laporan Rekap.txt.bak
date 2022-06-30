@@ -1,0 +1,97 @@
+Menampilkan Laporan Rekapitulasi Pendapatan
+
+Terdapat combo box :
+	- Lokasi : memilih Lokasi
+		>>   <?php 
+                if($this->session->userdata('level_session') == 2)
+                {
+                    foreach ($cabang as $key ) {
+                       echo '<option value="'.$key->id.'">'.$key->cabang_kos.'</option>'; 
+                    }
+                }  
+                else
+                {
+                    foreach ($cabang_id as $key ) {
+                       echo '<option value="'.$key->id.'">'.$key->cabang_kos.'</option>'; 
+                    }
+                } 
+                                                            
+             ?>
+	
+	- Pilihan Kamar
+		>>  <select class="form-control" id="pilihan_kamar">
+                <option value=""> - All Kamar - </option>
+            </select>
+			
+	- Periode
+		<select class="form-control" id="pilihan_periode">
+            <option value="01" <?php if(date('m') == "01") echo 'selected';?>>Januari</option>
+            <option value="02" <?php if(date('m') == "02") echo 'selected';?>>Februari</option>
+            <option value="03" <?php if(date('m') == "03") echo 'selected';?>>Maret</option>
+            <option value="04" <?php if(date('m') == "04") echo 'selected';?>>April</option>
+            <option value="05" <?php if(date('m') == "05") echo 'selected';?>>Mei</option>
+            <option value="06" <?php if(date('m') == "06") echo 'selected';?>>Juni</option>
+            <option value="07" <?php if(date('m') == "07") echo 'selected';?>>Juli</option>
+            <option value="08" <?php if(date('m') == "08") echo 'selected';?>>Agustus</option>
+            <option value="09" <?php if(date('m') == "09") echo 'selected';?>>September</option>
+			<option value="10" <?php if(date('m') == "10") echo 'selected';?>>Oktober</option>
+            <option value="11" <?php if(date('m') == "11") echo 'selected';?>>November</option>
+            <option value="12" <?php if(date('m') == "12") echo 'selected';?>>Desember</option>
+        </select>
+		
+	- Tahun 
+		<select class="form-control" id="pilihan_tahun">
+            <option value="2020" <?php if(date('Y') == "2020") echo 'selected';?>>2020</option>
+            <option value="2021" <?php if(date('Y') == "2021") echo 'selected';?>>2021</option>
+            <option value="2022" <?php if(date('Y') == "2022") echo 'selected';?>>2022</option>
+            <option value="2023" <?php if(date('Y') == "2023") echo 'selected';?>>2023</option>
+            <option value="2024" <?php if(date('Y') == "2024") echo 'selected';?>>2024</option>
+            <option value="2025" <?php if(date('Y') == "2025") echo 'selected';?>>2025</option>
+            <option value="2026" <?php if(date('Y') == "2026") echo 'selected';?>>2026</option>
+            <option value="2027" <?php if(date('Y') == "2027") echo 'selected';?>>2027</option>
+            <option value="2028" <?php if(date('Y') == "2028") echo 'selected';?>>2028</option>
+            <option value="2029" <?php if(date('Y') == "2029") echo 'selected';?>>2029</option>
+            <option value="2030" <?php if(date('Y') == "2030") echo 'selected';?>>2029</option>
+            <option value="2031" <?php if(date('Y') == "2031") echo 'selected';?>>2031</option>
+            <option value="2032" <?php if(date('Y') == "2032") echo 'selected';?>>2032</option>
+            <option value="2033" <?php if(date('Y') == "2033") echo 'selected';?>>2033</option>
+            <option value="2034" <?php if(date('Y') == "2034") echo 'selected';?>>2034</option>                                    
+        </select>
+		
+Button : 
+1. Tampilkan Data : menampilkan Data
+2. Print : Print Data
+
+
+Fungsi print_now() {
+        var cabang = $("#pilihan_cabang").val();
+        var kamar = $("#pilihan_kamar").val();
+        var periode = $("#pilihan_periode").val();
+        var tahun  = $("#pilihan_tahun").val();
+
+        var id_cabang;
+        var id_kamar;
+
+        if(cabang=='') {
+            id_cabang = '0';
+        }
+        else {
+            id_cabang = cabang;
+        }
+
+        if(kamar == '') {
+            id_kamar = '0';
+        } 
+        else {
+            id_kamar = kamar;
+        }
+
+        $.ajax({
+            url : "<?php echo base_url();?>index.php/Report/print_laporan_rekap/"+id_cabang+"/"+id_kamar+"/"+periode+"/"+tahun,
+            type : "GET",
+            success : function(data) {
+                var viewUrl="<?php echo base_url();?>index.php/Report/print_laporan_rekap/"+id_cabang+"/"+id_kamar+"/"+periode+"/"+tahun;
+                window.open(viewUrl, "popupWindow", "width=900,height=600,scrollbars=yes");    
+            }
+
+        })
